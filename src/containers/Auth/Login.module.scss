@@ -1,0 +1,220 @@
+$mainColor: rgb(238, 77, 45);
+
+.login {
+    width: 100%;
+    color: rgba(0, 0, 0, 0.87);
+    box-sizing: border-box;
+}
+
+.login_header {
+    height: 80px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    z-index: 9;
+
+    .login_header_logo {
+        width: 120px;
+        display: flex;
+        padding-right: 20px;
+
+        a {
+            height: 100%;
+            width: 100%;
+            fill: $mainColor;
+            color: $mainColor;
+        }
+    }
+
+    .login_header_title {
+        font-size: 2rem;
+        flex-grow: 1;
+    }
+
+    .login_header_help {
+        color: $mainColor;
+        text-decoration: none;
+        font-size: 1rem;
+    }
+}
+
+.login_body {
+    width: 100%;
+    background-color: $mainColor;
+
+    .login_body_wrapper {
+        margin: auto;
+        width: 100%;
+        max-width: 1200px;
+        height: 600px;
+        position: relative;
+    }
+
+    .login_body_form {
+        background-color: #fff;
+        height: 430px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 400px;
+        border-radius: 4px;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+    }
+
+    .login_form_title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        height: 80px;
+        line-height: 40px;
+        padding: 20px 0;
+    }
+
+    .login_form_input {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        padding: 8px;
+        width: 100%;
+        outline: none;
+
+        &:focus-visible {
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.14);
+            border-color: rgba(0, 0, 0, 0.54);
+        }
+    }
+
+    .login_error_message {
+        width: 100%;
+        overflow: hidden;
+        font-size: 0.85rem;
+        color: red;
+        padding: 2px 8px 8px;
+        min-height: 20px;
+    }
+
+    .login_input_password {
+        position: relative;
+
+        .hideShowIcon {
+            width: 44px;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 12px;
+        }
+    }
+
+    .login_form_button {
+        border: none;
+        background-color: #ee4d2d;
+        color: #fff;
+        padding: 8px;
+        border-radius: 2px;
+        margin-bottom: 15px;
+        pointer-events: none;
+        opacity: 0.65;
+
+        &:hover {
+            background-color: #f05d40;
+        }
+    }
+
+    .login_form_forgot {
+        text-decoration: none;
+        width: 30%;
+        font-size: 0.85rem;
+    }
+
+    .login_form_otherOptions {
+        display: flex;
+        justify-content: space-around;
+
+        a {
+            text-decoration: none;
+            background-color: #fff;
+            width: 163px;
+            padding: 0 8px;
+            display: flex;
+            margin: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            color: inherit;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.02);
+            }
+        }
+
+        %logo_image {
+            width: 22px;
+            height: 22px;
+            background-image: url('https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/7b95007f3377150730bbb5d1ddb477d6.png');
+            margin-right: 10px;
+        }
+
+        .icon_facebook {
+            @extend %logo_image;
+            background-size: 325% 287.5%;
+            background-position: 5.55556% 62.666667%;
+        }
+
+        .icon_google {
+            @extend %logo_image;
+            background-size: 722.22222% 638.88889%;
+            background-position: 83.92857% 5.15464%;
+        }
+    }
+}
+
+.split {
+    position: relative;
+    width: 100%;
+    color: rgba(0, 0, 0, 0.4);
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+
+    &::after {
+        content: '';
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+    }
+
+    span {
+        background-color: #fff;
+        padding: 0 8px;
+        margin: auto;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 1;
+        font-size: 0.875rem;
+    }
+}
+
+.redirect_signup {
+    margin-top: 25px;
+    text-decoration: none;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+
+    a {
+        color: $mainColor;
+        text-decoration: none;
+    }
+}
+
+.login_footer {
+    height: 100px;
+}

@@ -1,0 +1,40 @@
+.banner {
+    position: absolute;
+    top: 30px;
+    left: 141px;
+    width: 460px;
+    height: 430px;
+    background-color: #fff;
+    border-radius: 8px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    overflow: hidden;
+
+    img:only-child {
+        width: 100%;
+    }
+
+    img {
+        width: 220px;
+    }
+
+    div {
+        font-size: 2rem;
+        color: #12d76e;
+    }
+}
+
+.form_cancle_button {
+    border: none;
+    padding: 8px;
+    color: #fff;
+    margin: 8px 0;
+    border-radius: 2px;
+    background-color: #6c757d;
+
+    &:hover {
+        opacity: 0.65;
+    }
+}
