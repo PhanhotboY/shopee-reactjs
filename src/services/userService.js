@@ -16,7 +16,7 @@ const userService = {
         return axios.get(`/api/get/user?id=${id}`);
     },
 
-    handleGetDeletedUser(id) {
+    handleGetDeletedUser() {
         return axios.get(`/api/get-deleted/user`);
     },
 
@@ -26,6 +26,14 @@ const userService = {
 
     handleDeleteUser(id) {
         return axios.delete(`/api/delete/user?id=${id}`);
+    },
+
+    handleDeletePermanentlyUser(id) {
+        return axios.delete(`/api/delete-permanently/user?id=${id}`);
+    },
+
+    handleRestoreItem(id) {
+        return axios.patch(`/api/restore/user?id=${id}`);
     },
 };
 

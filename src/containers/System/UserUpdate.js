@@ -101,7 +101,6 @@ class UserUpdate extends Component {
 
         await this.setState({
             errMessage: this.checkInputValue({
-                email,
                 password,
                 phone_number,
                 avatar,
@@ -109,7 +108,6 @@ class UserUpdate extends Component {
         });
 
         if (
-            email &&
             phone_number &&
             first_name &&
             last_name &&
@@ -122,7 +120,6 @@ class UserUpdate extends Component {
         }
 
         if (
-            !email ||
             !phone_number ||
             !first_name ||
             !last_name ||
@@ -242,10 +239,10 @@ class UserUpdate extends Component {
                                         type='email'
                                         className={`form-control ${formStyle['form-control']}`}
                                         id='inputEmail'
-                                        value={email}
+                                        defaultValue={email}
                                         name='email'
                                         placeholder='Email'
-                                        onChange={this.handleInputOnChange}
+                                        disabled
                                     />
 
                                     <div className={formStyle['error_message']}>

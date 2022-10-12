@@ -12,14 +12,13 @@ class UserDeleted extends Component {
             userArray: [],
             errMessage: {},
             idDeleteModal: 0,
-            countDeletedUser: 0,
         };
     }
 
     async componentDidMount() {
         try {
             const allDeletedUser = await userService.handleGetDeletedUser();
-            console.log(allDeletedUser);
+
             if (allDeletedUser && !allDeletedUser.errType) {
                 this.setState({
                     userArray: allDeletedUser.userInfo.rows,
@@ -44,22 +43,20 @@ class UserDeleted extends Component {
         });
     }
 
-    async handleDeleteItem(id) {
+    async handleRestoreItem(id) {
         try {
-            const data = await userService.handleDeleteUser(id);
+            const data = await userService.handleRestoreItem(id);
 
             if (data && data.errType) {
                 this.setState({
                     errMessage: { [data.errType]: data.message },
                 });
+                console.log(data);
             } else {
-                const countDeletedUser = await this.countDeletedUser();
-
                 this.setState({
                     userArray: this.state.userArray.filter(
                         (element) => element.user_id !== id
                     ),
-                    countDeletedUser,
                 });
             }
         } catch (err) {
@@ -67,24 +64,25 @@ class UserDeleted extends Component {
         }
     }
 
-    async countDeletedUser() {
+    async handleDeletePermanentlyItem(id) {
         try {
-            const allDeletedUser = await userService.handleGetDeletedUser();
+            const data = await userService.handleDeletePermanentlyUser(id);
 
-            if (allDeletedUser && !allDeletedUser.errType) {
-                return allDeletedUser.userInfo.count;
+            if (data && data.errType) {
+                this.setState({
+                    errMessage: { [data.errType]: data.message },
+                });
+            } else {
+                this.setState({
+                    userArray: this.state.userArray.filter(
+                        (element) => element.user_id !== id
+                    ),
+                });
             }
         } catch (err) {
-            console.log(err);
-            return 0;
+            console.log('>>>something error: ', err);
         }
     }
-
-    redirectToUserDeletedPage = (id) => {
-        const { navigate } = this.props;
-        const redirectPath = `/system/user-manage/deleted-user`;
-        navigate(`${redirectPath}`);
-    };
 
     renderModal() {
         return (
@@ -107,14 +105,16 @@ class UserDeleted extends Component {
                     </div>
 
                     <div className={style.modal_body}>
-                        Do you want to delete this user?
+                        Do you want to delete this user permanently?
                     </div>
 
                     <div className={style.modal_footer}>
                         <button
                             className='btn btn-danger'
-                            onClick={() => {
-                                this.handleDeleteItem(this.state.idDeleteModal);
+                            onClick={async () => {
+                                await this.handleDeletePermanentlyItem(
+                                    this.state.idDeleteModal
+                                );
                                 this.setState({ idDeleteModal: 0 });
                             }}
                         >
@@ -152,6 +152,9 @@ class UserDeleted extends Component {
                                         style={{
                                             backgroundImage: `url('${user.avatar}')`,
                                         }}
+                                        onClick={() =>
+                                            this.handleRestoreItem(user.user_id)
+                                        }
                                     ></div>
 
                                     <div className={style.item_detail}>

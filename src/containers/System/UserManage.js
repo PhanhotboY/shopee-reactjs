@@ -19,12 +19,12 @@ class UserManage extends Component {
     async componentDidMount() {
         try {
             const allUser = await userService.handleGetUser('all');
-            const countDeletedUser = await this.countDeletedUser();
+            const allDeletedUser = await this.getDeletedUser();
 
             if (allUser && !allUser.errType) {
                 this.setState({
                     userArray: allUser.userInfo,
-                    countDeletedUser,
+                    countDeletedUser: allDeletedUser.count,
                 });
             }
         } catch (err) {
@@ -55,13 +55,13 @@ class UserManage extends Component {
                     errMessage: { [data.errType]: data.message },
                 });
             } else {
-                const countDeletedUser = await this.countDeletedUser();
+                const allDeletedUser = await this.getDeletedUser();
 
-                this.setState({
+                await this.setState({
                     userArray: this.state.userArray.filter(
                         (element) => element.user_id !== id
                     ),
-                    countDeletedUser,
+                    countDeletedUser: allDeletedUser.count + 1,
                 });
             }
         } catch (err) {
@@ -69,12 +69,12 @@ class UserManage extends Component {
         }
     }
 
-    async countDeletedUser() {
+    async getDeletedUser() {
         try {
             const allDeletedUser = await userService.handleGetDeletedUser();
 
             if (allDeletedUser && !allDeletedUser.errType) {
-                return allDeletedUser.userInfo.count;
+                return allDeletedUser.userInfo;
             }
         } catch (err) {
             console.log(err);

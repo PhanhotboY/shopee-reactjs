@@ -95,8 +95,9 @@ class Signup extends Component {
             address &&
             this.isEmptyObj(this.state.errMessage)
         ) {
-            document.querySelector('.body_form .form_button').style =
-                'pointer-events: all; opacity: 1;';
+            document.querySelector(
+                `.${style.body_form} .${style.form_button}`
+            ).style = 'pointer-events: all; opacity: 1;';
         }
 
         if (
@@ -108,7 +109,9 @@ class Signup extends Component {
             !address ||
             !this.isEmptyObj(this.state.errMessage)
         ) {
-            document.querySelector('.body_form .form_button').style = '';
+            document.querySelector(
+                `.${style.body_form} .${style.form_button}`
+            ).style = '';
         }
     };
 
@@ -138,7 +141,7 @@ class Signup extends Component {
                 });
             } else {
                 const signupSuccessAlert = document.querySelector(
-                    `.${style.signup} .${style.success_alert}`
+                    `.${style.wrapper} .${style.success_alert}`
                 );
 
                 signupSuccessAlert.style.display = 'flex';
@@ -148,7 +151,7 @@ class Signup extends Component {
                 }, 1000);
             }
         } catch (err) {
-            console.log(err.response);
+            console.log('>>>>something error: ', err);
         }
     };
 
