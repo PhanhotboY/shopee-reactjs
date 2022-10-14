@@ -209,9 +209,10 @@ $mainColor: rgb(238, 77, 45);
     display: flex;
     justify-content: center;
 
-    a {
+    span:last-child {
         color: $mainColor;
         text-decoration: none;
+        cursor: pointer;
     }
 }
 

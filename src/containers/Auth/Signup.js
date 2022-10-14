@@ -67,15 +67,8 @@ class Signup extends Component {
             errMessage: {},
         });
 
-        const {
-            email,
-            password,
-            phoneNumber,
-            firstName,
-            lastName,
-            address,
-            avatarURL,
-        } = this.state.signupData;
+        const { email, password, phoneNumber, firstName, lastName, address, avatarURL } =
+            this.state.signupData;
 
         await this.setState({
             errMessage: this.checkInputValue({
@@ -95,9 +88,8 @@ class Signup extends Component {
             address &&
             this.isEmptyObj(this.state.errMessage)
         ) {
-            document.querySelector(
-                `.${style.body_form} .${style.form_button}`
-            ).style = 'pointer-events: all; opacity: 1;';
+            document.querySelector(`.${style.body_form} .${style.form_button}`).style =
+                'pointer-events: all; opacity: 1;';
         }
 
         if (
@@ -109,9 +101,7 @@ class Signup extends Component {
             !address ||
             !this.isEmptyObj(this.state.errMessage)
         ) {
-            document.querySelector(
-                `.${style.body_form} .${style.form_button}`
-            ).style = '';
+            document.querySelector(`.${style.body_form} .${style.form_button}`).style = '';
         }
     };
 
@@ -203,16 +193,10 @@ class Signup extends Component {
                             <div className={style.form_title}>Đăng ký</div>
 
                             <div className={`form-row ${style['form-row']}`}>
-                                <div
-                                    className={`form-group col-7 ${style['form-group']}`}
-                                >
+                                <div className={`form-group col-7 ${style['form-group']}`}>
                                     <label htmlFor='inputEmail'>
                                         Email
-                                        <span
-                                            className={style['mandatory-field']}
-                                        >
-                                            *
-                                        </span>
+                                        <span className={style['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='email'
@@ -228,16 +212,10 @@ class Signup extends Component {
                                         {errMessage.email || ''}
                                     </div>
                                 </div>
-                                <div
-                                    className={`form-group col-5 ${style['form-group']}`}
-                                >
+                                <div className={`form-group col-5 ${style['form-group']}`}>
                                     <label htmlFor='inputPhoneNumber'>
                                         Phone Number
-                                        <span
-                                            className={style['mandatory-field']}
-                                        >
-                                            *
-                                        </span>
+                                        <span className={style['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='email'
@@ -261,19 +239,11 @@ class Signup extends Component {
                                 >
                                     <label htmlFor='inputPassword'>
                                         Password
-                                        <span
-                                            className={style['mandatory-field']}
-                                        >
-                                            *
-                                        </span>
+                                        <span className={style['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         className={`form-control ${style['form-control']}`}
-                                        type={
-                                            this.state.isHiddenPassword
-                                                ? 'password'
-                                                : 'text'
-                                        }
+                                        type={this.state.isHiddenPassword ? 'password' : 'text'}
                                         id='inputPassword'
                                         value={password}
                                         name='password'
@@ -306,9 +276,7 @@ class Signup extends Component {
                                     </svg>
                                 </div>
 
-                                <div
-                                    className={`form-group col-4 ${style['form-group']}`}
-                                >
+                                <div className={`form-group col-4 ${style['form-group']}`}>
                                     <label htmlFor='inputSex'>Sex</label>
                                     <select
                                         id='inputSex'
@@ -324,16 +292,10 @@ class Signup extends Component {
                             </div>
 
                             <div className={`form-row ${style['form-row']}`}>
-                                <div
-                                    className={`form-group col-5 ${style['form-group']}`}
-                                >
+                                <div className={`form-group col-5 ${style['form-group']}`}>
                                     <label htmlFor='inputFirstName'>
                                         First Name
-                                        <span
-                                            className={style['mandatory-field']}
-                                        >
-                                            *
-                                        </span>
+                                        <span className={style['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
@@ -345,16 +307,10 @@ class Signup extends Component {
                                     />
                                 </div>
 
-                                <div
-                                    className={`form-group col-5 ${style['form-group']}`}
-                                >
+                                <div className={`form-group col-5 ${style['form-group']}`}>
                                     <label htmlFor='inputLastName'>
                                         Last Name
-                                        <span
-                                            className={style['mandatory-field']}
-                                        >
-                                            *
-                                        </span>
+                                        <span className={style['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
@@ -366,9 +322,7 @@ class Signup extends Component {
                                     />
                                 </div>
 
-                                <div
-                                    className={`form-group col-2 ${style['form-group']}`}
-                                >
+                                <div className={`form-group col-2 ${style['form-group']}`}>
                                     <label htmlFor='inputRole'>Role</label>
                                     <select
                                         id='inputRole'
@@ -385,12 +339,8 @@ class Signup extends Component {
                             </div>
 
                             <div className={`form-row ${style['form-row']}`}>
-                                <div
-                                    className={`form-group col-9 ${style['form-group']}`}
-                                >
-                                    <label htmlFor='inputAvatar'>
-                                        Avatar URL
-                                    </label>
+                                <div className={`form-group col-9 ${style['form-group']}`}>
+                                    <label htmlFor='inputAvatar'>Avatar URL</label>
                                     <input
                                         type='text'
                                         className={`form-control ${style['form-control']}`}
@@ -405,16 +355,10 @@ class Signup extends Component {
                                     </div>
                                 </div>
 
-                                <div
-                                    className={`form-group col-3 ${style['form-group']}`}
-                                >
+                                <div className={`form-group col-3 ${style['form-group']}`}>
                                     <label htmlFor='inputCity'>
                                         City
-                                        <span
-                                            className={style['mandatory-field']}
-                                        >
-                                            *
-                                        </span>
+                                        <span className={style['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
@@ -441,9 +385,7 @@ class Signup extends Component {
 
                             <div className={style['form_otherOptions']}>
                                 <a href='#'>
-                                    <div
-                                        className={style['icon_facebook']}
-                                    ></div>
+                                    <div className={style['icon_facebook']}></div>
                                     <span>Facebook</span>
                                 </a>
 
@@ -467,7 +409,7 @@ class Signup extends Component {
 
                             <div className={style['redirect_login']}>
                                 <span>Đã có tài khoản? </span>
-                                <a href='/login'>Đăng nhập</a>
+                                <span onClick={this.redirectToLoginPage}>Đăng nhập</span>
                             </div>
                         </div>
 

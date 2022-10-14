@@ -25,15 +25,13 @@ class Login extends Component {
         });
 
         if (this.state.email && this.state.password) {
-            document.querySelector(
-                `.${style.login_body_form} .${style.login_form_button}`
-            ).style = 'pointer-events: all; opacity: 1;';
+            document.querySelector(`.${style.login_body_form} .${style.login_form_button}`).style =
+                'pointer-events: all; opacity: 1;';
         }
 
         if (!this.state.email || !this.state.password) {
-            document.querySelector(
-                `.${style.login_body_form} .${style.login_form_button}`
-            ).style = '';
+            document.querySelector(`.${style.login_body_form} .${style.login_form_button}`).style =
+                '';
         }
     };
 
@@ -49,15 +47,13 @@ class Login extends Component {
         });
 
         try {
-            const data = await userService.handleLogin(
-                this.state.email,
-                this.state.password
-            );
-            console.log(data);
+            const data = await userService.handleLogin(this.state.email, this.state.password);
+
             if (data && data.errType) {
                 this.setState({
                     errMessage: { [data.errType]: data.message },
                 });
+                this.props.userLoginFail();
             }
 
             if (data && !data.errType) {
@@ -66,6 +62,12 @@ class Login extends Component {
         } catch (err) {
             console.log(err.response);
         }
+    };
+
+    redirectToSignupPage = () => {
+        const { navigate } = this.props;
+        const redirectPath = '/signup';
+        navigate(`${redirectPath}`);
     };
 
     render() {
@@ -99,9 +101,7 @@ class Login extends Component {
                         }}
                     >
                         <div className={style['login_body_form']}>
-                            <div className={style['login_form_title']}>
-                                Đăng nhập
-                            </div>
+                            <div className={style['login_form_title']}>Đăng nhập</div>
 
                             <div className={style['login_input_password']}>
                                 <input
@@ -121,11 +121,7 @@ class Login extends Component {
                             <div className={style['login_input_password']}>
                                 <input
                                     className={style['login_form_input']}
-                                    type={
-                                        this.state.isHiddenPassword
-                                            ? 'password'
-                                            : 'text'
-                                    }
+                                    type={this.state.isHiddenPassword ? 'password' : 'text'}
                                     name='password'
                                     value={this.state.password}
                                     placeholder='Password'
@@ -175,9 +171,7 @@ class Login extends Component {
 
                             <div className={style['login_form_otherOptions']}>
                                 <a href='#'>
-                                    <div
-                                        className={style['icon_facebook']}
-                                    ></div>
+                                    <div className={style['icon_facebook']}></div>
                                     <span>Facebook</span>
                                 </a>
 
@@ -189,7 +183,7 @@ class Login extends Component {
 
                             <div className={style['redirect_signup']}>
                                 <span>Bạn mới biết đến Shopee? </span>
-                                <a href='/signup'>Đăng ký</a>
+                                <span onClick={this.redirectToSignupPage}>Đăng ký</span>
                             </div>
                         </div>
                     </div>
@@ -210,8 +204,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
-        userLoginSuccess: (userInfo) =>
-            dispatch(actions.userLoginSuccess(userInfo)),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
         userLoginFail: () => dispatch(actions.userLoginFail()),
     };
 };

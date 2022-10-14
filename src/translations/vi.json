@@ -23,7 +23,23 @@
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
         "password": "Mật khẩu",
-        "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
+        "userpass-wrong": "Sai mật khẩu. Vui lòng thử lại!",
+        "useremail-wrong": "Người dùng không tồn tại!"
+    },
+    "signup": {
+        "signup": "Đăng ký",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "phone-number": "Số điện thoại",
+        "gender": "Giới tính",
+        "avatar": "Ảnh đại diện",
+        "address": "Địa chỉ",
+        "first-name": "Họ",
+        "last-name": "Tên",
+        "userpass-wrong": "Dùng ít nhất 8 ký tự gồm a-z, 0-9 và không ký tự đặc biệt!",
+        "usermobile-wrong": "Số điện thoại không hợp lệ. Vui lòng thử lại!",
+        "useremail-wrong": "Email không hợp lệ. Vui lòng thử lại!",
+        "useremail-exist": "Email đã tồn tại. Vui lòng dùng email khác!"
     },
     "menu": {
         "system": {

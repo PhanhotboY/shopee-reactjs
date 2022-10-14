@@ -46,16 +46,11 @@ class App extends Component {
             <Fragment>
                 <Router history={history}>
                     <div className='main-container'>
-                        <ConfirmModal />
-                        {this.props.isLoggedIn && <Header />}
+                        <Header />
 
-                        <span className='content-container'>
+                        <div className='content-container'>
                             <Switch>
-                                <Route
-                                    path={path.HOME}
-                                    exact
-                                    component={Home}
-                                />
+                                <Route path={path.HOME} exact component={Home} />
                                 <Route
                                     path={path.SIGNUP}
                                     component={userIsNotAuthenticated(Signup)}
@@ -64,12 +59,9 @@ class App extends Component {
                                     path={path.LOGIN}
                                     component={userAlreadyHaveAccount(Login)}
                                 />
-                                <Route
-                                    path={path.SYSTEM}
-                                    component={userIsAuthenticated(System)}
-                                />
+                                <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
                             </Switch>
-                        </span>
+                        </div>
 
                         <ToastContainer
                             className='toast-container'

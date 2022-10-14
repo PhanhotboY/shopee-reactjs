@@ -23,7 +23,23 @@
         "login": "Login",
         "username": "Username",
         "password": "Password",
-        "userpass-wrong": "Invalid username or password!"
+        "userpass-wrong": "Wrong password. Please try again!",
+        "useremail-wrong": "User does not exist!"
+    },
+    "signup": {
+        "signup": "Sign up",
+        "email": "Email",
+        "password": "Password",
+        "phone-number": "Phone number",
+        "gender": "Gender",
+        "avatar": "Avatar",
+        "address": "Address",
+        "first-name": "First name",
+        "last-name": "Last name",
+        "userpass-wrong": "Use 8 or more characters with a mix of a-z, 0-9 & no symbols!",
+        "usermobile-wrong": "Invalid phone number. Please try again!",
+        "useremail-wrong": "Invalid email. Please try again!",
+        "useremail-exist": "Email already exist. Please try another email!"
     },
     "menu": {
         "system": {

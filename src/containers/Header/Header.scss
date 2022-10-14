@@ -1,23 +1,54 @@
-@import "../../styles/common.scss";
+@import '../../styles/common.scss';
 
-.header-container {
-    z-index: 99;
-    display: flex;
-    justify-content: space-between;
-    background-color: $colormain;
-    color: $common-text-color;
-    height: 40px;
-    position: relative;
-    .btn-logout {
-        color: $common-text-color;
-        line-height: 40px;
-        height: 40px;
-        padding: 0 10px;
+header {
+    position: fixed;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    left: 0;
+    background: linear-gradient(-180deg, #f53d2d, #f63);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+    a {
+        text-decoration: none;
+        color: #fff;
+
         &:hover {
-            background-color: darken($colormain, 5);
-        }
-        i {
-            font-size: $base-size + 1px;
+            color: #fff;
         }
     }
+
+    .header_wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.header_navbar {
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    height: 34px;
+
+    .hover_eff--blur:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
+}
+
+.popover_anchor {
+    position: absolute;
+    right: 7%;
+    z-index: 9;
+    border-bottom: 10px solid #fff;
+    border-top: 0px solid transparent;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
 }
