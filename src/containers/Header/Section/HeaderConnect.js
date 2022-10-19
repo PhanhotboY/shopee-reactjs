@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import * as actions from '../../../store/actions';
 import style from './HeaderConnect.module.scss';
@@ -22,14 +23,14 @@ class HeaderConnect extends Component {
             <div className={style['header_navbar_connects']}>
                 <div>
                     <a className='hover_eff--blur' href='#'>
-                        Kênh Người Bán
+                        <FormattedMessage id='menu.user.seller-centre' />
                     </a>
                 </div>
 
                 {isLoggedIn || (
                     <div>
                         <a className='hover_eff--blur' href='#'>
-                            Trở thành Người bán Shopee
+                            <FormattedMessage id='menu.user.join-as-seler' />
                         </a>
                     </div>
                 )}
@@ -40,7 +41,7 @@ class HeaderConnect extends Component {
                     onMouseLeave={() => this.setState({ isDownloadPopup: false })}
                 >
                     <a className='hover_eff--blur' href='#'>
-                        Tải ứng dụng
+                        <FormattedMessage id='menu.user.download' />
                     </a>
 
                     {this.state.isDownloadPopup && (
@@ -68,7 +69,7 @@ class HeaderConnect extends Component {
                 </div>
 
                 <div>
-                    Kết nối
+                    <FormattedMessage id='menu.user.connect' />
                     <a href='#'>
                         <i className='fa-brands fa-facebook'></i>
                     </a>

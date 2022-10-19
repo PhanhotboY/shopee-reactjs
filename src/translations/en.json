@@ -53,6 +53,23 @@
             "system-parameter": {
                 "header": "System-parameter"
             }
+        },
+        "user": {
+            "seller-centre": "Seller Centre",
+            "download": "Download",
+            "connect": "Follow us on",
+            "join-as-seler": "Join as Seller",
+            "notification": "Notifications",
+            "help": "Help",
+            "logout":"Logout",
+            "my-account":"My Account",
+            "my-purchase":"My Purchase",
+            "signup": "Sign up",
+            "login":"Login",
+            "language": "English",
+            "recently-received-notifications": "Recently Received Notifications",
+            "viewall": "View All",
+            "login-to-view-notifications": "Log in to view Notifications"
         }
     },
     "system": {

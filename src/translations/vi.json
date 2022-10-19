@@ -53,6 +53,23 @@
             "system-parameter": {
                 "header": "Tham số hệ thống"
             }
+        },
+        "user": {
+            "seller-centre": "Kênh Người Bán",
+            "download": "Tải ứng dụng",
+            "connect": "Kết nối",
+            "join-as-seler": "Trở thành Người bán Shopee",
+            "notification": "Thông Báo",
+            "help": "Hỗ Trợ",
+            "logout":"Đăng Xuất",
+            "my-account":"Tài Khoản Của Tôi",
+            "my-purchase":"Đơn Mua",
+            "signup": "Đăng Ký",
+            "login":"Đăng Xuất",
+            "language": "Tiếng Việt",
+            "recently-received-notifications": "Thông Báo Mới Nhận",
+            "viewall": "Xem tất cả",
+            "login-to-view-notifications": "Đăng nhập để xem Thông báo"
         }
     },
     "system": {

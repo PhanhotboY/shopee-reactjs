@@ -10,18 +10,40 @@ class Header extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.state = {
+            isInHomePage:
+                window.location.pathname !== '/signup' && window.location.pathname !== '/login',
+        };
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        const targetNode = document.querySelector('.content-container');
+        const config = { childList: true, subtree: true };
+
+        const callback = (mutationsList, observer) => {
+            for (let mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    this.setState({
+                        isInHomePage:
+                            window.location.pathname !== '/signup' &&
+                            window.location.pathname !== '/login',
+                    });
+                }
+            }
+        };
+        const observer = new MutationObserver(callback);
+        observer.observe(targetNode, config);
+    }
 
     render() {
         return (
             <header>
-                <div className='header_wrapper header_navbar'>
-                    <HeaderConnect />
-                    <HeaderSupport />
-                </div>
+                {this.state.isInHomePage && (
+                    <div className='header_wrapper header_navbar'>
+                        <HeaderConnect />
+                        <HeaderSupport />
+                    </div>
+                )}
             </header>
         );
     }

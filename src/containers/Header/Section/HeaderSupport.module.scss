@@ -214,7 +214,8 @@
 
     .loggedIn_notification_popover {
         .notification_popover_wrapper {
-            height: 490px;
+            height: min-content;
+            min-height: 350px;
         }
 
         .notification_popover_title {
@@ -233,17 +234,15 @@
         }
 
         .notification_content_wrapper {
-            max-height: 90px;
             display: flex;
             padding: 8px 10px;
 
             &:hover {
-                background-color: rgba(9, 9, 9, 0.03);
+                background-color: #eee;
             }
 
             div:last-child {
                 max-width: 335px;
-                overflow: hidden;
             }
         }
 

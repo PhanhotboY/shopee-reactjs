@@ -46,7 +46,7 @@ class App extends Component {
             <Fragment>
                 <Router history={history}>
                     <div className='main-container'>
-                        <Header />
+                        <Header location={history.location} />
 
                         <div className='content-container'>
                             <Switch>

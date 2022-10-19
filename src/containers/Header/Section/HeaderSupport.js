@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
 
 import * as actions from '../../../store/actions';
@@ -31,7 +32,7 @@ class HeaderSupport extends Component {
     };
 
     render() {
-        const { processLogout, isLoggedIn, userInfo } = this.props;
+        const { processLogout, isLoggedIn, userInfo, changeLanguage } = this.props;
 
         return (
             <div className={style['header_navbar_supports']}>
@@ -51,11 +52,18 @@ class HeaderSupport extends Component {
                                 <path d='m17 15.6-.6-1.2-.6-1.2v-7.3c0-.2 0-.4-.1-.6-.3-1.2-1.4-2.2-2.7-2.2h-1c-.3-.7-1.1-1.2-2.1-1.2s-1.8.5-2.1 1.3h-.8c-1.5 0-2.8 1.2-2.8 2.7v7.2l-1.2 2.5-.2.4h14.4zm-12.2-.8.1-.2.5-1v-.1-7.6c0-.8.7-1.5 1.5-1.5h6.1c.8 0 1.5.7 1.5 1.5v7.5.1l.6 1.2h-10.3z'></path>
                                 <path d='m10 18c1 0 1.9-.6 2.3-1.4h-4.6c.4.9 1.3 1.4 2.3 1.4z'></path>
                             </svg>
-                            <span>Thông Báo</span>
+                            <span>
+                                <FormattedMessage id='menu.user.notification' />
+                            </span>
                         </div>
 
-                        {true && (
-                            <NotificationPopup avatar={userInfo && userInfo.avatar} isLoggedIn />
+                        {this.state.isNotificationPopup && (
+                            <NotificationPopup
+                                isLoggedIn={isLoggedIn}
+                                avatar={userInfo && userInfo.avatar}
+                                redirectToLoginPage={this.redirectToLoginPage}
+                                redirectToSignupPage={this.redirectToSignupPage}
+                            />
                         )}
                     </li>
 
@@ -74,15 +82,44 @@ class HeaderSupport extends Component {
                                 ></path>
                             </g>
                         </svg>
-                        <span>Hỗ Trợ</span>
+                        <span>
+                            <FormattedMessage id='menu.user.help' />
+                        </span>
                     </li>
 
                     <li
                         className={`${style['navbar_supports_languages']}`}
-                        onMouseOver={() => this.setState({ isLanguagePopup: true })}
-                        onMouseLeave={() => this.setState({ isLanguagePopup: false })}
+                        onMouseOver={() => {
+                            this.setState({ isLanguagePopup: true });
+                        }}
+                        onMouseLeave={() => {
+                            this.setState({ isLanguagePopup: false });
+                        }}
                     >
-                        <div className={`${style['navbar_language_selected']} hover_eff--blur`}>
+                        <div
+                            className={`${style['navbar_language_selected']} hover_eff--blur`}
+                            onMouseOver={() => {
+                                const selectedLanguage =
+                                    document.querySelector(
+                                        `header .${style['navbar_language_selected']} span`
+                                    ) || '';
+                                document
+                                    .querySelectorAll(`header .${style['popover_language']}`)
+                                    .forEach((element) => {
+                                        element.style =
+                                            element.innerText === selectedLanguage.innerText
+                                                ? 'color: #fb5533'
+                                                : '';
+                                    });
+                            }}
+                            onMouseLeave={() => {
+                                document
+                                    .querySelectorAll(`header .${style['popover_language']}`)
+                                    .forEach((element) => {
+                                        element.style = '';
+                                    });
+                            }}
+                        >
                             <svg
                                 className={style['navbar_supports_globe']}
                                 viewBox='0 0 16 16'
@@ -108,7 +145,9 @@ class HeaderSupport extends Component {
                                 ></path>
                             </svg>
 
-                            <span>Tiếng Việt</span>
+                            <span>
+                                <FormattedMessage id='menu.user.language' />
+                            </span>
 
                             <svg className={style['navbar_supports_chevron']} viewBox='0 0 12 12'>
                                 <path
@@ -125,8 +164,18 @@ class HeaderSupport extends Component {
                                 <div className='popover_anchor'></div>
 
                                 <div className={style['languages_popover_wrapper']}>
-                                    <div className={style['popover_language']}>Tiếng Việt</div>
-                                    <div className={style['popover_language']}>English</div>
+                                    <div
+                                        className={style['popover_language']}
+                                        onClick={() => changeLanguage('vi')}
+                                    >
+                                        Tiếng Việt
+                                    </div>
+                                    <div
+                                        className={style['popover_language']}
+                                        onClick={() => changeLanguage('en')}
+                                    >
+                                        English
+                                    </div>
                                 </div>
                             </div>
                         )}
@@ -155,14 +204,16 @@ class HeaderSupport extends Component {
 
                                     <ul>
                                         <li className={style['hover_eff--blur']}>
-                                            Tài khoản của tôi
+                                            <FormattedMessage id='menu.user.my-account' />
                                         </li>
-                                        <li className={style['hover_eff--blur']}>Đơn mua</li>
+                                        <li className={style['hover_eff--blur']}>
+                                            <FormattedMessage id='menu.user.my-purchase' />
+                                        </li>
                                         <li
                                             className={style['hover_eff--blur']}
-                                            onClick={() => processLogout()}
+                                            onClick={processLogout}
                                         >
-                                            Đăng xuất
+                                            <FormattedMessage id='menu.user.logout' />
                                         </li>
                                     </ul>
                                 </div>
@@ -171,10 +222,10 @@ class HeaderSupport extends Component {
                     ) : (
                         <li className={style.login_options}>
                             <span className='hover_eff--blur' onClick={this.redirectToSignupPage}>
-                                Đăng Ký
+                                <FormattedMessage id='menu.user.signup' />
                             </span>
                             <span className='hover_eff--blur' onClick={this.redirectToLoginPage}>
-                                Đăng Nhập
+                                <FormattedMessage id='menu.user.login' />
                             </span>
                         </li>
                     )}
@@ -184,145 +235,29 @@ class HeaderSupport extends Component {
     }
 }
 
-const NotificationPopup = ({ isLoggedIn, avatar }) => {
+const NotificationPopup = ({ isLoggedIn, avatar, redirectToLoginPage, redirectToSignupPage }) => {
     const popOver = isLoggedIn ? (
         <div className={`${style['loggedIn_notification_popover']} ${style.notification_popover}`}>
             <div className='popover_anchor'></div>
 
             <div className={style['notification_popover_wrapper']}>
                 <div className={style['notification_popover_title']}>
-                    <span>Thông Báo Mới Nhận</span>
+                    <span>
+                        <FormattedMessage id='menu.user.recently-received-notifications' />
+                    </span>
                 </div>
 
                 <div className={style['popover_content_container']}>
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan hi em anh la phan dep
-                                trai den tu binh thuan hi em anh la phan dep trai den tu binh thuan
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan hi em anh la phan dep
-                                trai den tu binh thuan hi em anh la phan dep trai den tu binh thuan
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className={style['notification_content_wrapper']}>
-                        <div
-                            className={style['notification_popover_thumbnail']}
-                            style={{ backgroundImage: `url(${avatar})` }}
-                        ></div>
-                        <div>
-                            <div className={style['notification_content_title']}>
-                                Đóng góp cho Shopee
-                            </div>
-                            <div className={style['notification_content_content']}>
-                                hi em anh la phan dep trai den tu binh thuan hi em anh la phan dep
-                                trai den tu binh thuan hi em anh la phan dep trai den tu binh thuan
-                                hi em anh la phan dep trai den tu binh thuan
-                            </div>
-                        </div>
-                    </div>
+                    <NotificationTag avatar={avatar} />
+                    <NotificationTag avatar={avatar} />
+                    <NotificationTag avatar={avatar} />
+                    <NotificationTag avatar={avatar} />
+                    <NotificationTag avatar={avatar} />
                 </div>
 
-                <button className={style['notification_popover_seemore']}>Xem Thêm</button>
+                <button className={style['notification_popover_seemore']}>
+                    <FormattedMessage id='menu.user.viewall' />
+                </button>
             </div>
         </div>
     ) : (
@@ -335,12 +270,18 @@ const NotificationPopup = ({ isLoggedIn, avatar }) => {
                         src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png'
                         alt='virtual avatar'
                     />
-                    <span>Đăng nhập để xem Thông báo</span>
+                    <span>
+                        <FormattedMessage id='menu.user.login-to-view-notifications' />
+                    </span>
                 </div>
 
                 <div className={style['notification_popover_sign']}>
-                    <div>Đăng ký</div>
-                    <div>Đăng nhập</div>
+                    <div onClick={redirectToSignupPage}>
+                        <FormattedMessage id='menu.user.signup' />
+                    </div>
+                    <div onClick={redirectToLoginPage}>
+                        <FormattedMessage id='menu.user.login' />
+                    </div>
                 </div>
             </div>
         </div>
@@ -349,17 +290,35 @@ const NotificationPopup = ({ isLoggedIn, avatar }) => {
     return popOver;
 };
 
+const NotificationTag = ({ avatar }) => {
+    return (
+        <div className={style['notification_content_wrapper']}>
+            <div
+                className={style['notification_popover_thumbnail']}
+                style={{ background: `url(${avatar}) center/contain no-repeat` }}
+            ></div>
+            <div>
+                <div className={style['notification_content_title']}>Đóng góp cho Shopee</div>
+                <div className={style['notification_content_content']}>
+                    hi em anh la phan dep trai den tu binh thuan
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
         userInfo: state.user.userInfo,
+        language: state.app.language,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         processLogout: () => dispatch(actions.processLogout()),
-        navigate: (path) => dispatch(push(path)),
+        changeLanguage: (language) => dispatch(actions.changeLanguage(language)),
     };
 };
 

@@ -35,9 +35,7 @@ class UserUpdate extends Component {
     }
 
     async componentDidMount() {
-        const userId = new URLSearchParams(this.props.location.search).get(
-            'id'
-        );
+        const userId = new URLSearchParams(this.props.location.search).get('id');
         try {
             const userData = await userService.handleGetUser(userId);
 
@@ -89,15 +87,8 @@ class UserUpdate extends Component {
             errMessage: {},
         });
 
-        const {
-            email,
-            password,
-            phone_number,
-            first_name,
-            last_name,
-            address,
-            avatar,
-        } = this.state.updateData;
+        const { email, password, phone_number, first_name, last_name, address, avatar } =
+            this.state.updateData;
 
         await this.setState({
             errMessage: this.checkInputValue({
@@ -114,9 +105,8 @@ class UserUpdate extends Component {
             address &&
             this.isEmptyObj(this.state.errMessage)
         ) {
-            document.querySelector(
-                `.${formStyle.body_form} .${formStyle.form_button}`
-            ).style = 'pointer-events: all; opacity: 1;';
+            document.querySelector(`.${formStyle.body_form} .${formStyle.form_button}`).style =
+                'pointer-events: all; opacity: 1;';
         }
 
         if (
@@ -126,9 +116,7 @@ class UserUpdate extends Component {
             !address ||
             !this.isEmptyObj(this.state.errMessage)
         ) {
-            document.querySelector(
-                `.${formStyle.body_form} .${formStyle.form_button}`
-            ).style = '';
+            document.querySelector(`.${formStyle.body_form} .${formStyle.form_button}`).style = '';
         }
     };
 
@@ -136,6 +124,7 @@ class UserUpdate extends Component {
         this.setState({
             isHiddenPassword: !this.state.isHiddenPassword,
         });
+        console.log(this.props);
     };
 
     handleSubmitForm = async () => {
@@ -144,9 +133,7 @@ class UserUpdate extends Component {
         });
 
         try {
-            const data = await userService.handleUpdateUser(
-                this.state.updateData
-            );
+            const data = await userService.handleUpdateUser(this.state.updateData);
 
             if (data && data.errType) {
                 this.setState({
@@ -198,9 +185,7 @@ class UserUpdate extends Component {
                         </a>
                     </div>
 
-                    <div className={formStyle.header_title}>
-                        Thay đổi thông tin
-                    </div>
+                    <div className={formStyle.header_title}>Thay đổi thông tin</div>
 
                     <a className={formStyle.header_help} href='#'>
                         Bạn cần giúp đỡ?
@@ -215,25 +200,13 @@ class UserUpdate extends Component {
                         }}
                     >
                         <div className={formStyle.body_form}>
-                            <div className={formStyle.form_title}>
-                                Thay đổi thông tin
-                            </div>
+                            <div className={formStyle.form_title}>Thay đổi thông tin</div>
 
-                            <div
-                                className={`form-row ${formStyle['form-row']}`}
-                            >
-                                <div
-                                    className={`form-group col-7 ${formStyle['form-group']}`}
-                                >
+                            <div className={`form-row ${formStyle['form-row']}`}>
+                                <div className={`form-group col-7 ${formStyle['form-group']}`}>
                                     <label htmlFor='inputEmail'>
                                         Email
-                                        <span
-                                            className={
-                                                formStyle['mandatory-field']
-                                            }
-                                        >
-                                            *
-                                        </span>
+                                        <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='email'
@@ -249,18 +222,10 @@ class UserUpdate extends Component {
                                         {errMessage.email || ''}
                                     </div>
                                 </div>
-                                <div
-                                    className={`form-group col-5 ${formStyle['form-group']}`}
-                                >
+                                <div className={`form-group col-5 ${formStyle['form-group']}`}>
                                     <label htmlFor='inputphone_number'>
                                         Phone Number
-                                        <span
-                                            className={
-                                                formStyle['mandatory-field']
-                                            }
-                                        >
-                                            *
-                                        </span>
+                                        <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='email'
@@ -278,22 +243,14 @@ class UserUpdate extends Component {
                                 </div>
                             </div>
 
-                            <div
-                                className={`form-row ${formStyle['form-row']}`}
-                            >
+                            <div className={`form-row ${formStyle['form-row']}`}>
                                 <div
                                     className={`form-group col-8 position-relative ${formStyle['form-group']}`}
                                 >
-                                    <label htmlFor='inputPassword'>
-                                        Password
-                                    </label>
+                                    <label htmlFor='inputPassword'>Password</label>
                                     <input
                                         className={`form-control ${formStyle['form-control']}`}
-                                        type={
-                                            this.state.isHiddenPassword
-                                                ? 'password'
-                                                : 'text'
-                                        }
+                                        type={this.state.isHiddenPassword ? 'password' : 'text'}
                                         id='inputPassword'
                                         value={password}
                                         name='password'
@@ -326,20 +283,14 @@ class UserUpdate extends Component {
                                     </svg>
                                 </div>
 
-                                <div
-                                    className={`form-group col-4 ${formStyle['form-group']}`}
-                                >
+                                <div className={`form-group col-4 ${formStyle['form-group']}`}>
                                     <label htmlFor='inputSex'>Sex</label>
                                     <select
                                         id='inputSex'
                                         className={`form-control ${formStyle['form-control']}`}
                                         name='gender'
                                         onChange={this.handleInputOnChange}
-                                        value={
-                                            gender == true || gender == '1'
-                                                ? '1'
-                                                : '0'
-                                        }
+                                        value={gender == true || gender == '1' ? '1' : '0'}
                                     >
                                         <option value='0'>Male</option>
                                         <option value='1'>Female</option>
@@ -347,21 +298,11 @@ class UserUpdate extends Component {
                                 </div>
                             </div>
 
-                            <div
-                                className={`form-row ${formStyle['form-row']}`}
-                            >
-                                <div
-                                    className={`form-group col-5 ${formStyle['form-group']}`}
-                                >
+                            <div className={`form-row ${formStyle['form-row']}`}>
+                                <div className={`form-group col-5 ${formStyle['form-group']}`}>
                                     <label htmlFor='inputfirst_name'>
                                         First Name
-                                        <span
-                                            className={
-                                                formStyle['mandatory-field']
-                                            }
-                                        >
-                                            *
-                                        </span>
+                                        <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
@@ -373,18 +314,10 @@ class UserUpdate extends Component {
                                     />
                                 </div>
 
-                                <div
-                                    className={`form-group col-5 ${formStyle['form-group']}`}
-                                >
+                                <div className={`form-group col-5 ${formStyle['form-group']}`}>
                                     <label htmlFor='inputlast_name'>
                                         Last Name
-                                        <span
-                                            className={
-                                                formStyle['mandatory-field']
-                                            }
-                                        >
-                                            *
-                                        </span>
+                                        <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
@@ -396,9 +329,7 @@ class UserUpdate extends Component {
                                     />
                                 </div>
 
-                                <div
-                                    className={`form-group col-2 ${formStyle['form-group']}`}
-                                >
+                                <div className={`form-group col-2 ${formStyle['form-group']}`}>
                                     <label htmlFor='inputRole'>Role</label>
                                     <select
                                         id='inputRole'
@@ -414,15 +345,9 @@ class UserUpdate extends Component {
                                 </div>
                             </div>
 
-                            <div
-                                className={`form-row ${formStyle['form-row']}`}
-                            >
-                                <div
-                                    className={`form-group col-9 ${formStyle['form-group']}`}
-                                >
-                                    <label htmlFor='inputAvatar'>
-                                        Avatar URL
-                                    </label>
+                            <div className={`form-row ${formStyle['form-row']}`}>
+                                <div className={`form-group col-9 ${formStyle['form-group']}`}>
+                                    <label htmlFor='inputAvatar'>Avatar URL</label>
                                     <input
                                         type='text'
                                         className={`form-control ${formStyle['form-control']}`}
@@ -437,18 +362,10 @@ class UserUpdate extends Component {
                                     </div>
                                 </div>
 
-                                <div
-                                    className={`form-group col-3 ${formStyle['form-group']}`}
-                                >
+                                <div className={`form-group col-3 ${formStyle['form-group']}`}>
                                     <label htmlFor='inputCity'>
                                         City
-                                        <span
-                                            className={
-                                                formStyle['mandatory-field']
-                                            }
-                                        >
-                                            *
-                                        </span>
+                                        <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
@@ -482,10 +399,7 @@ class UserUpdate extends Component {
                             </button>
                         </div>
 
-                        <div
-                            className={style['banner']}
-                            style={{ display: 'flex' }}
-                        >
+                        <div className={style['banner']} style={{ display: 'flex' }}>
                             <img src={avatar} alt='preview image' />
                         </div>
 
