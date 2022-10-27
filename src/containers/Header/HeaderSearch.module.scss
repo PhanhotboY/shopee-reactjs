@@ -1,47 +1,11 @@
 @import '../../styles/_variables.scss';
-
-%popover_makeup {
-    position: absolute;
-    top: 99%;
-    right: 0;
-    z-index: 9;
-    opacity: 0;
-    transform: scale(0);
-    transition: all 0.15s linear;
-    transform-origin: top right;
-}
-
-%popover_wrapper_makeup {
-    position: relative;
-    top: 9px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 2px;
-    background-color: #fff;
-    color: rgba(0, 0, 0, 0.9);
-    box-shadow: 0 0 32px rgba(3, 3, 3, 0.2);
-}
-
-.popover_anchor {
-    position: absolute;
-    right: 7%;
-    z-index: 9;
-    border-bottom: 10px solid #fff;
-    border-top: 0px solid transparent;
-    border-left: 14px solid transparent;
-    border-right: 14px solid transparent;
-}
+@import '../../styles/_base.scss';
 
 .header_search {
     height: 85px;
     display: flex;
     align-items: center;
     padding: 16px 0 10px;
-    position: fixed;
-    top: 34px;
-    left: 0;
-    right: 0;
-    z-index: 9;
 
     a {
         text-decoration: none;

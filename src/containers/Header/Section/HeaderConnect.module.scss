@@ -1,12 +1,14 @@
+@import '../../../styles/common.scss';
+
 .header_navbar_connects {
-    display    : flex;
-    height     : 100%;
+    display: flex;
+    height: 34px;
     margin-left: -5px;
-    display    : flex;
+    display: flex;
     align-items: center;
 
-    >div {
-        margin  : 0 5px;
+    > div {
+        margin: 0 5px;
         position: relative;
 
         &:last-child {
@@ -22,58 +24,58 @@
         padding: 4px;
     }
 
-    div+div {
+    div + div {
         position: relative;
 
         &::after {
-            position : absolute;
-            top      : 50%;
-            left     : -6px;
+            position: absolute;
+            top: 50%;
+            left: -6px;
             transform: translateY(-40%);
-            content  : '';
-            height   : 12px;
-            border   : 1px solid rgba(255, 255, 255, 0.3);
+            content: '';
+            height: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
     }
 }
 
 .navbar_connects_download {
-    >a {
+    > a {
         position: relative;
-        z-index : 9;
+        z-index: $zindex;
     }
 
     .connects_download_wrapper {
         position: absolute;
-        top     : -4px;
-        left    : 0;
-        right   : 0;
-        height  : 50px;
+        top: -4px;
+        left: 0;
+        right: 0;
+        height: 50px;
 
         .connects_download_popover {
-            position        : absolute;
-            top             : 34px;
-            width           : 184px;
-            padding         : 2px;
-            border-radius   : 2px;
-            flex-direction  : column;
+            position: absolute;
+            top: 34px;
+            width: 184px;
+            padding: 2px;
+            border-radius: 2px;
+            flex-direction: column;
             background-color: #fff;
-            z-index         : 1;
+            z-index: $zindex + 10;
 
-            >img {
-                width : 88%;
+            > img {
+                width: 88%;
                 margin: 11px;
             }
 
             .connects_download_apps {
-                display        : flex;
-                flex-wrap      : wrap;
+                display: flex;
+                flex-wrap: wrap;
                 justify-content: space-between;
-                margin         : 0 15px 8px;
+                margin: 0 15px 8px;
 
                 img {
                     margin-top: 9px;
-                    width     : 47%;
+                    width: 47%;
                 }
             }
         }

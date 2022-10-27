@@ -41,7 +41,8 @@ class Login extends Component {
         });
     };
 
-    handleSubmitForm = async () => {
+    handleSubmitForm = async (event) => {
+        event.preventDefault();
         this.setState({
             errMessage: {},
         });
@@ -100,7 +101,11 @@ class Login extends Component {
                             background: `url('https://cf.shopee.vn/file/000d7f7e293e29de23ddefbaa0e80436') center/ cover no-repeat`,
                         }}
                     >
-                        <div className={style['login_body_form']}>
+                        <form
+                            id='login_form'
+                            className={style['login_body_form']}
+                            onSubmit={this.handleSubmitForm}
+                        >
                             <div className={style['login_form_title']}>Đăng nhập</div>
 
                             <div className={style['login_input_password']}>
@@ -155,8 +160,8 @@ class Login extends Component {
 
                             <button
                                 className={style['login_form_button']}
+                                form='login_form'
                                 type='submit'
-                                onClick={this.handleSubmitForm}
                             >
                                 Đăng nhập
                             </button>
@@ -185,7 +190,7 @@ class Login extends Component {
                                 <span>Bạn mới biết đến Shopee? </span>
                                 <span onClick={this.redirectToSignupPage}>Đăng ký</span>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
 

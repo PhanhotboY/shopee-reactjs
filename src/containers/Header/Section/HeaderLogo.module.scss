@@ -1,0 +1,12 @@
+@import '../../../styles/_variables.scss';
+
+.header_search_logo {
+    padding: 0 47px 0 7px;
+    height: 59px;
+    margin-top: -6px;
+
+    svg {
+        width: 148px;
+        fill: $common-text-color;
+    }
+}

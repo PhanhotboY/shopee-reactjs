@@ -21,7 +21,7 @@ class UserDeleted extends Component {
 
             if (allDeletedUser && !allDeletedUser.errType) {
                 this.setState({
-                    userArray: allDeletedUser.userInfo.rows,
+                    userArray: allDeletedUser.userInfo,
                 });
             }
         } catch (err) {
@@ -54,9 +54,7 @@ class UserDeleted extends Component {
                 console.log(data);
             } else {
                 this.setState({
-                    userArray: this.state.userArray.filter(
-                        (element) => element.user_id !== id
-                    ),
+                    userArray: this.state.userArray.filter((element) => element.userId !== id),
                 });
             }
         } catch (err) {
@@ -74,9 +72,7 @@ class UserDeleted extends Component {
                 });
             } else {
                 this.setState({
-                    userArray: this.state.userArray.filter(
-                        (element) => element.user_id !== id
-                    ),
+                    userArray: this.state.userArray.filter((element) => element.userId !== id),
                 });
             }
         } catch (err) {
@@ -86,10 +82,7 @@ class UserDeleted extends Component {
 
     renderModal() {
         return (
-            <div
-                className={style.modal}
-                onClick={() => this.setState({ idDeleteModal: 0 })}
-            >
+            <div className={style.modal} onClick={() => this.setState({ idDeleteModal: 0 })}>
                 <div
                     className={style.modal_content}
                     onClick={(event) => {
@@ -112,9 +105,7 @@ class UserDeleted extends Component {
                         <button
                             className='btn btn-danger'
                             onClick={async () => {
-                                await this.handleDeletePermanentlyItem(
-                                    this.state.idDeleteModal
-                                );
+                                await this.handleDeletePermanentlyItem(this.state.idDeleteModal);
                                 this.setState({ idDeleteModal: 0 });
                             }}
                         >
@@ -152,32 +143,29 @@ class UserDeleted extends Component {
                                         style={{
                                             backgroundImage: `url('${user.avatar}')`,
                                         }}
-                                        onClick={() =>
-                                            this.handleRestoreItem(user.user_id)
-                                        }
+                                        onClick={() => this.handleRestoreItem(user.userId)}
                                     ></div>
 
                                     <div className={style.item_detail}>
                                         <div className={style.item_title}>
                                             <span>{user.email}</span>
-                                            <span>{user.phone_number}</span>
+                                            <span>{user.phoneNumber}</span>
                                         </div>
 
                                         <div className={style.item_moreDetail}>
                                             <span
                                                 style={{
                                                     color:
-                                                        user.role_id === 'R1'
+                                                        user.roleId === 'R1'
                                                             ? 'black'
-                                                            : user.role_id ===
-                                                              'R2'
+                                                            : user.roleId === 'R2'
                                                             ? '#1ddf1d'
                                                             : 'red',
                                                 }}
                                             >
-                                                {user.role_id === 'R1'
+                                                {user.roleId === 'R1'
                                                     ? 'User'
-                                                    : user.role_id === 'R2'
+                                                    : user.roleId === 'R2'
                                                     ? 'Seller'
                                                     : 'Admin'}
                                             </span>
@@ -189,23 +177,16 @@ class UserDeleted extends Component {
                                                         : 'rgb(55, 158, 255)',
                                                 }}
                                             >
-                                                {user.gender
-                                                    ? 'female'
-                                                    : 'male'}
+                                                {user.gender ? 'female' : 'male'}
                                             </span>
                                         </div>
 
                                         <div className={style.item_info}>
-                                            <div
-                                                className={style.item_prominent}
-                                            >
-                                                {user.first_name}{' '}
-                                                {user.last_name}
+                                            <div className={style.item_prominent}>
+                                                {user.firstName} {user.lastName}
                                             </div>
 
-                                            <div className={style.item_subInfo}>
-                                                {user.address}
-                                            </div>
+                                            <div className={style.item_subInfo}>{user.address}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -215,7 +196,7 @@ class UserDeleted extends Component {
                                     type='button'
                                     onClick={() =>
                                         this.setState({
-                                            idDeleteModal: user.user_id,
+                                            idDeleteModal: user.userId,
                                         })
                                     }
                                 >

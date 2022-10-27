@@ -1,0 +1,136 @@
+@import '../../../styles/variables';
+@import '../../../styles/base';
+
+.header_cart {
+    margin: 0 auto;
+    display: flex;
+    height: 100%;
+    align-items: center;
+
+    a {
+        height: 46px;
+        width: 41px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    svg {
+        fill: $common-text-color;
+        width: 26px;
+        height: 26px;
+        stroke: $common-text-color;
+        margin: 0 6px 6px 0;
+    }
+}
+
+.cart_wrapper {
+    position: relative;
+
+    .cart_popover {
+        @extend %popover_makeup;
+        top: 83%;
+
+        .popover_anchor {
+            right: 2%;
+        }
+
+        .cart_popover_wrapper {
+            @extend %popover_wrapper_makeup;
+            width: 400px;
+            justify-content: center;
+            align-items: center;
+
+            .cart_popover_body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+                flex-grow: 1;
+
+                > img {
+                    width: 100px;
+                    height: 100px;
+                    margin-top: 55px;
+                }
+
+                > span {
+                    font-size: 0.875rem;
+                    margin-top: 30px;
+                    color: rgba(0, 0, 0, 0.9);
+                }
+            }
+        }
+    }
+}
+
+.cart_popover_header {
+    height: 40px;
+    padding: 10px;
+    color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    font-size: 0.9375rem;
+}
+
+.product_tag {
+    height: 62px;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: start;
+
+    &:hover {
+        background-color: #f8f8f8;
+        cursor: pointer;
+    }
+
+    img {
+        height: 100%;
+        margin-right: 10px;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .product_brief_info {
+        flex-grow: 1;
+        display: flex;
+        justify-content: space-between;
+
+        span {
+            word-break: break-all;
+            height: 16px;
+            overflow: hidden;
+            font-size: 0.875rem;
+
+            &:first-child {
+                max-width: 230px;
+            }
+
+            &:last-child {
+                color: $colormain;
+            }
+        }
+    }
+}
+
+.cart_popover_footer {
+    height: 60px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+    button {
+        padding: 0 15px;
+        height: 85%;
+        border-radius: 2px;
+        background-color: $colorsub3;
+        border: none;
+        color: $common-text-color;
+        font-size: 0.875rem;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+}

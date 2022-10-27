@@ -4,6 +4,11 @@ export const addUserSuccess = () => ({
     type: actionTypes.ADD_USER_SUCCESS,
 });
 
+export const userUpdateSuccess = (userInfo) => ({
+    type: actionTypes.UPDATE_USER_SUCCESS,
+    userInfo: userInfo,
+});
+
 export const processLogout = () => ({
     type: actionTypes.PROCESS_LOGOUT,
 });

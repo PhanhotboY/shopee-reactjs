@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import style from './UserManage.module.scss';
 
+import style from './UserManage.module.scss';
 import userService from '../../services/userService';
 class UserManage extends Component {
     constructor(props) {
@@ -18,13 +18,13 @@ class UserManage extends Component {
 
     async componentDidMount() {
         try {
-            const allUser = await userService.handleGetUser('all');
+            const allUser = await userService.handleGetAllUser();
             const allDeletedUser = await this.getDeletedUser();
 
             if (allUser && !allUser.errType) {
                 this.setState({
                     userArray: allUser.userInfo,
-                    countDeletedUser: allDeletedUser.count,
+                    countDeletedUser: allDeletedUser.length,
                 });
             }
         } catch (err) {
@@ -58,9 +58,7 @@ class UserManage extends Component {
                 const allDeletedUser = await this.getDeletedUser();
 
                 await this.setState({
-                    userArray: this.state.userArray.filter(
-                        (element) => element.user_id !== id
-                    ),
+                    userArray: this.state.userArray.filter((element) => element.userId !== id),
                     countDeletedUser: allDeletedUser.count + 1,
                 });
             }
@@ -88,7 +86,7 @@ class UserManage extends Component {
         navigate(`${redirectPath}`);
     };
 
-    redirectToUserDeletedPage = (id) => {
+    redirectToUserDeletedPage = () => {
         const { navigate } = this.props;
         const redirectPath = `/system/user-manage/deleted-user`;
         navigate(`${redirectPath}`);
@@ -96,10 +94,7 @@ class UserManage extends Component {
 
     renderModal() {
         return (
-            <div
-                className={style.modal}
-                onClick={() => this.setState({ idDeleteModal: 0 })}
-            >
+            <div className={style.modal} onClick={() => this.setState({ idDeleteModal: 0 })}>
                 <div
                     className={style.modal_content}
                     onClick={(event) => {
@@ -114,9 +109,7 @@ class UserManage extends Component {
                         ></button>
                     </div>
 
-                    <div className={style.modal_body}>
-                        Do you want to delete this user?
-                    </div>
+                    <div className={style.modal_body}>Do you want to delete this user?</div>
 
                     <div className={style.modal_footer}>
                         <button
@@ -160,36 +153,35 @@ class UserManage extends Component {
                                         style={{
                                             backgroundImage: `url('${user.avatar}')`,
                                         }}
-                                        onClick={() =>
-                                            this.redirectToEditPage(
-                                                user.user_id
-                                            )
-                                        }
+                                        onClick={() => this.redirectToEditPage(user.userId)}
                                     ></div>
 
                                     <div className={style.item_detail}>
                                         <div className={style.item_title}>
                                             <span>{user.email}</span>
-                                            <span>{user.phone_number}</span>
+                                            <span>{user.phoneNumber}</span>
                                         </div>
 
                                         <div className={style.item_moreDetail}>
                                             <span
                                                 style={{
                                                     color:
-                                                        user.role_id === 'R1'
+                                                        user.roleId === 'R1'
                                                             ? 'black'
-                                                            : user.role_id ===
-                                                              'R2'
+                                                            : user.roleId === 'R2'
                                                             ? '#1ddf1d'
-                                                            : 'red',
+                                                            : user.roleId === 'R3'
+                                                            ? 'red'
+                                                            : 'blueviolet',
                                                 }}
                                             >
-                                                {user.role_id === 'R1'
+                                                {user.roleId === 'R1'
                                                     ? 'User'
-                                                    : user.role_id === 'R2'
+                                                    : user.roleId === 'R2'
                                                     ? 'Seller'
-                                                    : 'Admin'}
+                                                    : user.roleId === 'R3'
+                                                    ? 'Admin'
+                                                    : 'Shipper'}
                                             </span>
                                             {' - '}
                                             <span
@@ -199,23 +191,16 @@ class UserManage extends Component {
                                                         : 'rgb(55, 158, 255)',
                                                 }}
                                             >
-                                                {user.gender
-                                                    ? 'female'
-                                                    : 'male'}
+                                                {user.gender ? 'female' : 'male'}
                                             </span>
                                         </div>
 
                                         <div className={style.item_info}>
-                                            <div
-                                                className={style.item_prominent}
-                                            >
-                                                {user.first_name}{' '}
-                                                {user.last_name}
+                                            <div className={style.item_prominent}>
+                                                {user.firstName} {user.lastName}
                                             </div>
 
-                                            <div className={style.item_subInfo}>
-                                                {user.address}
-                                            </div>
+                                            <div className={style.item_subInfo}>{user.address}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -225,7 +210,7 @@ class UserManage extends Component {
                                     type='button'
                                     onClick={() =>
                                         this.setState({
-                                            idDeleteModal: user.user_id,
+                                            idDeleteModal: user.userId,
                                         })
                                     }
                                 >
@@ -239,10 +224,7 @@ class UserManage extends Component {
                 {(this.state.idDeleteModal || false) && this.renderModal()}
 
                 <div className={`row ${style.items_seemore}`}>
-                    <button
-                        type='button'
-                        onClick={this.redirectToUserDeletedPage}
-                    >
+                    <button type='button' onClick={this.redirectToUserDeletedPage}>
                         Deleted user{'  '}
                         <span className='badge bg-danger'>
                             {this.state.countDeletedUser || '0'}

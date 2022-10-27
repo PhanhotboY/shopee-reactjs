@@ -5,9 +5,9 @@ import { push } from 'connected-react-router';
 import formStyle from '../Auth/Signup.module.scss';
 import style from './UserUpdate.module.scss';
 import { userService } from '../../services';
-import { first } from 'lodash';
+import * as actions from '../../store/actions';
 
-const regexCheckphone_number = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
+const regexCheckphoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
 const regexCheckEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
 const regexCheckURL =
     /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i;
@@ -21,11 +21,11 @@ class UserUpdate extends Component {
             updateData: {
                 email: '',
                 password: '',
-                phone_number: '',
+                phoneNumber: '',
                 gender: '0',
-                first_name: '',
-                last_name: '',
-                role_id: 'R1',
+                firstName: '',
+                lastName: '',
+                roleId: 'R1',
                 address: '',
                 avatar: '',
             },
@@ -52,7 +52,7 @@ class UserUpdate extends Component {
         }
     }
 
-    checkInputValue = ({ email, password, phone_number, avatar }) => {
+    checkInputValue = ({ email, password, phoneNumber, avatar }) => {
         const checkingInput = {};
 
         if (email && !email.match(regexCheckEmail)) {
@@ -63,8 +63,8 @@ class UserUpdate extends Component {
             checkingInput.password = `Use 8 or more characters with a mix of letters & numbers`;
         }
 
-        if (phone_number && !phone_number.match(regexCheckphone_number)) {
-            checkingInput.phone_number = `Invalid phone number. Try again!`;
+        if (phoneNumber && !phoneNumber.match(regexCheckphoneNumber)) {
+            checkingInput.phoneNumber = `Invalid phone number. Try again!`;
         }
 
         if (avatar && !avatar.match(regexCheckURL)) {
@@ -87,21 +87,21 @@ class UserUpdate extends Component {
             errMessage: {},
         });
 
-        const { email, password, phone_number, first_name, last_name, address, avatar } =
+        const { password, phoneNumber, firstName, lastName, address, avatar } =
             this.state.updateData;
 
         await this.setState({
             errMessage: this.checkInputValue({
                 password,
-                phone_number,
+                phoneNumber,
                 avatar,
             }),
         });
 
         if (
-            phone_number &&
-            first_name &&
-            last_name &&
+            phoneNumber &&
+            firstName &&
+            lastName &&
             address &&
             this.isEmptyObj(this.state.errMessage)
         ) {
@@ -110,9 +110,9 @@ class UserUpdate extends Component {
         }
 
         if (
-            !phone_number ||
-            !first_name ||
-            !last_name ||
+            !phoneNumber ||
+            !firstName ||
+            !lastName ||
             !address ||
             !this.isEmptyObj(this.state.errMessage)
         ) {
@@ -124,13 +124,14 @@ class UserUpdate extends Component {
         this.setState({
             isHiddenPassword: !this.state.isHiddenPassword,
         });
-        console.log(this.props);
     };
 
-    handleSubmitForm = async () => {
+    handleSubmitForm = async (event) => {
         this.setState({
             errMessage: {},
         });
+
+        event.preventDefault();
 
         try {
             const data = await userService.handleUpdateUser(this.state.updateData);
@@ -140,6 +141,10 @@ class UserUpdate extends Component {
                     errMessage: { [data.errType]: data.message },
                 });
             } else {
+                console.log(this.props.userInfo);
+                if (this.props.userInfo.email === data.userInfo.email)
+                    this.props.userUpdateSuccess(data.userInfo);
+
                 const updateSuccessAlert = document.querySelector(
                     `.${formStyle.wrapper} .${style.banner}:last-child`
                 );
@@ -148,7 +153,7 @@ class UserUpdate extends Component {
 
                 setTimeout(() => {
                     this.props.history.goBack();
-                }, 1000);
+                }, 900);
             }
         } catch (err) {
             console.log(err.response);
@@ -159,11 +164,11 @@ class UserUpdate extends Component {
         const {
             email,
             password,
-            phone_number,
+            phoneNumber,
             gender,
-            first_name,
-            last_name,
-            role_id,
+            firstName,
+            lastName,
+            roleId,
             address,
             avatar,
         } = this.state.updateData;
@@ -199,7 +204,11 @@ class UserUpdate extends Component {
                             background: `url('https://cf.shopee.vn/file/000d7f7e293e29de23ddefbaa0e80436') center/ cover no-repeat`,
                         }}
                     >
-                        <div className={formStyle.body_form}>
+                        <form
+                            id='update_user_form'
+                            className={formStyle.body_form}
+                            onSubmit={this.handleSubmitForm}
+                        >
                             <div className={formStyle.form_title}>Thay đổi thông tin</div>
 
                             <div className={`form-row ${formStyle['form-row']}`}>
@@ -223,22 +232,22 @@ class UserUpdate extends Component {
                                     </div>
                                 </div>
                                 <div className={`form-group col-5 ${formStyle['form-group']}`}>
-                                    <label htmlFor='inputphone_number'>
+                                    <label htmlFor='inputphoneNumber'>
                                         Phone Number
                                         <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
-                                        type='email'
+                                        type='text'
                                         className={`form-control ${formStyle['form-control']}`}
-                                        id='inputphone_number'
-                                        value={phone_number}
-                                        name='phone_number'
+                                        id='inputphoneNumber'
+                                        value={phoneNumber}
+                                        name='phoneNumber'
                                         placeholder='Phone Number'
                                         onChange={this.handleInputOnChange}
                                     />
 
                                     <div className={formStyle['error_message']}>
-                                        {errMessage.phone_number || ''}
+                                        {errMessage.phoneNumber || ''}
                                     </div>
                                 </div>
                             </div>
@@ -300,31 +309,31 @@ class UserUpdate extends Component {
 
                             <div className={`form-row ${formStyle['form-row']}`}>
                                 <div className={`form-group col-5 ${formStyle['form-group']}`}>
-                                    <label htmlFor='inputfirst_name'>
+                                    <label htmlFor='inputFirstName'>
                                         First Name
                                         <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
                                         className={`form-control ${formStyle['form-control']}`}
-                                        id='inputfirst_name'
-                                        value={first_name}
-                                        name='first_name'
+                                        id='inputFirstName'
+                                        value={firstName}
+                                        name='firstName'
                                         onChange={this.handleInputOnChange}
                                     />
                                 </div>
 
                                 <div className={`form-group col-5 ${formStyle['form-group']}`}>
-                                    <label htmlFor='inputlast_name'>
+                                    <label htmlFor='inputLastName'>
                                         Last Name
                                         <span className={formStyle['mandatory-field']}>*</span>
                                     </label>
                                     <input
                                         type='text'
                                         className={`form-control ${formStyle['form-control']}`}
-                                        id='inputlast_name'
-                                        value={last_name}
-                                        name='last_name'
+                                        id='inputLastName'
+                                        value={lastName}
+                                        name='lastName'
                                         onChange={this.handleInputOnChange}
                                     />
                                 </div>
@@ -334,13 +343,14 @@ class UserUpdate extends Component {
                                     <select
                                         id='inputRole'
                                         className={`form-control ${formStyle['form-control']}`}
-                                        name='role_id'
+                                        name='roleId'
                                         onChange={this.handleInputOnChange}
-                                        value={role_id}
+                                        value={roleId}
                                     >
                                         <option value='R1'>User</option>
                                         <option value='R2'>Seller</option>
                                         <option value='R3'>Admin</option>
+                                        <option value='R4'>Shipper</option>
                                     </select>
                                 </div>
                             </div>
@@ -380,8 +390,8 @@ class UserUpdate extends Component {
 
                             <button
                                 className={formStyle['form_button']}
+                                form='update_user_form'
                                 type='submit'
-                                onClick={this.handleSubmitForm}
                             >
                                 Thay đổi
                             </button>
@@ -392,12 +402,12 @@ class UserUpdate extends Component {
 
                             <button
                                 className={style['form_cancle_button']}
-                                type='submit'
+                                type='button'
                                 onClick={this.props.history.goBack}
                             >
                                 Hủy
                             </button>
-                        </div>
+                        </form>
 
                         <div className={style['banner']} style={{ display: 'flex' }}>
                             <img src={avatar} alt='preview image' />
@@ -422,12 +432,14 @@ class UserUpdate extends Component {
 const mapStateToProps = (state) => {
     return {
         language: state.app.language,
+        userInfo: state.user.userInfo,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
+        userUpdateSuccess: (userInfo) => dispatch(actions.userUpdateSuccess(userInfo)),
     };
 };
 

@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions';
-import HeaderConnect from './Section/HeaderConnect';
-import HeaderSupport from './Section/HeaderSupport';
+import HeaderNavbar from './HeaderNavbar';
+import HeaderSearch from './HeaderSearch';
 import './Header.scss';
-
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -38,12 +37,8 @@ class Header extends Component {
     render() {
         return (
             <header>
-                {this.state.isInHomePage && (
-                    <div className='header_wrapper header_navbar'>
-                        <HeaderConnect />
-                        <HeaderSupport />
-                    </div>
-                )}
+                {this.state.isInHomePage && <HeaderNavbar />}
+                <HeaderSearch />
             </header>
         );
     }

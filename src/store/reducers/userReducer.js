@@ -25,6 +25,11 @@ const userReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 userInfo: null,
             };
+        case actionTypes.UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                userInfo: action.userInfo,
+            };
         default:
             return state;
     }
