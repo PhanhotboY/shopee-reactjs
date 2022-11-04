@@ -1,8 +1,8 @@
-@import '../../../styles/common.scss';
+@import 'styles/common.scss';
 
 .header_navbar_connects {
     display: flex;
-    height: 34px;
+    height: $header-min-height;
     margin-left: -5px;
     display: flex;
     align-items: center;

@@ -410,7 +410,7 @@ class UserUpdate extends Component {
                         </form>
 
                         <div className={style['banner']} style={{ display: 'flex' }}>
-                            <img src={avatar} alt='preview image' />
+                            <img src={avatar} alt='preview' />
                         </div>
 
                         <div className={style['banner']}>

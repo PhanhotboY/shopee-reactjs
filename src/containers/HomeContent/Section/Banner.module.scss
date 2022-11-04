@@ -1,0 +1,9 @@
+.banner {
+    height: 110px;
+    display: flex;
+
+    a {
+        flex-grow: 1;
+        height: 100%;
+    }
+}

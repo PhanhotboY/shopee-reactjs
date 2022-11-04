@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
 
-import * as actions from '../../../store/actions';
+import * as actions from 'store/actions';
 import style from './HeaderSupport.module.scss';
 
 class HeaderSupport extends Component {

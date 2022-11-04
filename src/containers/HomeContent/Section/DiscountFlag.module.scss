@@ -1,0 +1,29 @@
+.discount_flag {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 36px;
+    height: 32px;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 4px 2px 3px;
+    line-height: 0.8125rem;
+    background-color: rgba(255, 212, 36, 0.9);
+    color: inherit;
+
+    &::after {
+        position: absolute;
+        left: 0;
+        content: '';
+        top: calc(100% - 1px);
+        border-top: 1px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 18px solid rgba(255, 212, 36, 0.9);
+        border-right: 18px solid rgba(255, 212, 36, 0.9);
+    }
+
+    span {
+        color: #fff;
+        text-transform: uppercase;
+    }
+}

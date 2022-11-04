@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.content_wrapper {
+    margin-top: 20px;
+    background-color: $common-text-color;
+}
+
+.header_title {
+    height: $header-title;
+    display: flex;
+    font-size: 1rem;
+    padding: 0 20px;
+    font-weight: 500;
+    align-items: center;
+    color: rgba(#000, 0.54);
+    border-bottom: 1px solid rgba(#000, 0.05);
+}

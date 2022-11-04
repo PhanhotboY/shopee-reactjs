@@ -1,0 +1,37 @@
+@import '../../styles/variables';
+
+.category {
+    li {
+        border-right: 1px solid rgba(#000, 0.05);
+        border-bottom: 1px solid rgba(#000, 0.05);
+
+        &:hover {
+            cursor: pointer;
+            border-color: rgba(0, 0, 0, 0.12);
+            box-shadow: 0 0 0.8125rem 0 rgba(0, 0, 0, 0.05);
+        }
+
+        a {
+            align-items: center;
+            justify-content: center;
+        }
+
+        div {
+            width: 70%;
+            height: 56%;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        span {
+            height: 38px;
+            padding: 0 6px;
+            margin-top: 4px;
+            text-align: center;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: rgba(#000, 0.8);
+        }
+    }
+}

@@ -6,40 +6,6 @@ $mainColor: rgb(238, 77, 45);
     box-sizing: border-box;
 }
 
-.login_header {
-    height: 80px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 60px;
-    z-index: 9;
-
-    .login_header_logo {
-        width: 120px;
-        display: flex;
-        padding-right: 20px;
-
-        a {
-            height: 100%;
-            width: 100%;
-            fill: $mainColor;
-            color: $mainColor;
-        }
-    }
-
-    .login_header_title {
-        font-size: 2rem;
-        flex-grow: 1;
-    }
-
-    .login_header_help {
-        color: $mainColor;
-        text-decoration: none;
-        font-size: 1rem;
-    }
-}
-
 .login_body {
     width: 100%;
     background-color: $mainColor;
@@ -112,6 +78,7 @@ $mainColor: rgb(238, 77, 45);
     .login_form_button {
         border: none;
         background-color: #ee4d2d;
+        text-transform: uppercase;
         color: #fff;
         padding: 8px;
         border-radius: 2px;

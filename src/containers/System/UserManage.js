@@ -58,7 +58,7 @@ class UserManage extends Component {
                 const allDeletedUser = await this.getDeletedUser();
 
                 await this.setState({
-                    userArray: this.state.userArray.filter((element) => element.userId !== id),
+                    userArray: this.state.userArray.filter((element) => element.id !== id),
                     countDeletedUser: allDeletedUser.count + 1,
                 });
             }
@@ -153,7 +153,7 @@ class UserManage extends Component {
                                         style={{
                                             backgroundImage: `url('${user.avatar}')`,
                                         }}
-                                        onClick={() => this.redirectToEditPage(user.userId)}
+                                        onClick={() => this.redirectToEditPage(user.id)}
                                     ></div>
 
                                     <div className={style.item_detail}>
@@ -210,7 +210,7 @@ class UserManage extends Component {
                                     type='button'
                                     onClick={() =>
                                         this.setState({
-                                            idDeleteModal: user.userId,
+                                            idDeleteModal: user.id,
                                         })
                                     }
                                 >

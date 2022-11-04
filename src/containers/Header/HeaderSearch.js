@@ -17,8 +17,6 @@ class HeaderSearch extends Component {
         };
     }
 
-    componentDidMount() {}
-
     render() {
         return (
             <div className={`${style['header_search']} grid`}>

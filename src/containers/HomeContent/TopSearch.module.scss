@@ -1,0 +1,43 @@
+@import 'styles/variables';
+
+.topsearch {
+    color: $colorsub3;
+
+    li {
+        padding: 20px 10px;
+    }
+
+    .sold {
+        height: 25px;
+        color: #fff;
+        line-height: 25px;
+        text-align: center;
+        font-size: 0.875rem;
+        margin-top: calc(100% - 25px);
+        background-color: rgba(#000, 0.26);
+    }
+
+    .title {
+        color: #555;
+        margin-top: 20px;
+        font-size: 1.125rem;
+        word-wrap: break-word;
+    }
+}
+
+.image {
+    position: relative;
+    height: 180px;
+    width: 180px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    .flag {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 40px;
+    }
+}

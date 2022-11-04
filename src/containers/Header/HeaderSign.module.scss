@@ -1,0 +1,41 @@
+@import 'styles/variables';
+
+.header {
+    z-index: 9;
+    height: $header-height;
+    display: flex;
+    padding: 0 75px;
+    align-items: center;
+    background-color: #fff;
+    justify-content: space-between;
+
+    .header_logo {
+        margin-top: -10px;
+        margin-left: 25px;
+        display: flex;
+        padding-right: 20px;
+
+        a {
+            width: 100%;
+            height: 100%;
+            fill: $colorsub3;
+            color: $colorsub3;
+        }
+
+        svg {
+            height: 42px;
+        }
+    }
+
+    .header_title {
+        flex-grow: 1;
+        font-size: 1.5rem;
+        color: #222;
+    }
+
+    .header_help {
+        font-size: 0.875rem;
+        color: $colormain;
+        text-decoration: none;
+    }
+}

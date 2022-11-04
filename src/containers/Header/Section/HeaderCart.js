@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
+import CommonUtils from 'utils/CommonUtils';
 import style from './HeaderCart.module.scss';
 
 class HeaderCart extends Component {
@@ -117,11 +118,6 @@ const CartPopoverBody = ({ productList }) => {
     );
 };
 
-const formatterCurrencyString = Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'VND',
-});
-
 const CartPopoverContent = ({ productInfo }) => {
     return (
         <div className={style.product_tag}>
@@ -131,7 +127,7 @@ const CartPopoverContent = ({ productInfo }) => {
                 <span>{productInfo.title}</span>
 
                 <span>
-                    {formatterCurrencyString.format(
+                    {CommonUtils.toCurrencyString(
                         productInfo.originPrice * Number(productInfo.discount)
                     )}
                 </span>

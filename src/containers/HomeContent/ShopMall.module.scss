@@ -1,0 +1,124 @@
+@import '../../styles/variables';
+
+.shopmall {
+    color: #d0011b;
+
+    .header_seeall {
+        display: flex;
+        color: inherit;
+        flex-wrap: nowrap;
+        margin-right: 7px;
+        align-items: center;
+        flex-direction: row;
+        font-size: 0.875rem;
+        text-decoration: none;
+    }
+
+    .deal_list {
+        margin: 0;
+        height: 20px;
+        display: flex;
+        color: #333;
+        padding-left: 31px;
+        font-size: 1rem;
+        list-style: none;
+        position: relative;
+        flex-direction: row;
+
+        &::before {
+            content: '';
+            top: 0;
+            bottom: 0;
+            left: 15px;
+            position: absolute;
+            border-left: 1px solid #d8d8d8;
+        }
+
+        li {
+            display: flex;
+            margin-right: 15px;
+            align-items: center;
+
+            img {
+                width: 17px;
+                height: 17px;
+                margin-right: 6px;
+                margin-bottom: 1px;
+            }
+        }
+    }
+
+    .seeall_icon {
+        padding: 0;
+        display: flex;
+        width: 1.125rem;
+        height: 1.125rem;
+        margin-left: 8px;
+        margin-bottom: 2px;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+        background-color: #d0011b;
+
+        svg {
+            fill: #fff;
+            width: 0.5rem;
+            stroke: #fff;
+        }
+    }
+}
+
+.body {
+    display: flex;
+
+    .slider {
+        padding: 10px 0 0 10px;
+    }
+
+    a {
+        color: inherit;
+
+        > div {
+            height: 100%;
+            padding: 100% 4px 8px;
+
+            div {
+                width: 100%;
+                overflow: hidden;
+                font-size: 1.1rem;
+                line-height: 27px;
+                text-align: center;
+                display: -webkit-box;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+            }
+        }
+    }
+
+    > div:last-child li {
+        padding: 10px;
+
+        &:last-child {
+            height: 50%;
+            position: relative;
+            width: calc(100% / 6);
+
+            a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                margin: 0;
+                align-items: center;
+                flex-direction: row;
+                justify-content: center;
+
+                div {
+                    width: 1.375rem;
+                    height: 1.375rem;
+                }
+            }
+        }
+    }
+}

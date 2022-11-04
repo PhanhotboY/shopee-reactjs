@@ -60,6 +60,22 @@
             "recently-added-product":"Recently Added Products",
             "more-products-in-cart":"More Products In Cart",
             "view-my-shopping-cart":"View My Shopping Cart",
-            "no-product-yet":"No Products Yet"
+            "no-product-yet":"No Products Yet",
+            "signup-get-voucher": "Signup and claim new friend voucher up to 70k!",
+            "need-help": "Need help?"
+        },
+        "body": {
+            "category": "Categories",
+            "seeall": "See All",
+            "15-days-return": "15 Days Return",
+            "100percent-authentic" : "100% Authentic",
+            "free-shipping": "Free Shipping",
+            "top-product": "top product",
+            "monthly-sales": "Monthly Sales {sold}",
+            "daily-discover": "daily discover",
+            "sold": "{sold} Sold",
+            "find-similar": "Find Similar",
+            "see-more": "See More",
+            "discount": "off"
         }
 }

@@ -60,6 +60,22 @@
             "recently-added-product":"Sản Phẩm Mới Thêm",
             "more-products-in-cart":"Sản Phẩm Khác Trong Giỏ",
             "view-my-shopping-cart":"Xem Giỏ Hàng",
-            "no-product-yet":"Chưa Có Sản Phẩm"
+            "no-product-yet":"Chưa Có Sản Phẩm",
+            "signup-get-voucher": "Đăng ký và nhận voucher bạn mới đến 70k!",
+            "need-help": "Bạn cần giúp đỡ?"
+    },
+    "body": {
+        "category": "danh mục",
+        "seeall": "Xem Tất Cả",
+        "15-days-return": "15 Ngày Miễn Phí Trả Hàng",
+        "100percent-authentic" : "Hàng Chính Hãng 100%",
+        "free-shipping": "Miễn Phí Vận Chuyển",
+        "top-product": "tìm kiếm hàng đầu",
+        "monthly-sales": "Bán {sold} / tháng",
+        "daily-discover": "gợi ý hôm nay",
+        "sold": "Đã bán {sold}",
+        "find-similar": "Tìm sản phẩm tương tự",
+        "see-more": "See More",
+        "discount": "giảm"
     }
 }

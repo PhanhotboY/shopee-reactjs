@@ -6,40 +6,6 @@ $mainColor: rgb(238, 77, 45);
     color: rgba(0, 0, 0, 0.87);
 }
 
-.header {
-    z-index: 9;
-    height: 80px;
-    display: flex;
-    padding: 0 60px;
-    align-items: center;
-    background-color: #fff;
-    justify-content: space-between;
-
-    .header_logo {
-        width: 120px;
-        display: flex;
-        padding-right: 20px;
-
-        a {
-            width: 100%;
-            height: 100%;
-            fill: $mainColor;
-            color: $mainColor;
-        }
-    }
-
-    .header_title {
-        flex-grow: 1;
-        font-size: 2rem;
-    }
-
-    .header_help {
-        font-size: 1rem;
-        color: $mainColor;
-        text-decoration: none;
-    }
-}
-
 .form-row {
     width: 100%;
     display: flex;
@@ -131,6 +97,7 @@ $mainColor: rgb(238, 77, 45);
         opacity: 0.65;
         border-radius: 2px;
         pointer-events: none;
+        text-transform: uppercase;
         background-color: #ee4d2d;
 
         &:hover {

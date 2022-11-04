@@ -5,10 +5,6 @@ import { push } from 'connected-react-router';
 import style from './HeaderLogo.module.scss';
 
 class HeaderLogo extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     redirectToHomePage = () => {
         const { navigate } = this.props;
         const redirectPath = `/`;

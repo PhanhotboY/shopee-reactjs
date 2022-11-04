@@ -1,5 +1,5 @@
-@import '../../../styles/_variables.scss';
-@import '../../../styles/_base.scss';
+@import 'styles/variables';
+@import 'styles/base';
 
 .header_navbar_supports {
     display: flex;
@@ -7,7 +7,7 @@
 
     > ul {
         display: flex;
-        height: 34px;
+        height: $header-min-height;
         align-items: center;
 
         li {
@@ -85,6 +85,7 @@
             right: 0;
             height: 50px;
             padding: 0;
+            z-index: $zindex;
 
             div {
                 right: 18%;

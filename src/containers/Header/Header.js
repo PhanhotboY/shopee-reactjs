@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../store/actions';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderSearch from './HeaderSearch';
+import HeaderSign from './HeaderSign';
 import './Header.scss';
 class Header extends Component {
     constructor(props) {
@@ -37,23 +38,25 @@ class Header extends Component {
     render() {
         return (
             <header>
-                {this.state.isInHomePage && <HeaderNavbar />}
-                <HeaderSearch />
+                {this.state.isInHomePage && (
+                    <>
+                        <HeaderNavbar />
+                        <HeaderSearch />{' '}
+                    </>
+                )}
+
+                {this.state.isInHomePage || <HeaderSign />}
             </header>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.user.isLoggedIn,
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        processLogout: () => dispatch(actions.processLogout()),
-    };
+    return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

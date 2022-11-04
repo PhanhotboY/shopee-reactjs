@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import style from './SearchBox.module.scss';
 
@@ -78,11 +79,14 @@ const RecentSearchList = ({ keywords = ['PhanhotboY'] }) => {
     return (
         <div className={style.recent_search_list}>
             <a href='/?search=Đăng ký và nhận voucher bạn mới đến 70k!'>
-                <span>Đăng ký và nhận voucher bạn mới đến 70k!</span>
+                <span>
+                    {' '}
+                    <FormattedMessage id='header.signup-get-voucher' />
+                </span>
                 <img src='https://cf.shopee.vn/file/e92ab33ccea0695b22219c8a152d9f61' height='24' />
             </a>
             {keywords.map((keyword, index) => {
-                if (index >= 10) return;
+                if (index >= 10) return <></>;
                 return <RecentSearchKeyword keyword={keyword} key={index} />;
             })}
         </div>

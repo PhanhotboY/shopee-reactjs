@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import HomeHeader from '../containers/Home/HomeHeader';
-import UserManage from '../containers/System/UserManage';
+
+import HomeBanner from '../containers/HomeBanner';
+import HomeContent from '../containers/HomeContent';
 
 class Home extends Component {
     render() {
         const { isLoggedIn } = this.props;
 
         return (
-            <div>
-                {/* <HomeHeader /> */}
-                <UserManage />
+            <div className='wrapper'>
+                <div className='grid'>
+                    <HomeBanner />
+                    <HomeContent />
+                </div>
             </div>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.user.isLoggedIn,
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

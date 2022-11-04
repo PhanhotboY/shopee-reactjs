@@ -1,0 +1,120 @@
+@import 'styles/variables';
+
+.wrapper {
+    margin-top: 10px;
+    padding: 0 5px;
+
+    .container {
+        cursor: pointer;
+        height: 282px;
+        width: 100%;
+        display: flex;
+        position: relative;
+        border: 1px solid transparent;
+        border-left: 1px solid transparent;
+        border-right: 1px solid transparent;
+        background-color: #fff;
+        box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.1);
+        color: $colorsub3;
+
+        &:hover {
+            border-color: $colorsub3;
+            transform: translateY(-1px);
+            z-index: 5;
+        }
+
+        > a {
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
+
+.product_image {
+    height: 188px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.flag {
+    position: absolute;
+    top: 10px;
+    left: -3px;
+    height: 21px;
+}
+
+.product_detail {
+    padding: 8px;
+
+    .product_title {
+        font-size: 0.75rem;
+        color: rgba(#000, 0.87);
+        height: 27px;
+        overflow: hidden;
+        line-height: 14px;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        word-wrap: break-word;
+    }
+
+    .product_promotion {
+        height: 15px;
+        margin-top: 6px;
+        width: 100%;
+        background-size: 20px;
+        background-position: left center;
+        background-repeat: no-repeat;
+    }
+
+    .product_info {
+        margin-top: 8px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .product_price {
+        font-size: 1rem;
+        color: inherit;
+    }
+
+    .sold {
+        font-size: 0.75rem;
+        color: rgba(#000, 0.54);
+    }
+}
+
+.similar {
+    position: absolute;
+    top: calc(100% - 2px);
+    left: -1px;
+    right: -1px;
+    border: 1px solid $colorsub3;
+    background-color: $colorsub3;
+    height: 32px;
+    display: flex;
+
+    a {
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+        color: #fff;
+        line-height: 30px;
+        text-align: center;
+        font-size: 0.875rem;
+    }
+}

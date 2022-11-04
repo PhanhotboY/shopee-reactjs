@@ -1,0 +1,94 @@
+@import '../../styles/variables';
+
+.wrapper {
+    overflow: hidden;
+    position: relative;
+    padding: 0;
+
+    ul {
+        display: flex;
+        flex-wrap: nowrap;
+        padding: 0;
+        overflow: hidden;
+        transition: all 500ms ease 0s;
+
+        li {
+            display: flex;
+
+            a {
+                width: 100%;
+
+                .content_image {
+                    height: 0;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.slider_button {
+    z-index: 5;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background-color: rgba(#000, 0.18);
+    width: 35px;
+    height: 60px;
+
+    &:hover {
+        background-color: rgba(#000, 0.32);
+    }
+
+    svg {
+        color: #fff;
+        height: 1.4rem;
+
+        path {
+            width: 1rem;
+        }
+    }
+}
+
+.slider_button_back,
+.slider_button_next {
+    transform: translateY(-50%);
+    position: absolute;
+    top: 50%;
+}
+
+.slider_button_next {
+    right: 0;
+}
+
+.slider_button_back {
+    left: 0;
+}
+
+.stardusts_container {
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 1rem;
+    display: flex;
+    justify-content: center;
+
+    .stardust {
+        opacity: 1;
+        width: 10px;
+        height: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: hsla(0, 0%, 100%, 0.4);
+        border: 1px solid hsla(0, 0%, 53.7%, 0.4);
+
+        &:not(&:first-child) {
+            margin-left: 0.5rem;
+        }
+    }
+
+    .stardust--active {
+        border-color: $colorsub3;
+        background-color: $colorsub3;
+    }
+}
