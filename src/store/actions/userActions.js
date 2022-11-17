@@ -9,8 +9,14 @@ export const userUpdateSuccess = (userInfo) => ({
     userInfo: userInfo,
 });
 
-export const processLogout = () => ({
-    type: actionTypes.PROCESS_LOGOUT,
+export const processLogout = () => {
+    return async (dispatch, getState) => {
+        dispatch(userLogoutSuccess());
+    };
+};
+
+export const userLogoutSuccess = () => ({
+    type: actionTypes.USER_LOGOUT_SUCCESS,
 });
 
 export const userLoginSuccess = (userInfo) => ({
@@ -20,4 +26,8 @@ export const userLoginSuccess = (userInfo) => ({
 
 export const userLoginFail = () => ({
     type: actionTypes.USER_LOGIN_FAIL,
+});
+
+export const userAuthenticate = () => ({
+    type: actionTypes.USER_AUTHENTICATE,
 });

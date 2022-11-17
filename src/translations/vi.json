@@ -1,30 +1,13 @@
 {
-    "common": {
-        "add": "Thêm",
-        "edit": "Sửa",
-        "delete": "Xóa",
-        "decentralize": "Phân quyền",
-        "close": "Đóng",
-        "save": "Lưu",
-        "refresh": "Refresh",
-        "accept": "Chấp nhận",
-        "confirm": "Xác nhận",
-        "confirm-this-task": "Bạn có chắc chắn thực hiện tác vụ này?",
-        "fail-to-load-data": "Không thể tải về dữ liệu",
-        "unknown-error": "Có lỗi xảy ra",
-        "internal-server-error": "Lỗi kết nối",
-        "bad-request": "Yêu cầu không hợp lệ",
-        "forbiden-request": "Thông tin truyền vào không hợp lệ",
-        "fail-to-load-all-code": "Không thể tải về dữ liệu allcode",
-        "sum": "Tổng",
-        "date-range-invalid": "Khoảng thời gian không hợp lệ"
-    },
     "login": {
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
+        "email": "Email",
         "password": "Mật khẩu",
         "userpass-wrong": "Sai mật khẩu. Vui lòng thử lại!",
-        "useremail-wrong": "Người dùng không tồn tại!"
+        "useremail-wrong": "Người dùng không tồn tại!",
+        "new-to-shop": "Bạn mới biết đến Shopee?",
+        "forgot-pass": "Quên mật khẩu?"
     },
     "signup": {
         "signup": "Đăng ký",
@@ -36,10 +19,18 @@
         "address": "Địa chỉ",
         "first-name": "Họ",
         "last-name": "Tên",
+        "role": "Vai trò",
         "userpass-wrong": "Dùng ít nhất 8 ký tự gồm a-z, 0-9 và không ký tự đặc biệt!",
         "usermobile-wrong": "Số điện thoại không hợp lệ. Vui lòng thử lại!",
         "useremail-wrong": "Email không hợp lệ. Vui lòng thử lại!",
-        "useremail-exist": "Email đã tồn tại. Vui lòng dùng email khác!"
+        "userurl-wrong": "URL không hợp lệ, Vui lòng thử lại!",
+        "useremail-exist": "Email đã tồn tại. Vui lòng dùng email khác!",
+        "agreement": "Bằng việc đăng kí, bạn đã đồng ý với Shopee về ",
+        "terms-of-service": "Điều khoản dịch vụ ",
+        "privacy-policy": " Chính sách bảo mật",
+        "have-an-account":"Đã có tài khoản? ",
+        "or": "hoặc",
+        "success": "Đăng ký thành công!"
     },
     "header": {
             "seller-centre": "Kênh Người Bán",
@@ -63,6 +54,30 @@
             "no-product-yet":"Chưa Có Sản Phẩm",
             "signup-get-voucher": "Đăng ký và nhận voucher bạn mới đến 70k!",
             "need-help": "Bạn cần giúp đỡ?"
+    },
+    "menu": {
+        "user": {
+            "header": "Người dùng",
+            "manage-user": "Quản lý Người dùng",
+            "manage-seller": "Quản lý Người Bán",
+            "manage-shipper": "Quản lý Người giao hàng"
+        },
+        "product": {
+            "header": "Sản Phẩm",
+            "manage-product": "Quản lý Sản phẩm"
+        },
+        "order": {
+            "header": "Đơn hàng",
+            "manage-order": "Quản lý Đơn hàng"
+        },
+        "flashsale": {
+            "header": "Flashsale",
+            "manage-flashsale": "Quản lý Flashsale"
+        },
+        "shop": {
+            "header": "Cửa hàng",
+            "manage-shop": "Quản lý Cửa hàng"
+        }
     },
     "body": {
         "category": "danh mục",

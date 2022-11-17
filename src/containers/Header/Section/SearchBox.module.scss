@@ -7,18 +7,18 @@
 
 .searchBox {
     width: 840px;
-    z-index: $zindex - 10px;
-    padding: 3px;
     height: 40px;
+    padding: 3px;
     display: flex;
     position: relative;
-    background-color: $common-text-color;
     border-radius: 2px;
+    z-index: $zindex - 10px;
+    background-color: $common-text-color;
 
     form {
+        position: relative;
         flex-grow: 1;
         height: 100%;
-        position: relative;
         padding: 0 8px;
     }
 
@@ -27,29 +27,29 @@
         position: absolute;
         top: -7px;
         right: 4px;
-        bottom: -7px;
         left: -7px;
-        outline: #000 solid 2px;
+        bottom: -7px;
         border-radius: 2px;
+        outline: #000 solid 2px;
     }
 
     input {
-        height: 100%;
         width: 100%;
+        height: 100%;
         border: none;
-        font-size: 0.875rem;
         outline: none;
         position: relative;
+        font-size: 0.875rem;
     }
 
     button {
-        height: 34px;
         width: 60px;
+        height: 34px;
         border: none;
-        border-radius: 2px;
-        background-color: $colormain;
-        color: $common-text-color;
         cursor: pointer;
+        border-radius: 2px;
+        color: $common-text-color;
+        background-color: $colormain;
 
         &:hover {
             background-color: #fb6445;
@@ -79,28 +79,27 @@
 }
 
 .recent_search_list {
-    z-index: 10;
     position: absolute;
-    left: 0;
     top: calc(100% + 5px);
+    left: 0;
     width: 757px;
     display: flex;
-    flex-direction: column;
     border-radius: 2px;
+    flex-direction: column;
     background-color: #fff;
-    box-shadow: 0 1px 4px 0 rgb(0, 0, 0 / 26%);
     color: rgba(0, 0, 0, 0.87);
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.26);
 
     a {
-        font-size: 0.875rem;
-        padding: 10px 15px 10px 10px;
         width: 100%;
         color: inherit;
+        font-size: 0.875rem;
+        padding: 10px 15px 10px 10px;
 
         &:first-child {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
         }
 
         &:hover {

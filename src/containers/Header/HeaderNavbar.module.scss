@@ -1,0 +1,7 @@
+@import 'styles/variables';
+
+.navbar {
+    display: flex;
+    height: $header-min-height;
+    justify-content: space-between;
+}

@@ -6,12 +6,13 @@ import { history } from '../redux';
 import { ToastContainer } from 'react-toastify';
 
 import {
-    userIsAuthenticated,
     userIsNotAuthenticated,
     userAlreadyHaveAccount,
+    userIsAnAdminRedir,
 } from '../hoc/authentication';
 
-import { path } from '../utils';
+import { PATH } from '../utils';
+import * as actions from 'store/actions';
 
 import Home from '../routes/Home';
 import Signup from './Auth/Signup';
@@ -19,26 +20,34 @@ import Login from './Auth/Login';
 import Header from './Header/Header';
 import System from '../routes/System';
 
-import { CustomToastCloseButton } from '../components/CustomToast';
-import ConfirmModal from '../components/ConfirmModal';
+const SystemAuth = userIsAnAdminRedir(System);
 
 class App extends Component {
-    handlePersistorState = () => {
-        const { persistor } = this.props;
-        let { bootstrapped } = persistor.getState();
-        if (bootstrapped) {
-            if (this.props.onBeforeLift) {
-                Promise.resolve(this.props.onBeforeLift())
-                    .then(() => this.setState({ bootstrapped: true }))
-                    .catch(() => this.setState({ bootstrapped: true }));
-            } else {
-                this.setState({ bootstrapped: true });
-            }
-        }
-    };
+    constructor(props) {
+        super(props);
 
-    componentDidMount() {
-        this.handlePersistorState();
+        this.state = {
+            bootstrapped: false,
+        };
+    }
+
+    // handlePersistorState = () => {
+    //     const { persistor } = this.props;
+    //     let { bootstrapped } = persistor.getState();
+    //     if (bootstrapped) {
+    //         if (this.props.onBeforeLift) {
+    //             Promise.resolve(this.props.onBeforeLift())
+    //                 .then(() => this.setState({ bootstrapped: true }))
+    //                 .catch(() => this.setState({ bootstrapped: true }));
+    //         } else {
+    //             this.setState({ bootstrapped: true });
+    //         }
+    //     }
+    // };
+
+    async componentDidMount() {
+        await this.props.appStartUpComplete();
+        this.setState({ bootstrapped: this.props.started });
     }
 
     render() {
@@ -50,30 +59,33 @@ class App extends Component {
 
                         <div className='content-container'>
                             <Switch>
-                                <Route path={path.HOME} exact component={Home} />
+                                <Route path={PATH.HOME} exact component={Home} />
+
                                 <Route
-                                    path={path.SIGNUP}
+                                    path={PATH.SIGNUP}
                                     component={userIsNotAuthenticated(Signup)}
                                 />
+
                                 <Route
-                                    path={path.LOGIN}
+                                    path={PATH.LOGIN}
                                     component={userAlreadyHaveAccount(Login)}
                                 />
-                                <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
+
+                                <Route path={PATH.SYSTEM} component={SystemAuth} />
                             </Switch>
                         </div>
 
                         <ToastContainer
-                            className='toast-container'
-                            toastClassName='toast-item'
-                            bodyClassName='toast-item-body'
-                            autoClose={false}
-                            hideProgressBar={true}
-                            pauseOnHover={false}
-                            pauseOnFocusLoss={true}
-                            closeOnClick={false}
-                            draggable={false}
-                            closeButton={<CustomToastCloseButton />}
+                            position='top-right'
+                            autoClose={2000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                            theme='light'
                         />
                     </div>
                 </Router>
@@ -85,12 +97,13 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         started: state.app.started,
-        isLoggedIn: state.user.isLoggedIn,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        appStartUpComplete: () => dispatch(actions.appStartUpComplete()),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

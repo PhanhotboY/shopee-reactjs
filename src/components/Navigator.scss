@@ -1,9 +1,12 @@
-@import "../styles/common.scss";
+@import '../styles/common.scss';
 
 .navigator-menu {
     display: flex;
     margin: 0;
     padding: 0;
+    color: #333;
+    background-color: #37e1ff;
+
     &.list-unstyled,
     .list-unstyled {
         list-style-type: none;
@@ -11,12 +14,14 @@
     .menu-group {
         &:hover {
             cursor: pointer;
+            color: #fff;
             background-color: darken($colormain, 5);
         }
         .menu-group-name {
             line-height: 40px;
             padding: 0 15px;
             border-right: 1px solid $border;
+
             &:first-child {
                 border-left: 1px solid $border;
             }
@@ -29,16 +34,31 @@
             color: $text-in-light;
             position: absolute;
             padding: 0;
+
             .menu {
                 width: 205px;
-                padding: 0 15px;
                 height: 35px;
-                line-height: 35px;
+                display: flex;
                 text-transform: none;
+
+                &.active {
+                    background-color: #eee;
+
+                    a {
+                        font-weight: 500;
+                        color: $colormain;
+                    }
+                }
+
                 .menu-link {
+                    width: 100%;
+                    height: 100%;
+                    padding: 0 15px;
+                    line-height: 35px;
                     text-decoration: none;
                     color: $text-in-light;
                 }
+
                 .sub-menu-list {
                     display: none;
                     background-color: $bg-menu-color;
@@ -48,37 +68,46 @@
                     top: 0;
                     left: 205px;
                     padding: 0;
+
                     .sub-menu {
                         padding: 0 15px;
                         height: 35px;
                         line-height: 35px;
                         white-space: nowrap;
+
                         &:hover {
                             background-color: darken($bg-menu-color, 5);
                         }
+
                         .sub-menu-link {
                             text-decoration: none;
                             color: $text-in-light;
                         }
+
                         a {
                             display: block;
                         }
+
                         &.active a {
                             font-weight: 500;
                             color: $colormain;
                         }
                     }
                 }
+
                 &.active span {
                     font-weight: 500;
                     color: $colormain;
                 }
+
                 &:hover {
                     background-color: darken($bg-menu-color, 3);
+
                     .sub-menu-list {
                         display: block;
                     }
                 }
+
                 .icon-right {
                     display: block;
                     position: absolute;
@@ -87,6 +116,7 @@
                 }
             }
         }
+
         &:hover {
             .menu-list {
                 display: block;

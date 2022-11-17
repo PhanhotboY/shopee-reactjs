@@ -1,14 +1,11 @@
-$mainColor: rgb(238, 77, 45);
-
-.login {
-    width: 100%;
-    color: rgba(0, 0, 0, 0.87);
-    box-sizing: border-box;
-}
+@import 'styles/variables';
 
 .login_body {
     width: 100%;
-    background-color: $mainColor;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.87);
+    background-color: $colorsub3;
+    margin-top: -$header-min-height;
 
     .login_body_wrapper {
         margin: auto;
@@ -18,7 +15,7 @@ $mainColor: rgb(238, 77, 45);
         position: relative;
     }
 
-    .login_body_form {
+    .login_form {
         background-color: #fff;
         height: 430px;
         position: absolute;
@@ -41,59 +38,9 @@ $mainColor: rgb(238, 77, 45);
         padding: 20px 0;
     }
 
-    .login_form_input {
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        padding: 8px;
-        width: 100%;
-        outline: none;
-
-        &:focus-visible {
-            box-shadow: 0 0 4px rgba(0, 0, 0, 0.14);
-            border-color: rgba(0, 0, 0, 0.54);
-        }
-    }
-
-    .login_error_message {
-        width: 100%;
-        overflow: hidden;
-        font-size: 0.85rem;
-        color: red;
-        padding: 2px 8px 8px;
-        min-height: 20px;
-    }
-
-    .login_input_password {
-        position: relative;
-
-        .hideShowIcon {
-            width: 44px;
-            height: 40px;
-            position: absolute;
-            right: 0;
-            top: 0;
-            padding: 12px;
-        }
-    }
-
-    .login_form_button {
-        border: none;
-        background-color: #ee4d2d;
-        text-transform: uppercase;
-        color: #fff;
-        padding: 8px;
-        border-radius: 2px;
-        margin-bottom: 15px;
-        pointer-events: none;
-        opacity: 0.65;
-
-        &:hover {
-            background-color: #f05d40;
-        }
-    }
-
     .login_form_forgot {
         text-decoration: none;
-        width: 30%;
+        width: 35%;
         font-size: 0.85rem;
     }
 
@@ -177,12 +124,8 @@ $mainColor: rgb(238, 77, 45);
     justify-content: center;
 
     span:last-child {
-        color: $mainColor;
+        color: $colorsub3;
         text-decoration: none;
         cursor: pointer;
     }
-}
-
-.login_footer {
-    height: 100px;
 }

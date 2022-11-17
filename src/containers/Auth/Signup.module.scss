@@ -1,40 +1,11 @@
-$mainColor: rgb(238, 77, 45);
-
-.wrapper {
-    width: 100%;
-    box-sizing: border-box;
-    color: rgba(0, 0, 0, 0.87);
-}
-
-.form-row {
-    width: 100%;
-    display: flex;
-    margin: 5px 0;
-    justify-content: space-between;
-}
-
-.form-group {
-    .form-control {
-        width: 98%;
-        margin: auto;
-    }
-
-    &:first-child .form-control {
-        margin-left: 0;
-    }
-
-    &:last-child .form-control {
-        margin-right: 0;
-    }
-
-    &:only-child .form-control {
-        width: 100%;
-    }
-}
+@import 'styles/variables';
 
 .body {
     width: 100%;
-    background-color: $mainColor;
+    box-sizing: border-box;
+    background-color: $colorsub3;
+    color: rgba(0, 0, 0, 0.87);
+    margin-top: -$header-min-height;
 
     .body_wrapper {
         width: 100%;
@@ -65,44 +36,6 @@ $mainColor: rgb(238, 77, 45);
         font-size: 1.5rem;
         line-height: 20px;
         padding-top: 20px;
-    }
-
-    .hideShowIcon {
-        position: absolute;
-        top: 22px;
-        right: 7px;
-        width: 32px;
-        height: 31px;
-        padding: 8px;
-        cursor: pointer;
-        border-radius: 4px;
-        background-color: #fff;
-    }
-
-    .error_message {
-        width: 100%;
-        height: 1rem;
-        color: red;
-        padding: 0 8px;
-        margin-top: 2px;
-        overflow: hidden;
-        font-size: 0.75rem;
-        line-break: anywhere;
-    }
-
-    .form_button {
-        border: none;
-        padding: 8px;
-        color: #fff;
-        opacity: 0.65;
-        border-radius: 2px;
-        pointer-events: none;
-        text-transform: uppercase;
-        background-color: #ee4d2d;
-
-        &:hover {
-            background-color: #f05d40;
-        }
     }
 
     .form_otherOptions {
@@ -153,18 +86,10 @@ $mainColor: rgb(238, 77, 45);
         font-size: 0.8rem;
 
         a {
-            color: $mainColor;
+            color: $colorsub3;
             text-decoration: none;
         }
     }
-}
-
-.mandatory-field {
-    height: 20px;
-    color: red;
-    margin-left: 2px;
-    line-height: 20px;
-    font-size: 1.2rem;
 }
 
 .split {
@@ -204,35 +129,8 @@ $mainColor: rgb(238, 77, 45);
     color: rgba(0, 0, 0, 0.4);
 
     span:last-child {
-        color: $mainColor;
+        color: $colorsub3;
         text-decoration: none;
         cursor: pointer;
     }
-}
-
-.success_alert {
-    position: absolute;
-    top: 23px;
-    left: 95px;
-    width: 550px;
-    height: 320px;
-    display: none;
-    align-items: center;
-    border-radius: 8px;
-    flex-direction: column;
-    justify-content: center;
-    background-color: #fff;
-
-    img {
-        width: 220px;
-    }
-
-    div {
-        font-size: 2rem;
-        color: #12d76e;
-    }
-}
-
-.footer {
-    height: 100px;
 }

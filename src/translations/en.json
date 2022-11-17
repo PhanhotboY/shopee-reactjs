@@ -1,33 +1,16 @@
 {
-    "common": {
-        "add": "Add",
-        "edit": "Edit",
-        "delete": "Delete",
-        "decentralize": "Decentralize",
-        "close": "Close",
-        "save": "Save",
-        "refresh": "Refresh",
-        "accept": "Accept",
-        "confirm": "Confirm",
-        "confirm-this-task": "Are you sure to process this task?",
-        "fail-to-load-data": "Fail to load data",
-        "unknown-error": "There was an error",
-        "internal-server-error": "Internal server error",
-        "bad-request": "Bad request",
-        "forbiden-request": "Invalid input data",
-        "fail-to-load-all-code": "Fail to load data from allcode",
-        "sum": "Sum",
-        "date-range-invalid": "Date range invalid"
-    },
     "login": {
-        "login": "Login",
+        "login": "Log In",
         "username": "Username",
+        "email": "Email",
         "password": "Password",
         "userpass-wrong": "Wrong password. Please try again!",
-        "useremail-wrong": "User does not exist!"
+        "useremail-wrong": "User does not exist!",
+        "new-to-shop": "New to Shopee? ",
+        "forgot-pass": "Forgot Password?"
     },
     "signup": {
-        "signup": "Sign up",
+        "signup": "Sign Up",
         "email": "Email",
         "password": "Password",
         "phone-number": "Phone number",
@@ -36,10 +19,18 @@
         "address": "Address",
         "first-name": "First name",
         "last-name": "Last name",
+        "role": "Role",
         "userpass-wrong": "Use 8 or more characters with a mix of a-z, 0-9 & no symbols!",
         "usermobile-wrong": "Invalid phone number. Please try again!",
         "useremail-wrong": "Invalid email. Please try again!",
-        "useremail-exist": "Email already exist. Please try another email!"
+        "userurl-wrong": "Invalid URL. Please try again!",
+        "useremail-exist": "Email already exist. Please try another email!",
+        "agreement": "By signing up, you agree to Shopee's ",
+        "terms-of-service": "Terms of Service ",
+        "privacy-policy": " Privacy Policy",
+        "have-an-account":"Have an account? ",
+        "or": "or",
+        "success": "Sign up successfully!"
     },
     "header": {
             "seller-centre": "Seller Centre",
@@ -52,7 +43,7 @@
             "my-account":"My Account",
             "my-purchase":"My Purchase",
             "signup": "Sign up",
-            "login":"Login",
+            "login":"Log in",
             "language": "English",
             "recently-received-notifications": "Recently Received Notifications",
             "viewall": "View All",
@@ -63,8 +54,32 @@
             "no-product-yet":"No Products Yet",
             "signup-get-voucher": "Signup and claim new friend voucher up to 70k!",
             "need-help": "Need help?"
+    },
+    "menu": {
+        "user": {
+            "header": "User",
+            "manage-user": "Manage User",
+            "manage-seller": "Manage Seller",
+            "manage-shipper": "Manage Shipper"
         },
-        "body": {
+        "product": {
+            "header": "Product",
+            "manage-product": "Manage Product"
+        },
+        "order": {
+            "header": "Order",
+            "manage-order": "Manage Order"
+        },
+        "flashsale": {
+            "header": "Flashsale",
+            "manage-flashsale": "Manage Flashsale"
+        },
+        "shop": {
+            "header": "Shop",
+            "manage-shop": "Manage Shop"
+        }
+    },
+    "body": {
             "category": "Categories",
             "seeall": "See All",
             "15-days-return": "15 Days Return",

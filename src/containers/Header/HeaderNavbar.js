@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions';
+import style from './HeaderNavbar.module.scss';
 import HeaderConnect from './Section/HeaderConnect';
 import HeaderSupport from './Section/HeaderSupport';
 
@@ -19,7 +20,7 @@ class HeaderNavbar extends Component {
 
     render() {
         return (
-            <div className='grid d-flex justify-content-between'>
+            <div className={`${style.navbar} grid`}>
                 <HeaderConnect />
                 <HeaderSupport />
             </div>

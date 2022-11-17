@@ -8,9 +8,11 @@ const initContentOfConfirmModal = {
 };
 
 const initialState = {
-    started: true,
+    started: false,
     language: 'vi',
-    systemMenuPath: '/system/user-manage',
+    genders: [],
+    roles: [],
+    systemMenuPath: '/system/manage-user',
     contentOfConfirmModal: {
         ...initContentOfConfirmModal,
     },
@@ -27,6 +29,28 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 language: action.language,
+            };
+        case actionTypes.FETCH_GENDERS_START:
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_GENDERS_SUCCESS:
+            return {
+                ...state,
+                genders: action.genders,
+            };
+        case actionTypes.FETCH_GENDERS_FAIL:
+            return {
+                ...state,
+            };
+        case actionTypes.FETCH_ROLES_SUCCESS:
+            return {
+                ...state,
+                roles: action.roles,
+            };
+        case actionTypes.FETCH_ROLES_FAIL:
+            return {
+                ...state,
             };
         case actionTypes.SET_CONTENT_OF_CONFIRM_MODAL:
             return {

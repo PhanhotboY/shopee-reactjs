@@ -109,7 +109,8 @@ class HeaderSupport extends Component {
                         {isLoggedIn ? (
                             <UserOptions
                                 isUserPopup={this.state.isUserPopup}
-                                email={userInfo.email}
+                                firstName={userInfo.firstName}
+                                lastName={userInfo.lastName}
                                 avatar={userInfo.avatar}
                             >
                                 <UserOptionsPopup processLogout={processLogout} />
@@ -293,7 +294,7 @@ const LanguagePopup = ({ changeLanguage }) => {
     );
 };
 
-const UserOptions = ({ isUserPopup, email, avatar, children }) => {
+const UserOptions = ({ isUserPopup, firstName, lastName, avatar, children }) => {
     return (
         <>
             <div className='hover_eff--blur'>
@@ -302,7 +303,7 @@ const UserOptions = ({ isUserPopup, email, avatar, children }) => {
                         background: `url(${avatar}) center/cover no-repeat`,
                     }}
                 ></div>
-                <span>{email.substring(0, email.indexOf('@'))}</span>
+                <span>{`${firstName} ${lastName}`}</span>
             </div>
 
             {isUserPopup && children}

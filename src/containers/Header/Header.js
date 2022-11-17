@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../store/actions';
+import Navigator from 'components/Navigator';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderSearch from './HeaderSearch';
 import HeaderSign from './HeaderSign';
+import * as menus from 'containers/Menu';
 import './Header.scss';
 class Header extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isInHomePage:
-                window.location.pathname !== '/signup' && window.location.pathname !== '/login',
+            isInSignPage:
+                window.location.pathname === '/signup' || window.location.pathname === '/login',
+            isInSystemPage: Boolean(window.location.pathname.match(/\/system.*/g)),
         };
     }
 
@@ -24,9 +26,10 @@ class Header extends Component {
             for (let mutation of mutationsList) {
                 if (mutation.type === 'childList') {
                     this.setState({
-                        isInHomePage:
-                            window.location.pathname !== '/signup' &&
-                            window.location.pathname !== '/login',
+                        isInSignPage:
+                            window.location.pathname === '/signup' ||
+                            window.location.pathname === '/login',
+                        isInSystemPage: Boolean(window.location.pathname.match(/\/system\/.*/g)),
                     });
                 }
             }
@@ -38,14 +41,16 @@ class Header extends Component {
     render() {
         return (
             <header>
-                {this.state.isInHomePage && (
+                {this.state.isInSignPage || this.state.isInSystemPage || (
                     <>
                         <HeaderNavbar />
-                        <HeaderSearch />{' '}
+                        <HeaderSearch />
                     </>
                 )}
 
-                {this.state.isInHomePage || <HeaderSign />}
+                {this.state.isInSignPage && <HeaderSign />}
+
+                {this.state.isInSystemPage && <Navigator menus={menus.adminMenu} />}
             </header>
         );
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import './styles/styles.scss';
+import { PersistGate } from 'redux-persist/es/integration/react';
 
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
@@ -14,7 +15,9 @@ const renderApp = () => {
     ReactDOM.render(
         <Provider store={reduxStore}>
             <IntlProviderWrapper>
-                <App persistor={persistor} />
+                <PersistGate loading={null} persistor={persistor}>
+                    <App />
+                </PersistGate>
             </IntlProviderWrapper>
         </Provider>,
         document.getElementById('root')

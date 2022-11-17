@@ -1,2 +1,2 @@
-export { default as adminService } from './adminService';
+export { default as appService } from './appService';
 export { default as userService } from './userService';

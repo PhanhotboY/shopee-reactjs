@@ -8,8 +8,8 @@ const adminService = {
      *  "password": "string"
      * }
      */
-    login(loginBody) {
-        return axios.post(`/admin/login`, loginBody);
+    handleGetAllcodes(type) {
+        return axios.get(`/api/allcodes/${type}`);
     },
 };
 

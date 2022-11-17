@@ -8,6 +8,7 @@ import userService from '../../services/userService';
 class UserManage extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             userArray: [],
             errMessage: {},
@@ -82,13 +83,13 @@ class UserManage extends Component {
 
     redirectToEditPage = (id) => {
         const { navigate } = this.props;
-        const redirectPath = `/system/user-manage/update?id=${id}`;
+        const redirectPath = `/system/manage-user/update?id=${id}`;
         navigate(`${redirectPath}`);
     };
 
     redirectToUserDeletedPage = () => {
         const { navigate } = this.props;
-        const redirectPath = `/system/user-manage/deleted-user`;
+        const redirectPath = `/system/manage-user/deleted-user`;
         navigate(`${redirectPath}`);
     };
 
@@ -237,7 +238,9 @@ class UserManage extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        isAdmin: state.user.isAdmin,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
