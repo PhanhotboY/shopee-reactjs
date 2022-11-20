@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Navigator from 'components/Navigator';
 import HeaderNavbar from './HeaderNavbar';
 import HeaderSearch from './HeaderSearch';
 import HeaderSign from './HeaderSign';
-import * as menus from 'containers/Menu';
+import HeaderSystem from './HeaderSystem';
 import './Header.scss';
 class Header extends Component {
     constructor(props) {
@@ -50,7 +49,7 @@ class Header extends Component {
 
                 {this.state.isInSignPage && <HeaderSign />}
 
-                {this.state.isInSystemPage && <Navigator menus={menus.adminMenu} />}
+                {this.state.isInSystemPage && <HeaderSystem />}
             </header>
         );
     }

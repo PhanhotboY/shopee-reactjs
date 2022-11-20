@@ -1,4 +1,7 @@
 {
+    "common": {
+        "cancel": "Cancel"
+    },
     "login": {
         "login": "Log In",
         "username": "Username",
@@ -19,7 +22,7 @@
         "address": "Address",
         "first-name": "First name",
         "last-name": "Last name",
-        "role": "Role",
+        "roleId": "Role",
         "userpass-wrong": "Use 8 or more characters with a mix of a-z, 0-9 & no symbols!",
         "usermobile-wrong": "Invalid phone number. Please try again!",
         "useremail-wrong": "Invalid email. Please try again!",
@@ -92,5 +95,8 @@
             "find-similar": "Find Similar",
             "see-more": "See More",
             "discount": "off"
-        }
+    },
+    "system": {
+        "update-user": "Update User"
+    }
 }

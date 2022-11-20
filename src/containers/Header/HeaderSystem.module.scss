@@ -1,0 +1,18 @@
+.system_header {
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+    background-color: #37e1ff;
+
+    .change_language {
+        margin-right: 35px;
+        display: flex;
+        align-items: center;
+    }
+
+    span {
+        text-transform: uppercase;
+        cursor: pointer;
+        padding: 4px 6px;
+    }
+}

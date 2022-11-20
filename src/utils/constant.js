@@ -6,8 +6,17 @@ export const PATH = {
     SYSTEM: '/system',
 };
 
-export const ROLE = {
+export const ROLES = {
     ADMIN: 'R1',
+    SELLER: 'R2',
+    BUYER: 'R3',
+    SHIPPER: 'R4',
+};
+
+export const GENDERS = {
+    MALE: 'G1',
+    FEMALE: 'G2',
+    OTHER: 'G3',
 };
 
 export const LANGUAGES = {

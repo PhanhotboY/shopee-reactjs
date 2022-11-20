@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import style from './UserManage.module.scss';
+import { toast } from 'react-toastify';
 
+import style from './UserManage.module.scss';
+import UserList from './Section/UserList';
 import userService from '../../services/userService';
+import GoToTopBtn from './Section/GoToTopBtn';
+
 class UserDeleted extends Component {
     constructor(props) {
         super(props);
         this.state = {
             userArray: [],
-            errMessage: {},
-            idDeleteModal: 0,
+            isDeleteModal: 0,
         };
     }
 
@@ -27,73 +30,70 @@ class UserDeleted extends Component {
         } catch (err) {
             console.log(err);
         }
-
-        const recommendItems = document.querySelectorAll(
-            `.${style.wrapper} .${style.item_wrapper}`
-        );
-
-        recommendItems.forEach((item) => {
-            item.onmouseover = () => {
-                item.querySelector(`.${style.item_more}`).style.opacity = 1;
-            };
-
-            item.onmouseout = () => {
-                item.querySelector(`.${style.item_more}`).style.opacity = 0;
-            };
-        });
     }
 
     async handleRestoreItem(id) {
         try {
-            const data = await userService.handleRestoreItem(id);
+            const data = await userService.handleRestoreUser(id);
 
-            if (data && data.errType) {
-                this.setState({
-                    errMessage: { [data.errType]: data.message },
-                });
-                console.log(data);
+            if (data && !data.errType) {
+                const allDeletedUser = await userService.handleGetDeletedUser();
+
+                if (allDeletedUser && !allDeletedUser.errType) {
+                    this.setState({
+                        userArray: allDeletedUser.userInfo,
+                    });
+                }
             } else {
-                this.setState({
-                    userArray: this.state.userArray.filter((element) => element.userId !== id),
-                });
+                toast.error(`EEROR: ${data.errType}: ${data.message}`);
             }
         } catch (err) {
             console.log('>>>something error: ', err);
         }
     }
 
-    async handleDeletePermanentlyItem(id) {
-        try {
-            const data = await userService.handleDeletePermanentlyUser(id);
+    handleToggleModal(id) {
+        this.setState({ isDeleteModal: id });
+    }
 
-            if (data && data.errType) {
-                this.setState({
-                    errMessage: { [data.errType]: data.message },
-                });
+    async handlePermanentlyDeleteUser(id) {
+        try {
+            const data = await userService.handlePermanentlyDeleteUser(id);
+
+            if (data && !data.errType) {
+                const allDeletedUser = await this.getDeletedUser();
+                toast.success('Delete user successfully!');
+
+                this.setState({ userArray: allDeletedUser });
             } else {
-                this.setState({
-                    userArray: this.state.userArray.filter((element) => element.userId !== id),
-                });
+                toast.error(`ERROR: ${data.errType}: ${data.message}`);
             }
         } catch (err) {
             console.log('>>>something error: ', err);
+        }
+    }
+
+    async getDeletedUser() {
+        try {
+            const allDeletedUser = await userService.handleGetDeletedUser();
+
+            if (allDeletedUser && !allDeletedUser.errType) {
+                return allDeletedUser.userInfo;
+            }
+        } catch (err) {
+            console.log(err);
         }
     }
 
     renderModal() {
         return (
-            <div className={style.modal} onClick={() => this.setState({ idDeleteModal: 0 })}>
-                <div
-                    className={style.modal_content}
-                    onClick={(event) => {
-                        event.stopPropagation();
-                    }}
-                >
+            <div className={style.modal} onClick={() => this.setState({ isDeleteModal: 0 })}>
+                <div className={style.modal_content} onClick={(event) => event.stopPropagation()}>
                     <div className={style.modal_header}>
                         <h4>Confirm delete</h4>
                         <button
                             className='btn-close'
-                            onClick={() => this.setState({ idDeleteModal: 0 })}
+                            onClick={() => this.setState({ isDeleteModal: 0 })}
                         ></button>
                     </div>
 
@@ -105,17 +105,18 @@ class UserDeleted extends Component {
                         <button
                             className='btn btn-danger'
                             onClick={async () => {
-                                await this.handleDeletePermanentlyItem(this.state.idDeleteModal);
-                                this.setState({ idDeleteModal: 0 });
+                                await this.handlePermanentlyDeleteUser(this.state.isDeleteModal);
+
+                                this.setState({ isDeleteModal: 0 });
                             }}
                         >
                             Delete
                         </button>
                         <button
                             className='btn btn-secondary'
-                            onClick={() => this.setState({ idDeleteModal: 0 })}
+                            onClick={() => this.setState({ isDeleteModal: 0 })}
                         >
-                            Cancle
+                            Cancel
                         </button>
                     </div>
                 </div>
@@ -123,97 +124,24 @@ class UserDeleted extends Component {
         );
     }
 
-    /** Life cycle
-     *  Run component:
-     * 1. Constructor -> init state
-     * 2. Did mount (set state) -> call API -> get data -> set state
-     * 3. Render
-     *
-     */
     render() {
         return (
-            <div className={`${style.grid} ${style.wrapper}`}>
-                <ul className='row'>
-                    {this.state.userArray.map((user, index) => (
-                        <li className='col-2' key={index}>
-                            <div className={style.item_wrapper}>
-                                <div>
-                                    <div
-                                        className={style.item_image}
-                                        style={{
-                                            backgroundImage: `url('${user.avatar}')`,
-                                        }}
-                                        onClick={() => this.handleRestoreItem(user.userId)}
-                                    ></div>
+            <div className={`grid ${style.wrapper}`}>
+                <UserList
+                    userArray={this.state.userArray}
+                    tagOnClickHandler={this.handleRestoreItem.bind(this)}
+                    deleteHandler={this.handleToggleModal.bind(this)}
+                />
 
-                                    <div className={style.item_detail}>
-                                        <div className={style.item_title}>
-                                            <span>{user.email}</span>
-                                            <span>{user.phoneNumber}</span>
-                                        </div>
-
-                                        <div className={style.item_moreDetail}>
-                                            <span
-                                                style={{
-                                                    color:
-                                                        user.roleId === 'R1'
-                                                            ? 'black'
-                                                            : user.roleId === 'R2'
-                                                            ? '#1ddf1d'
-                                                            : 'red',
-                                                }}
-                                            >
-                                                {user.roleId === 'R1'
-                                                    ? 'User'
-                                                    : user.roleId === 'R2'
-                                                    ? 'Seller'
-                                                    : 'Admin'}
-                                            </span>
-                                            {' - '}
-                                            <span
-                                                style={{
-                                                    color: user.gender
-                                                        ? 'violet'
-                                                        : 'rgb(55, 158, 255)',
-                                                }}
-                                            >
-                                                {user.gender ? 'female' : 'male'}
-                                            </span>
-                                        </div>
-
-                                        <div className={style.item_info}>
-                                            <div className={style.item_prominent}>
-                                                {user.firstName} {user.lastName}
-                                            </div>
-
-                                            <div className={style.item_subInfo}>{user.address}</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button
-                                    className={style.item_more}
-                                    type='button'
-                                    onClick={() =>
-                                        this.setState({
-                                            idDeleteModal: user.userId,
-                                        })
-                                    }
-                                >
-                                    Delete
-                                </button>
-                            </div>
-                        </li>
-                    ))}
-                </ul>
-
-                {(this.state.idDeleteModal || false) && this.renderModal()}
+                {(this.state.isDeleteModal || false) && this.renderModal()}
 
                 <div className={`row ${style.items_seemore}`}>
                     <button type='button' onClick={this.props.history.goBack}>
                         Back
                     </button>
                 </div>
+
+                <GoToTopBtn />
             </div>
         );
     }

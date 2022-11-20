@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
 
 import style from './Login.module.scss';
 import LoginForm from './Section/LoginForm';
-import { FormattedMessage } from 'react-intl';
+import OtherLoginOptions from './Section/OtherLoginOptions';
+import { RedirectOption, Spliter } from './Signup';
 
 class Login extends Component {
     constructor(props) {
@@ -39,32 +41,16 @@ class Login extends Component {
                             <FormattedMessage id='login.forgot-pass' />
                         </a>
 
-                        <div className={style['split']}>
-                            <span>
-                                <FormattedMessage id='signup.or' />
-                            </span>
-                        </div>
+                        <Spliter fontSize='.875rem' />
 
-                        <div className={style['login_form_otherOptions']}>
-                            <a href='#'>
-                                <div className={style['icon_facebook']}></div>
-                                <span>Facebook</span>
-                            </a>
+                        <OtherLoginOptions />
 
-                            <a href='#'>
-                                <div className={style['icon_google']}></div>
-                                <span>Google</span>
-                            </a>
-                        </div>
-
-                        <div className={style['redirect_signup']}>
-                            <span>
-                                <FormattedMessage id='login.new-to-shop' />
-                            </span>
-                            <span onClick={this.redirectToSignupPage}>
-                                <FormattedMessage id='signup.signup' />
-                            </span>
-                        </div>
+                        <RedirectOption
+                            redirectHandler={this.redirectToSignupPage}
+                            reason='login.new-to-shop'
+                            destination='signup.signup'
+                            subStyle={{ marginTop: 25, fontSize: '1rem' }}
+                        />
                     </div>
                 </div>
             </div>

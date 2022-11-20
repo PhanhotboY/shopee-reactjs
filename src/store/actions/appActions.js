@@ -47,9 +47,9 @@ export const fetchRolesStart = () => {
     };
 };
 
-export const fetchRolesSuccess = (roles) => ({
+export const fetchRolesSuccess = (roleIds) => ({
     type: actionTypes.FETCH_ROLES_SUCCESS,
-    roles: roles,
+    roleIds: roleIds,
 });
 
 export const fetchRolesFail = () => ({

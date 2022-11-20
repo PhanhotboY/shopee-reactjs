@@ -1,0 +1,29 @@
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+
+    a {
+        margin: 5px;
+        width: 163px;
+        height: 40px;
+        display: flex;
+        padding: 0 8px;
+        color: inherit;
+        align-items: center;
+        text-decoration: none;
+        justify-content: center;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+    }
+
+    .icon {
+        width: 22px;
+        height: 22px;
+        margin-right: 10px;
+        background-image: url('https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/7b95007f3377150730bbb5d1ddb477d6.png');
+    }
+}

@@ -1,4 +1,4 @@
-import { ROLE } from 'utils';
+import { ROLES } from 'utils';
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
@@ -14,12 +14,12 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: true,
                 userInfo: action.userInfo,
-                isAdmin: action.userInfo.roleId === ROLE.ADMIN,
+                isAdmin: action.userInfo.roleId === ROLES.ADMIN,
             };
         case actionTypes.USER_AUTHENTICATE:
             return {
                 ...state,
-                isAdmin: action.userInfo ? action.user.userInfo === ROLE.ADMIN : false,
+                isAdmin: action.userInfo ? action.user.userInfo === ROLES.ADMIN : false,
             };
         case actionTypes.USER_LOGIN_FAIL:
             return {
@@ -38,7 +38,7 @@ const userReducer = (state = initialState, action) => {
         case actionTypes.UPDATE_USER_SUCCESS:
             return {
                 ...state,
-                isAdmin: action.userInfo.roleId === ROLE.ADMIN,
+                isAdmin: action.userInfo.roleId === ROLES.ADMIN,
                 userInfo: action.userInfo,
             };
         default:

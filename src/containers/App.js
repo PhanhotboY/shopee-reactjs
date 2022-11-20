@@ -31,22 +31,11 @@ class App extends Component {
         };
     }
 
-    // handlePersistorState = () => {
-    //     const { persistor } = this.props;
-    //     let { bootstrapped } = persistor.getState();
-    //     if (bootstrapped) {
-    //         if (this.props.onBeforeLift) {
-    //             Promise.resolve(this.props.onBeforeLift())
-    //                 .then(() => this.setState({ bootstrapped: true }))
-    //                 .catch(() => this.setState({ bootstrapped: true }));
-    //         } else {
-    //             this.setState({ bootstrapped: true });
-    //         }
-    //     }
-    // };
-
     async componentDidMount() {
         await this.props.appStartUpComplete();
+        await this.props.fetchGendersStart();
+        await this.props.fetchRolesStart();
+
         this.setState({ bootstrapped: this.props.started });
     }
 
@@ -103,6 +92,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         appStartUpComplete: () => dispatch(actions.appStartUpComplete()),
+        fetchGendersStart: () => dispatch(actions.fetchGendersStart()),
+        fetchRolesStart: () => dispatch(actions.fetchRolesStart()),
     };
 };
 

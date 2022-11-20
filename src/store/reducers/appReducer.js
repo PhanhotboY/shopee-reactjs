@@ -11,7 +11,7 @@ const initialState = {
     started: false,
     language: 'vi',
     genders: [],
-    roles: [],
+    roleIds: [],
     systemMenuPath: '/system/manage-user',
     contentOfConfirmModal: {
         ...initContentOfConfirmModal,
@@ -46,7 +46,7 @@ const appReducer = (state = initialState, action) => {
         case actionTypes.FETCH_ROLES_SUCCESS:
             return {
                 ...state,
-                roles: action.roles,
+                roleIds: action.roleIds,
             };
         case actionTypes.FETCH_ROLES_FAIL:
             return {

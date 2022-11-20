@@ -1,4 +1,7 @@
 {
+    "common": {
+        "cancel": "Quay lại"
+    },
     "login": {
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
@@ -19,7 +22,7 @@
         "address": "Địa chỉ",
         "first-name": "Họ",
         "last-name": "Tên",
-        "role": "Vai trò",
+        "roleId": "Vai trò",
         "userpass-wrong": "Dùng ít nhất 8 ký tự gồm a-z, 0-9 và không ký tự đặc biệt!",
         "usermobile-wrong": "Số điện thoại không hợp lệ. Vui lòng thử lại!",
         "useremail-wrong": "Email không hợp lệ. Vui lòng thử lại!",
@@ -92,5 +95,8 @@
         "find-similar": "Tìm sản phẩm tương tự",
         "see-more": "See More",
         "discount": "giảm"
+    },
+    "system": {
+        "update-user": "Cập nhật Người dùng"
     }
 }

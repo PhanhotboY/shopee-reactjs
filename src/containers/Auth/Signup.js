@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 
 import style from './Signup.module.scss';
 import SignupForm from './Section/SignupForm';
+import OtherLoginOptions from './Section/OtherLoginOptions';
 
 class Signup extends Component {
     constructor(props) {
@@ -34,6 +35,13 @@ class Signup extends Component {
     };
 
     render() {
+        const submitOptions = {
+            fetchService: 'handleSignup',
+            successMessage: 'Create new user successfully!',
+            failMessage: 'Create user fail!',
+            redirectHandler: this.redirectToLoginPage,
+        };
+
         return (
             <div className={style.body}>
                 <div
@@ -43,60 +51,74 @@ class Signup extends Component {
                     }}
                 >
                     <div className={style.body_form}>
-                        <div className={style.form_title}>
-                            <FormattedMessage id='signup.signup' />
-                        </div>
+                        <SignupForm
+                            title='signup.signup'
+                            isPasswordInput={true}
+                            submitOptions={submitOptions}
+                        />
 
-                        <SignupForm />
+                        <Spliter fontSize='.8rem' />
 
-                        <div className={style['split']}>
-                            <span>
-                                <FormattedMessage id='signup.or' />
-                            </span>
-                        </div>
+                        <OtherLoginOptions />
 
-                        <div className={style['form_otherOptions']}>
-                            <a href='#'>
-                                <div className={style['icon_facebook']}></div>
-                                <span>Facebook</span>
-                            </a>
+                        <TermsOfService />
 
-                            <a href='#'>
-                                <div className={style['icon_google']}></div>
-                                <span>Google</span>
-                            </a>
-                        </div>
-
-                        <div className={style['form_abide']}>
-                            <FormattedMessage id='signup.agreement' />
-                            <br />
-                            <a href='#'>
-                                <span>
-                                    <FormattedMessage id='signup.terms-of-service' />
-                                </span>
-                            </a>
-                            &
-                            <a href='#'>
-                                <span>
-                                    <FormattedMessage id='signup.privacy-policy' />
-                                </span>
-                            </a>
-                        </div>
-
-                        <div className={style['redirect_login']}>
-                            <span>
-                                <FormattedMessage id='signup.have-an-account' />
-                            </span>
-                            <span onClick={this.redirectToLoginPage}>
-                                <FormattedMessage id='login.login' />
-                            </span>
-                        </div>
+                        <RedirectOption
+                            redirectHandler={this.redirectToLoginPage}
+                            reason='signup.have-an-account'
+                            destination='login.login'
+                            subStyle={{ margin: '12px 0' }}
+                        />
                     </div>
                 </div>
             </div>
         );
     }
 }
+
+const TermsOfService = () => {
+    return (
+        <div className={style.form_abide}>
+            <FormattedMessage id='signup.agreement' />
+            <br />
+            <a href='#'>
+                <span>
+                    <FormattedMessage id='signup.terms-of-service' />
+                </span>
+            </a>
+            &
+            <a href='#'>
+                <span>
+                    <FormattedMessage id='signup.privacy-policy' />
+                </span>
+            </a>
+        </div>
+    );
+};
+
+export const RedirectOption = ({ redirectHandler, reason, destination, subStyle }) => {
+    return (
+        <div className={style.redirect} style={subStyle}>
+            <span>
+                <FormattedMessage id={reason} />
+            </span>
+
+            <span onClick={redirectHandler}>
+                <FormattedMessage id={destination} />
+            </span>
+        </div>
+    );
+};
+
+export const Spliter = ({ fontSize }) => {
+    return (
+        <div className={style.split}>
+            <span style={{ fontSize }}>
+                <FormattedMessage id='signup.or' />
+            </span>
+        </div>
+    );
+};
 
 const mapStateToProps = (state) => {
     return {};

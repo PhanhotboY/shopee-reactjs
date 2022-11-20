@@ -6,6 +6,7 @@ import UserDeleted from '../containers/System/UserDeleted';
 import UserUpdate from '../containers/System/UserUpdate';
 import ProductManage from '../containers/System/ProductManage';
 import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
+import UserCreate from 'containers/System/UserCreate';
 
 class System extends Component {
     constructor(props) {
@@ -16,30 +17,29 @@ class System extends Component {
         const { systemMenuPath } = this.props;
         return (
             <div className='system-container'>
-                <div className='system-list'>
-                    <Switch>
-                        <Route path='/system/manage-user/update' component={UserUpdate} />
-                        <Route path='/system/manage-user/deleted-user' component={UserDeleted} />
+                <Switch>
+                    <Route path='/system/manage-user/update' component={UserUpdate} />
+                    <Route path='/system/manage-user/deleted-user' component={UserDeleted} />
+                    <Route path='/system/manage-user/create' component={UserCreate} />
 
-                        <Route path='/system/manage-user' component={UserManage} />
-                        <Route path='/system/manage-seller' component={UserManage} />
-                        <Route path='/system/manage-shipper' component={UserManage} />
+                    <Route path='/system/manage-user' component={UserManage} />
+                    <Route path='/system/manage-seller' component={UserManage} />
+                    <Route path='/system/manage-shipper' component={UserManage} />
 
-                        <Route path='/system/manage-product' component={ProductManage} />
+                    <Route path='/system/manage-product' component={ProductManage} />
 
-                        <Route path='/system/manage-order' component={ProductManage} />
+                    <Route path='/system/manage-order' component={ProductManage} />
 
-                        <Route path='/system/manage-flashsale' component={ProductManage} />
+                    <Route path='/system/manage-flashsale' component={ProductManage} />
 
-                        <Route path='/system/manage-shop' component={ProductManage} />
+                    <Route path='/system/manage-shop' component={ProductManage} />
 
-                        <Route
-                            component={() => {
-                                return <Redirect to={systemMenuPath} />;
-                            }}
-                        />
-                    </Switch>
-                </div>
+                    <Route
+                        component={() => {
+                            return <Redirect to={systemMenuPath} />;
+                        }}
+                    />
+                </Switch>
             </div>
         );
     }

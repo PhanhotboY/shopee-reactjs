@@ -104,6 +104,10 @@ li {
     }
 }
 
+.system-container {
+    margin-top: -$header-height + 6px;
+}
+
 .modal {
     .modal-dialog {
         .modal-content {
