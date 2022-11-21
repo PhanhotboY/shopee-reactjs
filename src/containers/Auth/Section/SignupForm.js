@@ -4,7 +4,8 @@ import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import { toast } from 'react-toastify';
 
-import { LANGUAGES } from 'utils';
+import { GENDERS, LANGUAGES, ROLES } from 'utils';
+import * as actions from 'store/actions';
 import style from './SignupForm.module.scss';
 import { userService } from 'services';
 
@@ -17,10 +18,10 @@ class SignupForm extends Component {
                 email: '',
                 password: '',
                 phoneNumber: '',
-                gender: 'G1',
+                gender: GENDERS.MALE,
                 firstName: '',
                 lastName: '',
-                roleId: 'R1',
+                roleId: ROLES.BUYER,
                 address: '',
                 avatar: '',
             },
@@ -32,14 +33,6 @@ class SignupForm extends Component {
     }
 
     async componentDidMount() {
-        this.setState({
-            submitData: {
-                ...this.state.submitData,
-                gender: (this.props.genders[0] && this.props.genders[0].key) || '',
-                roleId: (this.props.roleIds[0] && this.props.roleIds[0].key) || '',
-            },
-        });
-
         if (this.props.defaultValue && !isEmptyObj(this.props.defaultValue))
             this.setState({ submitData: this.props.defaultValue });
     }
@@ -107,9 +100,13 @@ class SignupForm extends Component {
             if (res && !res.errType) {
                 toast.success(this.props.submitOptions.successMessage);
 
+                if (res.userInfo && res.userInfo.id === this.props.userInfo.id) {
+                    this.props.userUpdateSuccess(res.userInfo);
+                }
+
                 setTimeout(() => {
                     this.props.submitOptions.redirectHandler();
-                }, 1000);
+                }, 200);
             } else {
                 await this.setState({ errMessage: { [res.errType]: res.message } });
                 toast.warn(this.props.submitOptions.failMessage);
@@ -129,6 +126,7 @@ class SignupForm extends Component {
      * --failMessage: string
      * --redirectHandler: func
      * }
+     * submitBtn: string
      * isDisableEmail: bool
      * isCancelBtn: bool
      * isPasswordInput || isRoleInput: bool
@@ -146,7 +144,8 @@ class SignupForm extends Component {
             avatar,
         } = this.state.submitData;
         const errMessage = this.state.errMessage;
-        const { title, isDisableEmail, isPasswordInput, isCancelBtn, isRoleInput } = this.props;
+        const { title, submitBtn, isDisableEmail, isPasswordInput, isCancelBtn, isRoleInput } =
+            this.props;
 
         return (
             <form id='create_form' onSubmit={(event) => event.preventDefault()}>
@@ -288,7 +287,7 @@ class SignupForm extends Component {
                 </div>
 
                 <button className={`col-12 ${style.form_button}`} form='create_form' type='submit'>
-                    <FormattedMessage id={title} />
+                    <FormattedMessage id={submitBtn || title} />
                 </button>
 
                 {isCancelBtn && (
@@ -446,12 +445,14 @@ const mapStateToProps = (state) => {
         language: state.app.language,
         genders: state.app.genders,
         roleIds: state.app.roleIds,
+        userInfo: state.user.userInfo,
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
+        userUpdateSuccess: (userInfo) => dispatch(actions.userUpdateSuccess(userInfo)),
     };
 };
 

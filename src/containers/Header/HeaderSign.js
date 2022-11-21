@@ -27,8 +27,13 @@ class HeaderSign extends Component {
                 }
             }
         };
-        const observer = new MutationObserver(callback);
-        observer.observe(targetNode, config);
+
+        this.observer = new MutationObserver(callback);
+        this.observer.observe(targetNode, config);
+    }
+
+    componentWillUnmount() {
+        this.observer.disconnect();
     }
 
     render() {

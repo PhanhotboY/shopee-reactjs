@@ -26,6 +26,7 @@ class UserList extends Component {
 
     async componentDidUpdate(prevProps, prevState) {
         if (this.props.userArray !== prevProps.userArray) {
+            console.log('>>>check props updated!');
             await this.setState({ userArray: this.props.userArray || [] });
             handleToggleDeleteBtn();
         }
@@ -33,7 +34,7 @@ class UserList extends Component {
 
     render() {
         return (
-            <ul className={`row ${style.wrapper}`}>
+            <ul className={`row g-3 ${style.wrapper}`}>
                 {this.state.userArray.map((user, index) => (
                     <li className='col-2' key={index}>
                         <div className={style.item_wrapper}>
@@ -105,7 +106,7 @@ class UserList extends Component {
                                 type='button'
                                 onClick={() => this.props.deleteHandler(user.id)}
                             >
-                                Delete
+                                <FormattedMessage id='common.delete' />
                             </button>
                         </div>
                     </li>

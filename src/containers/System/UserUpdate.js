@@ -48,6 +48,7 @@ class UserUpdate extends Component {
                     <div className={formStyle.body_form} style={{ height: 490 }}>
                         <SignupForm
                             title='system.update-user'
+                            submitBtn='common.update'
                             submitOptions={submitOptions}
                             defaultValue={this.state.userInfo}
                             isDisableEmail={true}
@@ -71,7 +72,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
-        userUpdateSuccess: (userInfo) => dispatch(actions.userUpdateSuccess(userInfo)),
     };
 };
 

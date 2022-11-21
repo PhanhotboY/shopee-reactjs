@@ -4,8 +4,6 @@
     list-style: none;
 
     li {
-        margin-top: 10px;
-
         .item_wrapper {
             height: 282px;
             width: 100%;
@@ -120,4 +118,9 @@
         border: 1px solid $colorsub3;
         background-color: $colorsub3;
     }
+}
+
+.filter_wrapper {
+    display: flex;
+    justify-content: space-between;
 }

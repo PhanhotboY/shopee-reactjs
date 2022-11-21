@@ -8,12 +8,15 @@ import style from './UserManage.module.scss';
 import userService from 'services/userService';
 import UserList from './Section/UserList';
 import GoToTopBtn from './Section/GoToTopBtn';
+import * as menus from 'containers/Menu';
+import Filter from './Section/Filter';
 
 class UserManage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            filter: {},
             userArray: [],
             errMessage: {},
             idDeleteModal: 0,
@@ -87,19 +90,25 @@ class UserManage extends Component {
     render() {
         return (
             <div className={`grid ${style.wrapper}`}>
-                <UserList
+                <Filter
+                    menus={menus.userFilterMenu}
+                    query={this.props.location.search}
                     userArray={this.state.userArray}
-                    tagOnClickHandler={this.redirectToEditPage.bind(this)}
-                    deleteHandler={this.handleDeleteUser.bind(this)}
-                />
+                >
+                    <UserList
+                        tagOnClickHandler={this.redirectToEditPage.bind(this)}
+                        deleteHandler={this.handleDeleteUser.bind(this)}
+                    />
+                </Filter>
 
-                <div className={`row ${style.items_seemore}`}>
-                    <button type='button' onClick={this.redirectToUserDeletedPage}>
-                        Deleted user{'  '}
-                        <span className='badge bg-danger'>
-                            {this.state.countDeletedUser || '0'}
-                        </span>
-                    </button>
+                <div
+                    className={`row ${style.user_deleted}`}
+                    onClick={this.redirectToUserDeletedPage}
+                >
+                    <i className='fa-solid fa-trash-can'></i>
+                    <span className='position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning'>
+                        {this.state.countDeletedUser || '0'}
+                    </span>
                 </div>
 
                 <div className={style.add_btn} onClick={this.redirectToCreateUserPage}>

@@ -45,7 +45,8 @@ class UserCreate extends Component {
                 >
                     <div className={style.body_form}>
                         <SignupForm
-                            title='signup.signup'
+                            title='system.create-user'
+                            submitBtn='common.create'
                             isPasswordInput={true}
                             submitOptions={submitOptions}
                             isCancelBtn={true}

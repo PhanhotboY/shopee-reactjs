@@ -1,34 +1,13 @@
+@import 'styles/variables';
+
 .wrapper {
     overflow: hidden;
-
-    .items_seemore {
-        padding: 20px 20px 40px;
-        justify-content: center;
-
-        button {
-            width: 390px;
-            height: 40px;
-            color: #555;
-            cursor: pointer;
-            line-height: 40px;
-            text-align: center;
-            font-size: 1rem;
-            background-color: #fff;
-            border: 1px solid rgba(#000, 0.09);
-            box-shadow: 0 1px 1px 0 rgba(#000, 0.05);
-
-            &:hover {
-                background-color: rgba(#000, 0.02);
-            }
-
-            &:active {
-                box-shadow: inset 0 2px 1px 0 rgba(#000, 0.05);
-            }
-        }
-    }
+    padding-top: 15px;
+    padding-bottom: 40px;
 
     .add_btn,
-    .gototop_btn {
+    .gototop_btn,
+    .user_deleted {
         position: fixed;
         bottom: 45px;
         right: 30px;
@@ -44,12 +23,16 @@
             box-shadow: unset;
         }
 
-        > * {
+        > *:first-child {
             position: absolute;
             top: 50%;
             left: 50%;
             font-size: 1rem;
             transform: translate(-50%, -50%);
+        }
+
+        span {
+            width: 28px;
         }
     }
 
@@ -59,6 +42,15 @@
         display: none;
         border: 1px solid #888;
         background-color: transparent;
+    }
+
+    .user_deleted {
+        left: 30px;
+        background-color: red;
+    }
+
+    .user_manage a {
+        text-decoration: none;
     }
 }
 

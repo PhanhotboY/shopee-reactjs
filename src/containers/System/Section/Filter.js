@@ -1,0 +1,166 @@
+import React, { Component } from 'react';
+import { push } from 'connected-react-router';
+import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+
+import style from './UserList.module.scss';
+import { ROLES, GENDERS } from 'utils/constant';
+import * as menus from 'containers/Menu';
+import MenuOptions from './MenuOptions';
+
+class Filter extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            userArray: [],
+            order: 'asc',
+            attribute: 'id',
+            filter: {},
+        };
+    }
+
+    async componentDidMount() {}
+
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.userArray !== prevProps.userArray) {
+            this.setState({ userArray: this.props.userArray || [] });
+        }
+    }
+
+    handleOnChange(e) {
+        this.setState({ filter: { ...this.state.filter, [e.target.name]: e.target.value } });
+    }
+
+    handleToggleBtn() {
+        this.setState({ order: this.state.order === 'desc' ? 'asc' : 'desc' });
+    }
+
+    render() {
+        const filteredUserArr = filterUser(this.state.userArray, this.state.filter);
+
+        const orderedUserArr = orderingUser(
+            filteredUserArr,
+            this.state.attribute,
+            this.state.order
+        );
+
+        return (
+            <>
+                <div className={style.filter_wrapper}>
+                    <MenuOptions
+                        menus={menus.userFilterMenu}
+                        onChangeHandler={this.handleOnChange.bind(this)}
+                    />
+
+                    <div className={style.sort_by}>
+                        <label htmlFor='filterSortBy'>
+                            sort by
+                            <select
+                                id='filterSortBy'
+                                onChange={(e) => this.setState({ attribute: e.target.value })}
+                            >
+                                {getKeyOptions(this.props.userInfo)}
+                            </select>
+                        </label>
+
+                        <button onClick={this.handleToggleBtn.bind(this)}>
+                            <i
+                                className={
+                                    this.state.order === 'desc'
+                                        ? 'fa-solid fa-arrow-down-wide-short'
+                                        : 'fa-solid fa-arrow-up-wide-short'
+                                }
+                            ></i>
+                        </button>
+                    </div>
+                </div>
+
+                {React.cloneElement(this.props.children, { userArray: orderedUserArr })}
+            </>
+        );
+    }
+}
+
+const filterUser = async (userArr, filterObj) => {
+    const filteredUserArr = [];
+
+    if (!filterObj || Object.keys(filterObj).length === 0) return userArr;
+
+    await userArr.forEach((user) => {
+        if (
+            filterObj.gender &&
+            filterObj.gender !== 'all' &&
+            user.gender !== GENDERS[filterObj.gender.toUpperCase()]
+        )
+            return;
+
+        if (
+            filterObj.role &&
+            filterObj.role !== 'all' &&
+            user.roleId !== ROLES[filterObj.role.toUpperCase()]
+        )
+            return;
+
+        filteredUserArr.push(user);
+    });
+
+    return filteredUserArr;
+};
+
+const orderingUser = async (userArr, attribute, order) => {
+    const orderedArr = await userArr.sort((a, b) => {
+        if (a[attribute] > b[attribute]) {
+            return 1 * (order === 'desc' ? -1 : 1);
+        }
+        if (a[attribute] < b[attribute]) {
+            return -1 * (order === 'desc' ? -1 : 1);
+        }
+        return 0;
+    });
+
+    return orderedArr;
+};
+
+const getKeyOptions = (obj) => {
+    const options = [];
+
+    for (let key of Object.keys(obj)) {
+        options.push(
+            <option key={key} value={key}>
+                {key}
+            </option>
+        );
+    }
+
+    return options;
+};
+
+export const splitQueryIntoObj = (query) => {
+    const keyValueStr = query.slice(1).split('&');
+
+    const keyValueObj = keyValueStr.reduce((prevObj, currStr) => {
+        const keyValueArr = currStr.split('=');
+        if (keyValueArr[0] && keyValueArr[1]) {
+            prevObj[keyValueArr[0].trim()] = keyValueArr[1].trim();
+        }
+
+        return prevObj;
+    }, {});
+
+    return keyValueObj;
+};
+
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.user.userInfo,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        navigate: (path) => dispatch(push(path)),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);

@@ -1,6 +1,10 @@
 {
     "common": {
-        "cancel": "Quay lại"
+        "cancel": "Quay lại",
+        "update": "Cập nhật",
+        "create": "Tạo",
+        "back": "Quay lại",
+        "delete": "Xóa"
     },
     "login": {
         "login": "Đăng nhập",
@@ -23,7 +27,7 @@
         "first-name": "Họ",
         "last-name": "Tên",
         "roleId": "Vai trò",
-        "userpass-wrong": "Dùng ít nhất 8 ký tự gồm a-z, 0-9 và không ký tự đặc biệt!",
+        "userpass-wrong": "Dùng >= 8 [a-z]+[0-9], không symbols!",
         "usermobile-wrong": "Số điện thoại không hợp lệ. Vui lòng thử lại!",
         "useremail-wrong": "Email không hợp lệ. Vui lòng thử lại!",
         "userurl-wrong": "URL không hợp lệ, Vui lòng thử lại!",
@@ -97,6 +101,9 @@
         "discount": "giảm"
     },
     "system": {
-        "update-user": "Cập nhật Người dùng"
+        "update-user": "Cập nhật Người dùng",
+        "create-user": "Tạo mới Người dùng",
+        "confirm-delete-title": "Xác nhận xóa",
+        "confirm-delete-body": "Bạn có muốn xóa Vĩnh Viễn Người dùng này không?"
     }
 }

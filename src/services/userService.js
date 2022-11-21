@@ -10,7 +10,7 @@ const userService = {
     },
 
     async handleGetAllUser() {
-        return await axios.get(`/api/users?limit=30`);
+        return await axios.get(`/api/users`);
     },
 
     async handleGetUser(id) {
@@ -18,7 +18,7 @@ const userService = {
     },
 
     async handleGetDeletedUser() {
-        return await axios.get(`/api/users?limit=100&deleted=true`);
+        return await axios.get(`/api/users?deleted=true`);
     },
 
     async handleUpdateUser(updateData) {

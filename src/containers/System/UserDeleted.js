@@ -85,12 +85,20 @@ class UserDeleted extends Component {
         }
     }
 
+    redirectToManageUserPage = () => {
+        const { navigate } = this.props;
+        const redirectPath = `/system/manage-user`;
+        navigate(`${redirectPath}`);
+    };
+
     renderModal() {
         return (
             <div className={style.modal} onClick={() => this.setState({ isDeleteModal: 0 })}>
                 <div className={style.modal_content} onClick={(event) => event.stopPropagation()}>
                     <div className={style.modal_header}>
-                        <h4>Confirm delete</h4>
+                        <h4>
+                            <FormattedMessage id='system.confirm-delete-title' />
+                        </h4>
                         <button
                             className='btn-close'
                             onClick={() => this.setState({ isDeleteModal: 0 })}
@@ -98,7 +106,7 @@ class UserDeleted extends Component {
                     </div>
 
                     <div className={style.modal_body}>
-                        Do you want to delete this user permanently?
+                        <FormattedMessage id='system.confirm-delete-body' />
                     </div>
 
                     <div className={style.modal_footer}>
@@ -110,13 +118,13 @@ class UserDeleted extends Component {
                                 this.setState({ isDeleteModal: 0 });
                             }}
                         >
-                            Delete
+                            <FormattedMessage id='common.delete' />
                         </button>
                         <button
                             className='btn btn-secondary'
                             onClick={() => this.setState({ isDeleteModal: 0 })}
                         >
-                            Cancel
+                            <FormattedMessage id='common.cancel' />
                         </button>
                     </div>
                 </div>
@@ -127,6 +135,19 @@ class UserDeleted extends Component {
     render() {
         return (
             <div className={`grid ${style.wrapper}`}>
+                <div className={`row ${style.user_manage}`}>
+                    <a
+                        href='/system/manage-user'
+                        onClick={(e) => {
+                            e.preventDefault();
+                            this.redirectToManageUserPage();
+                        }}
+                    >
+                        <i className='fa-solid fa-caret-left me-1'></i>
+                        <FormattedMessage id='common.back' />
+                    </a>
+                </div>
+
                 <UserList
                     userArray={this.state.userArray}
                     tagOnClickHandler={this.handleRestoreItem.bind(this)}
@@ -134,12 +155,6 @@ class UserDeleted extends Component {
                 />
 
                 {(this.state.isDeleteModal || false) && this.renderModal()}
-
-                <div className={`row ${style.items_seemore}`}>
-                    <button type='button' onClick={this.props.history.goBack}>
-                        Back
-                    </button>
-                </div>
 
                 <GoToTopBtn />
             </div>

@@ -1,6 +1,10 @@
 {
     "common": {
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "update": "Update",
+        "create": "Create",
+        "back": "Back",
+        "delete": "Delete"
     },
     "login": {
         "login": "Log In",
@@ -23,7 +27,7 @@
         "first-name": "First name",
         "last-name": "Last name",
         "roleId": "Role",
-        "userpass-wrong": "Use 8 or more characters with a mix of a-z, 0-9 & no symbols!",
+        "userpass-wrong": "Use >= 8 [a-z]+[0-9], no symbols!",
         "usermobile-wrong": "Invalid phone number. Please try again!",
         "useremail-wrong": "Invalid email. Please try again!",
         "userurl-wrong": "Invalid URL. Please try again!",
@@ -97,6 +101,9 @@
             "discount": "off"
     },
     "system": {
-        "update-user": "Update User"
+        "update-user": "Update User",
+        "create-user": "Create new User",
+        "confirm-delete-title": "Comfirm delete",
+        "confirm-delete-body": "Do you want to delete this User Permanently?"
     }
 }

@@ -27,7 +27,7 @@ export const userIsAnAdminRedir = connectedReduxRedirect({
     redirectAction: replace,
     authenticatedSelector: (state) => state.user.userInfo && state.user.isAdmin,
     authenticatingSelector: (state) => !state.app.started,
-    redirectPath: '/',
+    redirectPath: (state) => (state.user.isLoggedIn ? '/' : '/login'),
     allowRedirectBack: false,
     wrapperDisplayName: 'UserIsAnAdminRedir',
 });
