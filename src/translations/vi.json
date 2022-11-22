@@ -4,7 +4,16 @@
         "update": "Cập nhật",
         "create": "Tạo",
         "back": "Quay lại",
-        "delete": "Xóa"
+        "delete": "Xóa",
+        "all": "Tất cả",
+        "admin": "Quản trị viên",
+        "seller": "Người bán",
+        "buyer": "Người mua",
+        "shipper": "Người giao hàng",
+        "male": "Nam",
+        "female": "Nữ",
+        "other": "Khác",
+        "sort-by": "Sắp xếp theo: "
     },
     "login": {
         "login": "Đăng nhập",

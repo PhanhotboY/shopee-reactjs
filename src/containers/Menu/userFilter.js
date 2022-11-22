@@ -1,50 +1,40 @@
+import { ROLES, LANGUAGES, GENDERS } from 'utils';
+
+const roleMenus = [
+    {
+        name: 'common.all',
+        value: 'all',
+    },
+];
+for (let key of Object.keys(ROLES)) {
+    roleMenus.push({
+        name: `common.${key.toLowerCase()}`,
+        value: key.toLowerCase(),
+    });
+}
+
+const genderMenus = [
+    {
+        name: 'common.all',
+        value: 'all',
+    },
+];
+for (let key of Object.keys(GENDERS)) {
+    genderMenus.push({
+        name: `common.${key.toLowerCase()}`,
+        value: key.toLowerCase(),
+    });
+}
+
 export const userFilterMenu = [
     {
-        label: 'menu.filter.role',
+        label: 'signup.roleId',
         name: 'role',
-        menus: [
-            {
-                name: 'common.all',
-                value: 'all',
-            },
-            {
-                name: 'menu.role.admin',
-                value: 'admin',
-            },
-            {
-                name: 'menu.role.seller',
-                value: 'seller',
-            },
-            {
-                name: 'menu.role.shipper',
-                value: 'shipper',
-            },
-            {
-                name: 'menu.role.buyer',
-                value: 'buyer',
-            },
-        ],
+        menus: roleMenus,
     },
     {
-        label: 'menu.filter.gender',
+        label: 'signup.gender',
         name: 'gender',
-        menus: [
-            {
-                name: 'common.all',
-                value: 'all',
-            },
-            {
-                name: 'menu.gender.male',
-                value: 'male',
-            },
-            {
-                name: 'menu.gender.female',
-                value: 'female',
-            },
-            {
-                name: 'menu.gender.other',
-                value: 'other',
-            },
-        ],
+        menus: genderMenus,
     },
 ];

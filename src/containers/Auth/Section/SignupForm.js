@@ -308,7 +308,7 @@ class SignupForm extends Component {
     }
 }
 
-const SelectInput = ({ col, id, name, onChangeHandler, value, options, language }) => {
+export const SelectInput = ({ col, id, name, onChangeHandler, value, options, language }) => {
     return (
         <div className={`form-group col-${col} ${style['form-group']}`}>
             <label htmlFor={id}>
@@ -319,7 +319,7 @@ const SelectInput = ({ col, id, name, onChangeHandler, value, options, language 
                 className={`form-control ${style['form-control']}`}
                 name={name}
                 onChange={onChangeHandler}
-                value={value}
+                value={value || (options[0] && options[0].key)}
             >
                 {options.map((option, index) => (
                     <option key={index} value={option.key}>
@@ -331,7 +331,7 @@ const SelectInput = ({ col, id, name, onChangeHandler, value, options, language 
     );
 };
 
-const KeyboardInput = ({
+export const KeyboardInput = ({
     col,
     id,
     translate,

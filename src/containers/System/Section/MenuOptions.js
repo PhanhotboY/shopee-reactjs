@@ -27,7 +27,9 @@ class MenuOptions extends Component {
             <div className={style.selections}>
                 {this.props.menus.map((menu, index) => (
                     <div key={index} className={style.selection}>
-                        <label htmlFor={menu.label}>{menu.label}</label>
+                        <label htmlFor={menu.label}>
+                            <FormattedMessage id={menu.label} />
+                        </label>
 
                         <select
                             id={menu.label}
@@ -35,9 +37,9 @@ class MenuOptions extends Component {
                             onChange={(e) => this.props.onChangeHandler(e)}
                         >
                             {menu.menus.map((option, i) => (
-                                <option key={i} value={option.value}>
-                                    {option.name}
-                                </option>
+                                <FormattedMessage key={i} id={option.name}>
+                                    {(trans) => <option value={option.value}>{trans}</option>}
+                                </FormattedMessage>
                             ))}
                         </select>
                     </div>

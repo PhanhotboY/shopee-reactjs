@@ -26,7 +26,6 @@ class UserList extends Component {
 
     async componentDidUpdate(prevProps, prevState) {
         if (this.props.userArray !== prevProps.userArray) {
-            console.log('>>>check props updated!');
             await this.setState({ userArray: this.props.userArray || [] });
             handleToggleDeleteBtn();
         }

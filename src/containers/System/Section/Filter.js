@@ -7,29 +7,34 @@ import style from './UserList.module.scss';
 import { ROLES, GENDERS } from 'utils/constant';
 import * as menus from 'containers/Menu';
 import MenuOptions from './MenuOptions';
+import { times } from 'lodash';
 
 class Filter extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            userArray: [],
+            userArray: this.props.userArray || [],
+            filter: {},
             order: 'asc',
             attribute: 'id',
-            filter: {},
         };
     }
 
     async componentDidMount() {}
 
-    componentDidUpdate(prevProps, prevState) {
+    async componentDidUpdate(prevProps, prevState) {
         if (this.props.userArray !== prevProps.userArray) {
-            this.setState({ userArray: this.props.userArray || [] });
+            await this.setState({
+                userArray: this.props.userArray,
+            });
         }
     }
 
     handleOnChange(e) {
-        this.setState({ filter: { ...this.state.filter, [e.target.name]: e.target.value } });
+        this.setState({
+            filter: { ...this.state.filter, [e.target.name]: e.target.value },
+        });
     }
 
     handleToggleBtn() {
@@ -37,13 +42,8 @@ class Filter extends Component {
     }
 
     render() {
-        const filteredUserArr = filterUser(this.state.userArray, this.state.filter);
-
-        const orderedUserArr = orderingUser(
-            filteredUserArr,
-            this.state.attribute,
-            this.state.order
-        );
+        const filteredUserArr = filteringArr(this.state.userArray, this.state.filter);
+        const orderedUserArr = orderingArr(filteredUserArr, this.state.attribute, this.state.order);
 
         return (
             <>
@@ -55,8 +55,9 @@ class Filter extends Component {
 
                     <div className={style.sort_by}>
                         <label htmlFor='filterSortBy'>
-                            sort by
+                            <FormattedMessage id='common.sort-by' />
                             <select
+                                className='mx-2'
                                 id='filterSortBy'
                                 onChange={(e) => this.setState({ attribute: e.target.value })}
                             >
@@ -65,13 +66,16 @@ class Filter extends Component {
                         </label>
 
                         <button onClick={this.handleToggleBtn.bind(this)}>
-                            <i
-                                className={
-                                    this.state.order === 'desc'
-                                        ? 'fa-solid fa-arrow-down-wide-short'
-                                        : 'fa-solid fa-arrow-up-wide-short'
-                                }
-                            ></i>
+                            {this.state.order === 'desc' && (
+                                <div>
+                                    <i className='fa-solid fa-arrow-down-wide-short'></i>
+                                </div>
+                            )}
+                            {this.state.order === 'asc' && (
+                                <div>
+                                    <i className='fa-solid fa-arrow-up-wide-short'></i>
+                                </div>
+                            )}
                         </button>
                     </div>
                 </div>
@@ -82,12 +86,15 @@ class Filter extends Component {
     }
 }
 
-const filterUser = async (userArr, filterObj) => {
-    const filteredUserArr = [];
+const filteringArr = (userArr, filterObj) => {
+    let filteredUserArr = [];
 
-    if (!filterObj || Object.keys(filterObj).length === 0) return userArr;
+    if (!filterObj || Object.keys(filterObj).length === 0) {
+        filteredUserArr = [...userArr];
+        return filteredUserArr;
+    }
 
-    await userArr.forEach((user) => {
+    userArr.forEach((user) => {
         if (
             filterObj.gender &&
             filterObj.gender !== 'all' &&
@@ -108,16 +115,18 @@ const filterUser = async (userArr, filterObj) => {
     return filteredUserArr;
 };
 
-const orderingUser = async (userArr, attribute, order) => {
-    const orderedArr = await userArr.sort((a, b) => {
+const orderingArr = (userArr, attribute, order) => {
+    const orderedArr = userArr.sort((a, b) => {
         if (a[attribute] > b[attribute]) {
-            return 1 * (order === 'desc' ? -1 : 1);
+            return 1;
         }
         if (a[attribute] < b[attribute]) {
-            return -1 * (order === 'desc' ? -1 : 1);
+            return -1;
         }
         return 0;
     });
+
+    if (order === 'desc') orderedArr.reverse();
 
     return orderedArr;
 };

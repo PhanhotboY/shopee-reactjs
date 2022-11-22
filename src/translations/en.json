@@ -4,7 +4,16 @@
         "update": "Update",
         "create": "Create",
         "back": "Back",
-        "delete": "Delete"
+        "delete": "Delete",
+        "all": "All",
+        "admin": "Admin",
+        "seller": "Seller",
+        "buyer": "Buyer",
+        "shipper": "Shipper",
+        "male": "Male",
+        "female": "Female",
+        "other": "Other",
+        "sort-by": "Sort by: "
     },
     "login": {
         "login": "Log In",
