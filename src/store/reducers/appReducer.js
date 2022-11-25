@@ -13,6 +13,7 @@ const initialState = {
     genders: [],
     roleIds: [],
     systemMenuPath: '/system/manage-user',
+    userMenuPath: '/user/account/profile',
     contentOfConfirmModal: {
         ...initContentOfConfirmModal,
     },

@@ -5,7 +5,6 @@ import UserManage from '../containers/System/UserManage';
 import UserDeleted from '../containers/System/UserDeleted';
 import UserUpdate from '../containers/System/UserUpdate';
 import ProductManage from '../containers/System/ProductManage';
-import RegisterPackageGroupOrAcc from '../containers/System/RegisterPackageGroupOrAcc';
 import UserCreate from 'containers/System/UserCreate';
 
 class System extends Component {
@@ -48,7 +47,6 @@ class System extends Component {
 const mapStateToProps = (state) => {
     return {
         systemMenuPath: state.app.systemMenuPath,
-        isAdmin: state.user.isAdmin,
     };
 };
 

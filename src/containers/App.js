@@ -5,11 +5,7 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux';
 import { ToastContainer } from 'react-toastify';
 
-import {
-    userIsNotAuthenticated,
-    userAlreadyHaveAccount,
-    userIsAnAdminRedir,
-} from '../hoc/authentication';
+import { userIsNotAuthenticated, userIsAuthenticated, userIsAnAdmin } from '../hoc/authentication';
 
 import { PATH } from '../utils';
 import * as actions from 'store/actions';
@@ -19,8 +15,7 @@ import Signup from './Auth/Signup';
 import Login from './Auth/Login';
 import Header from './Header/Header';
 import System from '../routes/System';
-
-const SystemAuth = userIsAnAdminRedir(System);
+import User from 'routes/User';
 
 class App extends Component {
     constructor(props) {
@@ -57,10 +52,12 @@ class App extends Component {
 
                                 <Route
                                     path={PATH.LOGIN}
-                                    component={userAlreadyHaveAccount(Login)}
+                                    component={userIsNotAuthenticated(Login)}
                                 />
 
-                                <Route path={PATH.SYSTEM} component={SystemAuth} />
+                                <Route path={PATH.SYSTEM} component={userIsAnAdmin(System)} />
+
+                                <Route path={PATH.USER} component={userIsAuthenticated(User)} />
                             </Switch>
                         </div>
 

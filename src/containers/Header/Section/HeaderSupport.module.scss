@@ -13,11 +13,11 @@
         li {
             cursor: pointer;
 
-            > div {
+            > div > a {
                 padding: 0 8px;
             }
 
-            > div:first-child {
+            > div:first-child a {
                 display: flex;
                 height: fit-content;
                 align-items: center;
@@ -56,6 +56,7 @@
             }
         }
     }
+
     .user_options {
         position: relative;
         color: rgba(0, 0, 0, 0.9);
@@ -90,6 +91,15 @@
             div {
                 right: 18%;
             }
+
+            a {
+                color: inherit;
+                justify-self: center;
+                line-height: 40px;
+                font-size: 0.85rem;
+                padding: 0 15px;
+                width: 100%;
+            }
         }
 
         ul {
@@ -103,12 +113,7 @@
             width: 150px;
 
             li {
-                flex-grow: 1;
-                justify-self: center;
-                line-height: 40px;
-                font-size: 0.85rem;
-                padding: 0 15px;
-                width: 100%;
+                display: flex;
             }
         }
     }

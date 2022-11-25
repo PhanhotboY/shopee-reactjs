@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
+import { Link } from 'react-router-dom';
 
 import * as actions from 'store/actions';
 import style from './HeaderSupport.module.scss';
@@ -46,6 +47,24 @@ class HeaderSupport extends Component {
         navigate(`${redirectPath}`);
     };
 
+    redirectToUserPage = () => {
+        const { navigate } = this.props;
+        const redirectPath = '/user';
+        navigate(`${redirectPath}`);
+    };
+
+    redirectToPurchasePage = () => {
+        const { navigate } = this.props;
+        const redirectPath = '/user/purchase';
+        navigate(`${redirectPath}`);
+    };
+
+    redirectToNotificationPage = () => {
+        const { navigate } = this.props;
+        const redirectPath = '/user/notifications/promotion';
+        navigate(`${redirectPath}`);
+    };
+
     render() {
         const { processLogout, isLoggedIn, userInfo, changeLanguage } = this.props;
 
@@ -57,10 +76,12 @@ class HeaderSupport extends Component {
                         onMouseOver={() => this.setState({ isNotificationPopup: true })}
                         onMouseLeave={() => this.setState({ isNotificationPopup: false })}
                     >
-                        <div className=' hover_eff--blur'>
-                            <BellIcon />
+                        <div className='hover_eff--blur'>
+                            <Link to='/user/notifications/promotion'>
+                                <BellIcon />
 
-                            <SpanTag id='header.notification' />
+                                <SpanTag id='header.notification' />
+                            </Link>
                         </div>
 
                         {this.state.isNotificationPopup && (
@@ -89,11 +110,13 @@ class HeaderSupport extends Component {
                             onMouseOver={this.handleHighlight}
                             onMouseLeave={this.handleUndoHighlight}
                         >
-                            <GlobeIcon />
+                            <a>
+                                <GlobeIcon />
 
-                            <SpanTag id='header.language' />
+                                <SpanTag id='header.language' />
 
-                            <ChevronDownIcon />
+                                <ChevronDownIcon />
+                            </a>
                         </div>
 
                         {this.state.isLanguagePopup && (
@@ -105,6 +128,7 @@ class HeaderSupport extends Component {
                         className={isLoggedIn ? style.user_options : style.login_options}
                         onMouseOver={() => this.setState({ isUserPopup: true })}
                         onMouseLeave={() => this.setState({ isUserPopup: false })}
+                        onClick={isLoggedIn ? this.redirectToPurchasePage : ''}
                     >
                         {isLoggedIn ? (
                             <UserOptions
@@ -146,9 +170,11 @@ const NotificationPopup = ({ isLoggedIn, avatar, redirectToLoginPage, redirectTo
                     <NotificationTag avatar={avatar} />
                 </div>
 
-                <button className={style.notification_popover_seemore}>
-                    <FormattedMessage id='header.viewall' />
-                </button>
+                <Link to='/user/notifications/promotion'>
+                    <button className={style.notification_popover_seemore}>
+                        <FormattedMessage id='header.viewall' />
+                    </button>
+                </Link>
             </div>
         </div>
     ) : (
@@ -264,13 +290,19 @@ const UserOptionsPopup = ({ processLogout }) => {
 
             <ul>
                 <li className={style['hover_eff--blur']}>
-                    <FormattedMessage id='header.my-account' />
+                    <Link to='/user'>
+                        <FormattedMessage id='header.my-account' />
+                    </Link>
                 </li>
                 <li className={style['hover_eff--blur']}>
-                    <FormattedMessage id='header.my-purchase' />
+                    <Link to='/user/purchase'>
+                        <FormattedMessage id='header.my-purchase' />
+                    </Link>
                 </li>
                 <li className={style['hover_eff--blur']} onClick={processLogout}>
-                    <FormattedMessage id='header.logout' />
+                    <a>
+                        <FormattedMessage id='header.logout' />
+                    </a>
                 </li>
             </ul>
         </div>
@@ -298,12 +330,14 @@ const UserOptions = ({ isUserPopup, firstName, lastName, avatar, children }) => 
     return (
         <>
             <div className='hover_eff--blur'>
-                <div
-                    style={{
-                        background: `url(${avatar}) center/cover no-repeat`,
-                    }}
-                ></div>
-                <span>{`${firstName} ${lastName}`}</span>
+                <Link to='/user/account/purchase'>
+                    <div
+                        style={{
+                            background: `url(${avatar}) center/cover no-repeat`,
+                        }}
+                    ></div>
+                    <span>{`${firstName} ${lastName}`}</span>
+                </Link>
             </div>
 
             {isUserPopup && children}

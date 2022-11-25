@@ -8,7 +8,6 @@ import style from './UserManage.module.scss';
 import userService from 'services/userService';
 import UserList from './Section/UserList';
 import GoToTopBtn from './Section/GoToTopBtn';
-import * as menus from 'containers/Menu';
 import Filter from './Section/Filter';
 
 class UserManage extends Component {
@@ -90,11 +89,7 @@ class UserManage extends Component {
     render() {
         return (
             <div className={`grid ${style.wrapper}`}>
-                <Filter
-                    menus={menus.userFilterMenu}
-                    query={this.props.location.search}
-                    userArray={this.state.userArray}
-                >
+                <Filter userArray={this.state.userArray}>
                     <UserList
                         tagOnClickHandler={this.redirectToEditPage.bind(this)}
                         deleteHandler={this.handleDeleteUser.bind(this)}

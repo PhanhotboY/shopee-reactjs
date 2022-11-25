@@ -11,23 +11,23 @@ export const userIsNotAuthenticated = connectedRouterRedirect({
     // Want to redirect the user when they are authenticated
     authenticatedSelector: (state) => !state.user.isLoggedIn,
     wrapperDisplayName: 'UserIsNotAuthenticated',
-    redirectPath: '/',
-    allowRedirectBack: false,
-});
-
-export const userAlreadyHaveAccount = connectedRouterRedirect({
-    // Want to redirect the user when they are already have an account
-    authenticatedSelector: (state) => !state.user.isLoggedIn,
-    wrapperDisplayName: 'UserAlreadyHaveAccount',
     redirectPath: (state, ownProps) => locationHelper.getRedirectQueryParam(ownProps) || '/',
     allowRedirectBack: false,
 });
 
-export const userIsAnAdminRedir = connectedReduxRedirect({
+export const userIsAuthenticated = connectedRouterRedirect({
+    // Want to redirect the user when they are not authenticated
+    authenticatedSelector: (state) => state.user.isLoggedIn,
+    wrapperDisplayName: 'UserIsAuthenticated',
+    redirectPath: '/login',
+});
+
+export const userIsAnAdmin = connectedReduxRedirect({
+    // Want to redirect the user when they are an admin
     redirectAction: replace,
     authenticatedSelector: (state) => state.user.userInfo && state.user.isAdmin,
     authenticatingSelector: (state) => !state.app.started,
     redirectPath: (state) => (state.user.isLoggedIn ? '/' : '/login'),
-    allowRedirectBack: false,
-    wrapperDisplayName: 'UserIsAnAdminRedir',
+    wrapperDisplayName: 'UserIsAnAdmin',
+    allowRedirectBack: (nextState, redirectPath) => redirectPath !== '/',
 });

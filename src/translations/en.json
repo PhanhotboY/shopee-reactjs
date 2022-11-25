@@ -3,6 +3,8 @@
         "cancel": "Cancel",
         "update": "Update",
         "create": "Create",
+        "save": "Save",
+        "confirm": "Confirm",
         "back": "Back",
         "delete": "Delete",
         "all": "All",
@@ -114,5 +116,30 @@
         "create-user": "Create new User",
         "confirm-delete-title": "Comfirm delete",
         "confirm-delete-body": "Do you want to delete this User Permanently?"
+    },
+    "user": {
+        "account": {
+            "my-account": "My Account",
+            "my-profile": "My Profile",
+            "profile-header-content": "Manage and protect your account",
+            "password-header-content": "For your account's security, do not share your password with anyone else",
+            "edit-profile": "Edit Profile",
+            "profile": "Profile",
+            "change-password": "Change Password",    
+            "select-img": "Select Image",
+            "file-size": "File size: maximum 1 MB",
+            "file-extension": "File extension: .JPEG, .PNG",
+            "curr-pass": "Current Password",
+            "new-pass": "New Password",
+            "confirm-pass": "Confirm Password"
+        },
+        "purchase": {
+            "my-purchase": "My Purchase"
+        },
+        "notification": {
+            "notifications": "Notifications",
+            "promotions": "Promotions",
+            "ratings": "Ratings"
+        }
     }
 }

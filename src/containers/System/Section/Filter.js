@@ -7,7 +7,6 @@ import style from './UserList.module.scss';
 import { ROLES, GENDERS } from 'utils/constant';
 import * as menus from 'containers/Menu';
 import MenuOptions from './MenuOptions';
-import { times } from 'lodash';
 
 class Filter extends Component {
     constructor(props) {

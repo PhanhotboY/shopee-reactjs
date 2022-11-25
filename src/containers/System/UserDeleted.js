@@ -8,6 +8,7 @@ import style from './UserManage.module.scss';
 import UserList from './Section/UserList';
 import userService from '../../services/userService';
 import GoToTopBtn from './Section/GoToTopBtn';
+import Filter from './Section/Filter';
 
 class UserDeleted extends Component {
     constructor(props) {
@@ -140,7 +141,7 @@ class UserDeleted extends Component {
                         href='/system/manage-user'
                         onClick={(e) => {
                             e.preventDefault();
-                            this.redirectToManageUserPage();
+                            window.history.back();
                         }}
                     >
                         <i className='fa-solid fa-caret-left me-1'></i>
@@ -148,11 +149,12 @@ class UserDeleted extends Component {
                     </a>
                 </div>
 
-                <UserList
-                    userArray={this.state.userArray}
-                    tagOnClickHandler={this.handleRestoreItem.bind(this)}
-                    deleteHandler={this.handleToggleModal.bind(this)}
-                />
+                <Filter userArray={this.state.userArray}>
+                    <UserList
+                        tagOnClickHandler={this.handleRestoreItem.bind(this)}
+                        deleteHandler={this.handleToggleModal.bind(this)}
+                    />
+                </Filter>
 
                 {(this.state.isDeleteModal || false) && this.renderModal()}
 

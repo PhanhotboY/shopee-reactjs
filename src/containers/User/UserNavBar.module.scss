@@ -1,0 +1,53 @@
+@import 'styles/variables';
+
+.wrapper {
+    color: #333;
+    display: flex;
+    padding-left: 0;
+    padding-right: 28px;
+    flex-direction: column;
+
+    a {
+        color: #333;
+
+        &:hover {
+            color: $colormain;
+        }
+    }
+
+    a.active {
+        color: $colormain;
+    }
+
+    .user_avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 0.0625rem solid rgba(0, 0, 0, 0.09);
+    }
+
+    .user_name {
+        padding-left: 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+
+        a {
+            color: #888;
+            text-transform: capitalize;
+            text-decoration: none;
+            font-size: 0.875rem;
+
+            svg {
+                width: 0.8rem;
+                margin-right: 4px;
+            }
+        }
+    }
+}
+
+.nav_image {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}

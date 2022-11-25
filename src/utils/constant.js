@@ -4,6 +4,7 @@ export const PATH = {
     LOGIN: '/login',
     LOG_OUT: '/logout',
     SYSTEM: '/system',
+    USER: '/user',
 };
 
 export const ROLES = {

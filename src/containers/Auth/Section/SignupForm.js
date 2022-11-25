@@ -105,7 +105,8 @@ class SignupForm extends Component {
                 }
 
                 setTimeout(() => {
-                    this.props.submitOptions.redirectHandler();
+                    this.props.submitOptions.redirectHandler &&
+                        this.props.submitOptions.redirectHandler();
                 }, 200);
             } else {
                 await this.setState({ errMessage: { [res.errType]: res.message } });
@@ -149,9 +150,11 @@ class SignupForm extends Component {
 
         return (
             <form id='create_form' onSubmit={(event) => event.preventDefault()}>
-                <div className={style.form_title}>
-                    <FormattedMessage id={title} />
-                </div>
+                {title && (
+                    <div className={style.form_title}>
+                        <FormattedMessage id={title} />
+                    </div>
+                )}
 
                 <div className={`form-row ${style['form-row']}`}>
                     <KeyboardInput

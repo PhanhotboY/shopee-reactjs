@@ -3,6 +3,8 @@
         "cancel": "Quay lại",
         "update": "Cập nhật",
         "create": "Tạo",
+        "save": "Lưu",
+        "confirm": "Xác nhận",
         "back": "Quay lại",
         "delete": "Xóa",
         "all": "Tất cả",
@@ -114,5 +116,30 @@
         "create-user": "Tạo mới Người dùng",
         "confirm-delete-title": "Xác nhận xóa",
         "confirm-delete-body": "Bạn có muốn xóa Vĩnh Viễn Người dùng này không?"
+    },
+    "user": {
+        "account": {
+            "my-account": "Tài Khoản Của Tôi",
+            "my-profile": "Hồ Sơ Của Tôi",
+            "profile-header-content": "Quản lý thông tin hồ sơ để bảo mật tài khoản",
+            "password-header-content": "Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác",
+            "edit-profile": "Sửa Hồ Sơ",
+            "profile": "Hồ sơ",
+            "change-password": "Đổi mật khẩu",    
+            "select-img": "Chọn ảnh",
+            "file-size": "Dụng lượng file tối đa 1 MB",
+            "file-extension": "Định dạng:.JPEG, .PNG",
+            "curr-pass": "Mật Khẩu Hiện Tại",
+            "new-pass": "Mật Khẩu Mới",
+            "confirm-pass": "Xác Nhận Mật Khẩu"
+        },
+        "purchase": {
+            "my-purchase": "Đơn Mua"
+        },
+        "notification": {
+            "notifications": "Thông báo",
+            "promotions": "Khuyến mãi",
+            "ratings": "Cập nhật đánh giá"
+        }
     }
 }
