@@ -4,7 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import style from './MyAccount.module.scss';
-import UserHeader from './UserHeader';
+import UserHeader from './Section/UserHeader';
 import SignupForm from 'containers/Auth/Section/SignupForm';
 
 class MyAccount extends Component {
@@ -50,11 +50,20 @@ class MyAccount extends Component {
                     </div>
 
                     <div className={`col-3 ${style.upload_img}`}>
-                        <img src={this.props.userInfo.avatar} />
+                        <label className='rounded-circle' htmlFor='uploadAvatar'>
+                            <img src={this.props.userInfo.avatar} />
+                        </label>
 
-                        <button type='button'>
+                        <label className={style.upload_file_btn} htmlFor='uploadAvatar'>
                             <FormattedMessage id='user.account.select-img' />
-                        </button>
+                        </label>
+
+                        <input
+                            id='uploadAvatar'
+                            className='d-none'
+                            type='file'
+                            accept='.jpg,.jpeg,.png'
+                        />
 
                         <span>
                             <FormattedMessage id='user.account.file-size' />

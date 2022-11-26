@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
 import { Link, useRouteMatch } from 'react-router-dom';
 
 import style from './UserNavBar.module.scss';
-import UserHeader from './UserHeader';
+import UserHeader from './Section/UserHeader';
 
 class UserNavBar extends Component {
     constructor(props) {

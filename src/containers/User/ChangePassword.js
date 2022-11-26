@@ -4,10 +4,10 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import style from './MyAccount.module.scss';
-import UserHeader from './UserHeader';
+import UserHeader from './Section/UserHeader';
 import SignupForm from 'containers/Auth/Section/SignupForm';
 
-class MyAccount extends Component {
+class ChangePassword extends Component {
     constructor(props) {
         super(props);
 
@@ -107,4 +107,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);

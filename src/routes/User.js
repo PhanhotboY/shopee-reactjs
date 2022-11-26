@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import UserNavBar from 'containers/User/UserNavBar';
 import MyAccount from 'containers/User/MyAccount';
 import ChangePassword from 'containers/User/ChangePassword';
-import UserDeleted from '../containers/System/UserDeleted';
-import UserManage from 'containers/System/UserManage';
+import Promotions from 'containers/User/Promotions';
+import Ratings from 'containers/User/Ratings';
 import ProductManage from 'containers/System/ProductManage';
 
 class User extends Component {
@@ -21,7 +21,10 @@ class User extends Component {
                     <Router>
                         <UserNavBar />
 
-                        <div className='col-10 bg-white'>
+                        <div
+                            className='col-10 bg-white'
+                            style={{ boxShadow: '0 1px 2px 0 rgba(0 ,0 ,0, .13)' }}
+                        >
                             <Switch>
                                 <Route path='/user/account/profile' component={MyAccount} />
                                 <Route
@@ -33,10 +36,10 @@ class User extends Component {
 
                                 <Route
                                     path='/user/notifications/promotion'
-                                    component={UserManage}
+                                    component={Promotions}
                                 />
 
-                                <Route path='/user/notifications/rating' component={UserDeleted} />
+                                <Route path='/user/notifications/rating' component={Ratings} />
 
                                 <Route
                                     component={() => {

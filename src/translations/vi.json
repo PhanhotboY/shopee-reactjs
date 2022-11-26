@@ -139,7 +139,10 @@
         "notification": {
             "notifications": "Thông báo",
             "promotions": "Khuyến mãi",
-            "ratings": "Cập nhật đánh giá"
+            "ratings": "Đánh giá",
+            "mark-all-as-read": "Đánh dấu Đã đọc tất cả",
+            "view-details": "Xem Chi Tiết",
+            "not-update": "Chưa có cập nhật về {page}"
         }
     }
 }

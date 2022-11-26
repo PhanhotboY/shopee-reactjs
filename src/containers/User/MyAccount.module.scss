@@ -39,17 +39,19 @@
         img {
             width: 100px;
             height: 100px;
+            cursor: pointer;
             border-radius: 50%;
         }
 
-        button {
-            background-color: transparent;
-            border: 1px solid #efefef;
+        .upload_file_btn {
             height: 40px;
-            padding: 0 20px;
             color: #333;
-            font-size: 0.875rem;
             margin: 15px 0;
+            padding: 0 20px;
+            line-height: 40px;
+            font-size: 0.875rem;
+            border: 1px solid #efefef;
+            background-color: transparent;
             box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
 
             &:hover {

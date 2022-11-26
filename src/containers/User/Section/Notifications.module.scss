@@ -1,0 +1,80 @@
+@import 'styles/variables';
+
+.wrapper {
+    margin: 0 -12px;
+    height: 100%;
+
+    .header {
+        height: 2.5rem;
+        padding: 0 20px;
+        font-weight: 300;
+        font-size: 0.875rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+
+        span {
+            float: right;
+            line-height: 2.5rem;
+            color: rgba(0, 0, 0, 0.26);
+        }
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        width: 100%;
+
+        li {
+            padding: 20px;
+            display: flex;
+            flex-wrap: nowrap;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.03);
+            }
+
+            button {
+                border: 1px solid rgba(0, 0, 0, 0.09);
+                margin-left: 20px;
+                padding: 0 8px;
+                height: 28px;
+                min-width: fit-content;
+                background-color: #fff;
+
+                &:hover {
+                    color: $colorsub3;
+                    border-color: $colorsub3;
+                }
+            }
+        }
+    }
+
+    .notification_img {
+        width: 80px;
+        height: 80px;
+        margin-right: 20px;
+    }
+
+    .notification_body {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .notification_empty {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 100px;
+            height: 100px;
+
+            margin-bottom: 15px;
+        }
+    }
+}

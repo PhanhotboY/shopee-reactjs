@@ -1,6 +1,6 @@
 import axios from '../axios';
 
-const adminService = {
+const appService = {
     /**
      * Đăng nhập hệ thống
      * {
@@ -8,9 +8,13 @@ const adminService = {
      *  "password": "string"
      * }
      */
-    handleGetAllcodes(type) {
-        return axios.get(`/api/allcodes/${type}`);
+    async handleGetAllcodes(type) {
+        return await axios.get(`/api/allcodes/${type}`);
+    },
+
+    async handleGetNotifications(userId) {
+        return axios.get(`/users/${userId}/notifications`);
     },
 };
 
-export default adminService;
+export default appService;

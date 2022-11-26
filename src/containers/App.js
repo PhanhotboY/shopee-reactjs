@@ -14,6 +14,7 @@ import Home from '../routes/Home';
 import Signup from './Auth/Signup';
 import Login from './Auth/Login';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import System from '../routes/System';
 import User from 'routes/User';
 
@@ -30,6 +31,7 @@ class App extends Component {
         await this.props.appStartUpComplete();
         await this.props.fetchGendersStart();
         await this.props.fetchRolesStart();
+        await this.props.fetchNotificationsStart(this.props.userInfo && this.props.userInfo.id);
 
         this.setState({ bootstrapped: this.props.started });
     }
@@ -73,6 +75,8 @@ class App extends Component {
                             pauseOnHover
                             theme='light'
                         />
+
+                        <Footer />
                     </div>
                 </Router>
             </Fragment>
@@ -83,6 +87,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
     return {
         started: state.app.started,
+        userInfo: state.user.userInfo,
     };
 };
 
@@ -91,6 +96,7 @@ const mapDispatchToProps = (dispatch) => {
         appStartUpComplete: () => dispatch(actions.appStartUpComplete()),
         fetchGendersStart: () => dispatch(actions.fetchGendersStart()),
         fetchRolesStart: () => dispatch(actions.fetchRolesStart()),
+        fetchNotificationsStart: () => dispatch(actions.fetchNotificationsStart()),
     };
 };
 

@@ -15,10 +15,15 @@ class HeaderSupport extends Component {
             isUserPopup: false,
             isLanguagePopup: false,
             isNotificationPopup: false,
+            notifications: this.props.notifications || [],
         };
     }
 
-    componentDidMount() {}
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.notifications !== prevProps.notifications) {
+            this.setState({ notifications: this.props.notifications });
+        }
+    }
 
     handleHighlight() {
         const selectedLanguage =
@@ -66,6 +71,7 @@ class HeaderSupport extends Component {
     };
 
     render() {
+        console.log(this.state.notifications);
         const { processLogout, isLoggedIn, userInfo, changeLanguage } = this.props;
 
         return (
@@ -87,7 +93,7 @@ class HeaderSupport extends Component {
                         {this.state.isNotificationPopup && (
                             <NotificationPopup
                                 isLoggedIn={isLoggedIn}
-                                avatar={userInfo && userInfo.avatar}
+                                notifications={this.state.notifications}
                                 redirectToLoginPage={this.redirectToLoginPage}
                                 redirectToSignupPage={this.redirectToSignupPage}
                             />
@@ -152,7 +158,12 @@ class HeaderSupport extends Component {
     }
 }
 
-const NotificationPopup = ({ isLoggedIn, avatar, redirectToLoginPage, redirectToSignupPage }) => {
+const NotificationPopup = ({
+    isLoggedIn,
+    notifications,
+    redirectToLoginPage,
+    redirectToSignupPage,
+}) => {
     const popOver = isLoggedIn ? (
         <div className={`${style.loggedIn_notification_popover} ${style.notification_popover}`}>
             <div className='popover_anchor'></div>
@@ -163,11 +174,9 @@ const NotificationPopup = ({ isLoggedIn, avatar, redirectToLoginPage, redirectTo
                 </div>
 
                 <div className={style.popover_content_container}>
-                    <NotificationTag avatar={avatar} />
-                    <NotificationTag avatar={avatar} />
-                    <NotificationTag avatar={avatar} />
-                    <NotificationTag avatar={avatar} />
-                    <NotificationTag avatar={avatar} />
+                    {notifications.map((notification, index) => (
+                        <NotificationTag key={index} notification={notification} />
+                    ))}
                 </div>
 
                 <Link to='/user/notifications/promotion'>
@@ -205,18 +214,18 @@ const NotificationPopup = ({ isLoggedIn, avatar, redirectToLoginPage, redirectTo
     return popOver;
 };
 
-const NotificationTag = ({ avatar }) => {
+const NotificationTag = ({ notification }) => {
     return (
         <div className={style.notification_content_wrapper}>
             <div
                 className={style.notification_popover_thumbnail}
-                style={{ background: `url(${avatar}) center/contain no-repeat` }}
+                style={{
+                    background: `url('https://cf.shopee.vn/file/${notification.thumbnail}') center/contain no-repeat`,
+                }}
             ></div>
             <div>
-                <div className={style.notification_content_title}>Đóng góp cho Shopee</div>
-                <div className={style.notification_content_content}>
-                    hi em anh la phan dep trai den tu binh thuan
-                </div>
+                <div className={style.notification_content_title}>{notification.title}</div>
+                <div className={style.notification_content_content}>{notification.content}</div>
             </div>
         </div>
     );
@@ -371,6 +380,7 @@ const mapStateToProps = (state) => {
         isLoggedIn: state.user.isLoggedIn,
         userInfo: state.user.userInfo,
         language: state.app.language,
+        notifications: state.app.notifications,
     };
 };
 

@@ -139,7 +139,10 @@
         "notification": {
             "notifications": "Notifications",
             "promotions": "Promotions",
-            "ratings": "Ratings"
+            "ratings": "Ratings",
+            "mark-all-as-read": "Mark all as Read",
+            "view-details": "View Details",
+            "not-update": "No {page} Updates yet"
         }
     }
 }
