@@ -33,9 +33,9 @@ class UserList extends Component {
 
     render() {
         return (
-            <ul className={`row g-3 ${style.wrapper}`}>
+            <ul className={`row ${style.wrapper}`}>
                 {this.state.userArray.map((user, index) => (
-                    <li className='col-2' key={index}>
+                    <li className='col-2 mt-2' key={index}>
                         <div className={style.item_wrapper}>
                             <div>
                                 <div

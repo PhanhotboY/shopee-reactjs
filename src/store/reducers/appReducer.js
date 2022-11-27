@@ -12,7 +12,6 @@ const initialState = {
     language: 'vi',
     genders: [],
     roleIds: [],
-    notifications: [],
     systemMenuPath: '/system/manage-user',
     userMenuPath: '/user/account/profile',
     contentOfConfirmModal: {
@@ -51,15 +50,6 @@ const appReducer = (state = initialState, action) => {
                 roleIds: action.roleIds,
             };
         case actionTypes.FETCH_ROLES_FAIL:
-            return {
-                ...state,
-            };
-        case actionTypes.FETCH_NOTIFICATIONS_SUCCESS:
-            return {
-                ...state,
-                notifications: action.notifications,
-            };
-        case actionTypes.FETCH_NOTIFICATIONS_FAIL:
             return {
                 ...state,
             };

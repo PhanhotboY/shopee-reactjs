@@ -53,36 +53,8 @@ li {
     padding: 0;
 }
 
-#password:invalid {
-    font-family: $fontmain; // Fixed TH hien thi placeholder cho EDGE
-}
-
-#password:-webkit-input-placeholder {
-    font-family: $fontmain; // CHROME 1
-}
-
-#password::-webkit-input-placeholder {
-    font-family: $fontmain; //CHROME 2   EDGE 1
-}
-
-#password:-moz-placeholder {
-    font-family: $fontmain; // Firefox 4-18
-}
-
-#password::-moz-placeholder {
-    font-family: $fontmain; // Firefox 19+
-}
-
-#password:-ms-input-placeholder {
-    font-family: $fontmain; // IE 10-11
-}
-
-#password::-ms-input-placeholder {
-    font-family: $fontmain; // EDGE 2
-}
-
-#password::placeholder {
-    font-family: $fontmain;
+.row {
+    --bs-gutter-x: 10px;
 }
 
 .content-container {
@@ -111,6 +83,10 @@ li {
 
 .user-container {
     padding-top: 20px;
+}
+
+.shop-container {
+    margin-top: -$header-max-height;
 }
 
 .modal {

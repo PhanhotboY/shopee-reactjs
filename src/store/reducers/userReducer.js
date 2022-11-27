@@ -5,6 +5,7 @@ const initialState = {
     isLoggedIn: false,
     userInfo: null,
     isAdmin: false,
+    notifications: [],
 };
 
 const userReducer = (state = initialState, action) => {
@@ -27,6 +28,7 @@ const userReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 isAdmin: false,
                 userInfo: null,
+                notifications: [],
             };
         case actionTypes.USER_LOGOUT_SUCCESS:
             return {
@@ -34,6 +36,16 @@ const userReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 isAdmin: false,
                 userInfo: null,
+                notifications: [],
+            };
+        case actionTypes.FETCH_NOTIFICATIONS_SUCCESS:
+            return {
+                ...state,
+                notifications: action.notifications,
+            };
+        case actionTypes.FETCH_NOTIFICATIONS_FAIL:
+            return {
+                ...state,
             };
         case actionTypes.UPDATE_USER_SUCCESS:
             return {

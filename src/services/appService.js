@@ -13,7 +13,7 @@ const appService = {
     },
 
     async handleGetNotifications(userId) {
-        return axios.get(`/users/${userId}/notifications`);
+        return axios.get(`/api/users/${userId}/notifications`);
     },
 };
 

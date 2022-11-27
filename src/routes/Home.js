@@ -6,8 +6,6 @@ import HomeContent from '../containers/HomeContent';
 
 class Home extends Component {
     render() {
-        const { isLoggedIn } = this.props;
-
         return (
             <div className='wrapper'>
                 <div className='grid'>

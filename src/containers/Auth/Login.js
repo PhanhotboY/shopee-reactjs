@@ -15,6 +15,16 @@ class Login extends Component {
         this.state = {};
     }
 
+    componentDidMount() {
+        const header = document.querySelector('header');
+        header.style.position = 'relative';
+    }
+
+    componentWillUnmount() {
+        const header = document.querySelector('header');
+        header.style.position = '';
+    }
+
     redirectToSignupPage = () => {
         const { navigate } = this.props;
         const redirectPath = '/signup';

@@ -58,7 +58,10 @@ class LoginForm extends Component {
             const data = await userService.handleLogin(this.state.email, this.state.password);
 
             if (data && !data.errType) {
-                this.props.userLoginSuccess(data.userInfo);
+                await this.props.userLoginSuccess(data.userInfo);
+                await this.props.fetchNotificationsStart(data.userInfo.id);
+
+                toast.success('Login Successfully!');
             } else {
                 this.setState({
                     errMessage: { [data.errType]: data.message },
@@ -154,6 +157,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        fetchNotificationsStart: (userId) => dispatch(actions.fetchNotificationsStart(userId)),
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
         userLoginFail: () => dispatch(actions.userLoginFail()),
     };

@@ -71,7 +71,6 @@ class HeaderSupport extends Component {
     };
 
     render() {
-        console.log(this.state.notifications);
         const { processLogout, isLoggedIn, userInfo, changeLanguage } = this.props;
 
         return (
@@ -134,7 +133,6 @@ class HeaderSupport extends Component {
                         className={isLoggedIn ? style.user_options : style.login_options}
                         onMouseOver={() => this.setState({ isUserPopup: true })}
                         onMouseLeave={() => this.setState({ isUserPopup: false })}
-                        onClick={isLoggedIn ? this.redirectToPurchasePage : ''}
                     >
                         {isLoggedIn ? (
                             <UserOptions
@@ -164,49 +162,55 @@ const NotificationPopup = ({
     redirectToLoginPage,
     redirectToSignupPage,
 }) => {
-    const popOver = isLoggedIn ? (
-        <div className={`${style.loggedIn_notification_popover} ${style.notification_popover}`}>
+    const popOver = (
+        <div className={`${style.notification_popover}`}>
             <div className='popover_anchor'></div>
 
             <div className={style.notification_popover_wrapper}>
-                <div className={style.notification_popover_title}>
-                    <SpanTag id='header.recently-received-notifications' />
-                </div>
-
-                <div className={style.popover_content_container}>
-                    {notifications.map((notification, index) => (
-                        <NotificationTag key={index} notification={notification} />
-                    ))}
-                </div>
-
-                <Link to='/user/notifications/promotion'>
-                    <button className={style.notification_popover_seemore}>
-                        <FormattedMessage id='header.viewall' />
-                    </button>
-                </Link>
-            </div>
-        </div>
-    ) : (
-        <div className={` ${style.notification_popover}`}>
-            <div className='popover_anchor'></div>
-
-            <div className={style.notification_popover_wrapper}>
-                <div className={style.popover_content_wrapper}>
-                    <img
-                        src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png'
-                        alt='virtual avatar'
-                    />
-                    <SpanTag id='header.login-to-view-notifications' />
-                </div>
-
-                <div className={style.notification_popover_sign}>
-                    <div onClick={redirectToSignupPage}>
-                        <FormattedMessage id='header.signup' />
+                {isLoggedIn && (
+                    <div className={style.notification_popover_title}>
+                        <SpanTag id='header.recently-received-notifications' />
                     </div>
-                    <div onClick={redirectToLoginPage}>
-                        <FormattedMessage id='header.login' />
+                )}
+
+                {notifications.length !== 0 ? (
+                    <div className={style.popover_content_wrapper}>
+                        {notifications.map((notification, index) => (
+                            <NotificationTag key={index} notification={notification} />
+                        ))}
                     </div>
-                </div>
+                ) : (
+                    <div
+                        className={`${style.popover_content_wrapper} ${style.popover_content_empty}`}
+                    >
+                        <img
+                            src='https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg//assets/99e561e3944805a023e87a81d4869600.png'
+                            alt='virtual avatar'
+                        />
+                        {isLoggedIn ? (
+                            <SpanTag id='header.no-notifications' />
+                        ) : (
+                            <SpanTag id='header.login-to-view-notifications' />
+                        )}
+                    </div>
+                )}
+
+                {isLoggedIn ? (
+                    <Link to='/user/notifications/promotion'>
+                        <button className={style.notification_popover_seemore}>
+                            <FormattedMessage id='header.viewall' />
+                        </button>
+                    </Link>
+                ) : (
+                    <div className={style.notification_popover_sign}>
+                        <div onClick={redirectToSignupPage}>
+                            <FormattedMessage id='header.signup' />
+                        </div>
+                        <div onClick={redirectToLoginPage}>
+                            <FormattedMessage id='header.login' />
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -299,7 +303,7 @@ const UserOptionsPopup = ({ processLogout }) => {
 
             <ul>
                 <li className={style['hover_eff--blur']}>
-                    <Link to='/user'>
+                    <Link to='/user/account/profile'>
                         <FormattedMessage id='header.my-account' />
                     </Link>
                 </li>
@@ -380,7 +384,7 @@ const mapStateToProps = (state) => {
         isLoggedIn: state.user.isLoggedIn,
         userInfo: state.user.userInfo,
         language: state.app.language,
-        notifications: state.app.notifications,
+        notifications: state.user.notifications,
     };
 };
 

@@ -28,6 +28,16 @@ class Signup extends Component {
         };
     }
 
+    componentDidMount() {
+        const header = document.querySelector('header');
+        header.style.position = 'relative';
+    }
+
+    componentWillUnmount() {
+        const header = document.querySelector('header');
+        header.style.position = '';
+    }
+
     redirectToLoginPage = () => {
         const { navigate } = this.props;
         const redirectPath = '/login';

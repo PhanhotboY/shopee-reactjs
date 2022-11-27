@@ -5,6 +5,7 @@ export const PATH = {
     LOG_OUT: '/logout',
     SYSTEM: '/system',
     USER: '/user',
+    SHOP: '/shops',
 };
 
 export const ROLES = {

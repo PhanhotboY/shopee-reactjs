@@ -144,5 +144,18 @@
             "view-details": "Xem Chi Tiết",
             "not-update": "Chưa có cập nhật về {page}"
         }
+    },
+    "shop": {
+        "last-active": "Online {time} phút trước",
+        "follow" : "THEO DÕI",
+        "chat": "chat",
+        "products": "Sản Phẩm",
+        "following": "Đang Theo Dõi",
+        "chat-performance": "Tỉ Lệ Phản Hồi Chat",
+        "follower": "Người Theo Dõi",
+        "rating": "Đánh Giá",
+        "joined": "Tham Gia",
+        "home": "Dạo",
+        "all-products": "TẤT CẢ SẢN PHẨM"
     }
 }

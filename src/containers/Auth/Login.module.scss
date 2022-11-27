@@ -5,7 +5,7 @@
     box-sizing: border-box;
     color: rgba(0, 0, 0, 0.87);
     background-color: $colorsub3;
-    margin-top: -$header-min-height;
+    margin-top: -$header-max-height;
 
     .login_body_wrapper {
         margin: auto;

@@ -13,10 +13,11 @@ import * as actions from 'store/actions';
 import Home from '../routes/Home';
 import Signup from './Auth/Signup';
 import Login from './Auth/Login';
-import Header from './Header/Header';
+import Header from './Header';
 import Footer from './Footer/Footer';
 import System from '../routes/System';
 import User from 'routes/User';
+import Shop from 'routes/Shop';
 
 class App extends Component {
     constructor(props) {
@@ -31,7 +32,9 @@ class App extends Component {
         await this.props.appStartUpComplete();
         await this.props.fetchGendersStart();
         await this.props.fetchRolesStart();
-        await this.props.fetchNotificationsStart(this.props.userInfo && this.props.userInfo.id);
+        await this.props.fetchNotificationsStart(
+            (this.props.userInfo && this.props.userInfo.id) || 0
+        );
 
         this.setState({ bootstrapped: this.props.started });
     }
@@ -60,6 +63,8 @@ class App extends Component {
                                 <Route path={PATH.SYSTEM} component={userIsAnAdmin(System)} />
 
                                 <Route path={PATH.USER} component={userIsAuthenticated(User)} />
+
+                                <Route path={PATH.SHOP} component={Shop} />
                             </Switch>
                         </div>
 
@@ -96,7 +101,7 @@ const mapDispatchToProps = (dispatch) => {
         appStartUpComplete: () => dispatch(actions.appStartUpComplete()),
         fetchGendersStart: () => dispatch(actions.fetchGendersStart()),
         fetchRolesStart: () => dispatch(actions.fetchRolesStart()),
-        fetchNotificationsStart: () => dispatch(actions.fetchNotificationsStart()),
+        fetchNotificationsStart: (userId) => dispatch(actions.fetchNotificationsStart(userId)),
     };
 };
 

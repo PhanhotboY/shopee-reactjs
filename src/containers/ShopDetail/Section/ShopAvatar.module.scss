@@ -1,0 +1,66 @@
+@import 'styles/variables';
+
+.avatar {
+    position: relative;
+    border-radius: 4px;
+
+    .background_layer {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-radius: 4px;
+        padding: 10px 20px 8px;
+        backdrop-filter: blur(4px);
+        background-color: rgba(#000, 0.2);
+
+        > div:first-child {
+            display: flex;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            line-height: 1.5rem;
+            color: #fff;
+            margin-bottom: 0;
+        }
+    }
+
+    img {
+        width: 5rem;
+        height: 5rem;
+        cursor: pointer;
+        z-index: $zindex;
+        border-radius: 50%;
+        border: 0.25rem solid hsla(0, 0%, 100%, 0.4);
+    }
+
+    .shop_name {
+        padding: 10px 0 6px 10px;
+        color: hsla(0, 0%, 100%, 0.7);
+    }
+
+    .header_btns {
+        display: flex;
+        justify-content: space-around;
+
+        button {
+            flex-grow: 1;
+            color: #fff;
+            padding: 2px 0;
+            margin-right: 10px;
+            border-radius: 2px;
+            border: 1px solid #fff;
+            text-transform: uppercase;
+            background-color: transparent;
+
+            svg {
+                margin-right: 4px;
+            }
+        }
+    }
+}

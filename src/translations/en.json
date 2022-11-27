@@ -144,5 +144,18 @@
             "view-details": "View Details",
             "not-update": "No {page} Updates yet"
         }
+    },
+    "shop": {
+        "last-active": "Active {time} minutes ago",
+        "follow" : "follow",
+        "chat": "chat",
+        "products": "Products",
+        "following": "Following",
+        "chat-performance": "Chat Performance",
+        "follower": "Followers",
+        "rating": "Rating",
+        "joined": "Joined",
+        "home": "Home",
+        "all-products": "All Products"
     }
 }
