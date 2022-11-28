@@ -70,7 +70,7 @@ const ProductContainer = ({ products }) => {
     return (
         <ul className='row'>
             {products.map((product, index) => (
-                <ProductTag key={index} product={product} />
+                <ProductTag key={index} product={product} isHoverHighLight={true} />
             ))}
         </ul>
     );

@@ -13,72 +13,100 @@
         li {
             padding: 0 15px;
         }
+    }
+}
 
-        .voucher_tag {
-            width: 100%;
+.product_list {
+    margin-top: 30px;
+
+    .product_list_header {
+        background-color: #eaeaea;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+
+        .product_filter {
             display: flex;
-            color: $common-red;
-            border: 1px solid rgba($common-red, 0.15);
-            background-color: rgba($common-red, 0.05);
+            line-height: 34px;
+
+            > * {
+                border-radius: 2px;
+            }
+
+            span {
+                margin-right: 15px;
+                font-size: 0.9rem;
+            }
+
+            div {
+                height: 34px;
+                padding: 0 15px;
+                margin-right: 10px;
+                background-color: #fff;
+            }
+
+            select {
+                border: none;
+                padding: 0 8px;
+            }
         }
 
-        .voucher_info {
-            flex-grow: 1;
+        .product_pagination {
             display: flex;
-            padding: 0 10px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+            align-items: center;
 
-            > span {
-                margin: 2px 0;
-                line-height: 100%;
-                width: fit-content;
-                font-size: 0.875rem;
-
-                &:first-of-type {
-                    font-size: 1rem;
-                }
-
-                &:last-of-type {
-                    padding: 2px 4px;
-                    font-size: 0.75rem;
-                    border: 1px solid $common-red;
-                }
+            div {
+                margin-left: 20px;
             }
-
-            div:last-child {
-                font-size: 0.6rem;
-                color: rgba(#000, 0.5);
-            }
-        }
-
-        .total {
-            width: 100%;
-            margin: 4px 0;
-            height: 0.25rem;
-            border-radius: 0.25rem;
-            background: rgba(0, 0, 0, 0.09);
-
-            .process {
-                width: 64%;
-                height: 100%;
-                background: linear-gradient(270deg, rgb(255, 176, 0) 0%, rgb(235, 23, 23) 100%);
-            }
-        }
-
-        .voucher_claim {
-            padding: 10px;
-            border-left: 1px dotted rgba(#000, 0.1);
 
             button {
-                border: none;
-                color: #fff;
-                margin-top: 50%;
-                padding: 5px 10px;
-                transform: translateY(-50%);
-                background-color: $common-red;
+                border: 0.5px solid #eaeaea;
+                background-color: #fff;
+                width: 36px;
+                height: 36px;
+
+                &:active {
+                    background-color: #f8f8f8;
+                }
             }
+        }
+    }
+}
+
+.sidebar {
+    .sidebar_header {
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 100%;
+
+        span {
+            margin-left: 10px;
+        }
+    }
+
+    .sidebar_container {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        overflow: hidden;
+
+        span {
+            padding: 8px 10px;
+            font-size: 0.875rem;
+            line-height: 100%;
+            cursor: pointer;
+        }
+
+        svg {
+            font-size: 0.5rem;
+            margin-right: 6px;
+            margin-bottom: 2px;
+        }
+
+        .sidebar--active {
+            color: $common-red;
         }
     }
 }

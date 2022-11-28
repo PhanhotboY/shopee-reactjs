@@ -1,0 +1,44 @@
+@import 'styles/variables';
+
+.product_tag {
+    border-top: 1px solid rgba(0, 0, 0, 0.09);
+    display: flex;
+    padding: 12px 0 20px;
+
+    > img {
+        border: 1px solid #e1e1e1;
+        width: 82px;
+        height: 82px;
+    }
+
+    .product_info {
+        padding: 0 12px;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+
+        > * {
+            margin-bottom: 8px;
+            line-height: 100%;
+        }
+
+        .product_title {
+            font-size: 1rem;
+        }
+
+        .variation {
+            font-size: 0.875rem;
+            color: rgba(0, 0, 0, 0.54);
+        }
+    }
+
+    .original_price {
+        color: rgba(0, 0, 0, 0.26);
+        text-decoration: line-through;
+        margin-right: 4px;
+    }
+
+    .discounted_price {
+        color: $colorsub2;
+    }
+}

@@ -17,6 +17,15 @@ const CommonUtils = {
                 .replace('.', ',') + 'k'
         );
     },
+
+    getPercentNumber(percentString) {
+        return Number(percentString.slice(0, -1)) / 100;
+    },
+
+    getDiscountedPrice(origin, discount) {
+        const discountedPrice = origin - origin * discount;
+        return discountedPrice >= 0 ? discountedPrice : 0;
+    },
 };
 
 export default CommonUtils;

@@ -156,6 +156,16 @@
         "rating": "Đánh Giá",
         "joined": "Tham Gia",
         "home": "Dạo",
-        "all-products": "TẤT CẢ SẢN PHẨM"
+        "all-products": "Tất Cả Sản Phẩm",
+        "shop-vouchers": "MÃ GIẢM GIÁ CỦA SHOP",
+        "claim": "Lưu",
+        "category": "Danh Mục",
+        "sort-by":"Sắp xếp theo",
+        "popular": "Phổ biến",
+        "latest": "Mới nhất",
+        "top-sales": "Bán chạy",
+        "price": "Giá",
+        "price-low-to-high": "Giá: Thấp đến Cao",
+        "price-high-to-low": "Giá: Cao đến Thấp"
     }
 }

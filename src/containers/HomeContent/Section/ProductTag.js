@@ -17,9 +17,12 @@ class ProductTag extends Component {
         const product = this.props.product;
 
         return (
-            <li className={`${style.wrapper} col-2`}>
+            <li className={`${style.wrapper} ${this.props.col || 'col-2'}`}>
                 <div
                     className={style.container}
+                    style={{
+                        borderColor: this.props.isHoverHighLight && this.state.isHover && '#ee4d2d',
+                    }}
                     onMouseOver={() => this.setState({ isHover: true })}
                     onMouseLeave={() => this.setState({ isHover: false })}
                 >
@@ -37,10 +40,11 @@ class ProductTag extends Component {
                             promotion={product.promotion}
                             price={(product.originPrice * product.discount) / 100}
                             sold={product.sold}
+                            address={this.props.address}
                         />
                     </a>
 
-                    {this.state.isHover && <SimilarBtn />}
+                    {this.props.isHoverHighLight && this.state.isHover && <SimilarBtn />}
                 </div>
             </li>
         );
@@ -63,7 +67,7 @@ const ProductImage = ({ image, overlay, flag }) => {
     );
 };
 
-const ProductDetail = ({ title, promotion, price, sold }) => {
+const ProductDetail = ({ title, promotion, price, sold, address }) => {
     return (
         <div className={style.product_detail}>
             <div className={style.product_title}>{title}</div>
@@ -83,6 +87,8 @@ const ProductDetail = ({ title, promotion, price, sold }) => {
                     />
                 </div>
             </div>
+
+            <span className={style.address}>{address || ''}</span>
         </div>
     );
 };

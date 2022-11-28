@@ -156,6 +156,16 @@
         "rating": "Rating",
         "joined": "Joined",
         "home": "Home",
-        "all-products": "All Products"
+        "all-products": "All Products",
+        "shop-vouchers": "shop vouchers",
+        "claim": "Claim",
+        "category": "Category",
+        "sort-by":"Sort by",
+        "popular": "Popular",
+        "latest": "Latest",
+        "top-sales": "Top Sales",
+        "price": "Price",
+        "price-low-to-high": "Price: Low to High",
+        "price-high-to-low": "Price: High to Low"
     }
 }

@@ -343,7 +343,7 @@ const UserOptions = ({ isUserPopup, firstName, lastName, avatar, children }) => 
     return (
         <>
             <div className='hover_eff--blur'>
-                <Link to='/user/account/purchase'>
+                <Link to='/user/purchase'>
                     <div
                         style={{
                             background: `url(${avatar}) center/cover no-repeat`,

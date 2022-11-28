@@ -6,7 +6,6 @@
 
     .container {
         cursor: pointer;
-        height: 282px;
         width: 100%;
         display: flex;
         position: relative;
@@ -18,7 +17,6 @@
         color: $colorsub3;
 
         &:hover {
-            border-color: $colorsub3;
             transform: translateY(-1px);
             z-index: 5;
         }
@@ -95,6 +93,11 @@
     .sold {
         font-size: 0.75rem;
         color: rgba(#000, 0.54);
+    }
+
+    .address {
+        font-size: 0.73rem;
+        color: rgba(0, 0, 0, 0.6);
     }
 }
 

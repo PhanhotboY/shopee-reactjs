@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
 
+import { history } from '../../../redux';
 import style from './ShopNavigation.module.scss';
 import { FormattedMessage } from 'react-intl';
 
@@ -9,19 +10,18 @@ class ShopDetail extends Component {
         super(props);
 
         this.state = {
-            userInfo: {},
+            currPage: '#',
         };
     }
 
     async componentDidMount() {
-        const navigators = document.querySelectorAll(`.${style.wrapper} li`);
-
-        navigators.forEach((navigator) => {
-            navigator.onclick = () => {
-                navigators.forEach((li) => li.classList.add('border-0'));
-                navigator.classList.remove('border-0');
-            };
+        this.unlisten = history.listen((location, action) => {
+            this.setState({ currPage: location.hash || '#' });
         });
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
     }
 
     render() {
@@ -34,7 +34,7 @@ class ShopDetail extends Component {
                         key={index}
                         name={navigator.name}
                         link={navigator.link}
-                        index={index}
+                        currPage={this.state.currPage}
                     />
                 ))}
             </ul>
@@ -42,9 +42,9 @@ class ShopDetail extends Component {
     }
 }
 
-const NavigatorTag = ({ name, link, index }) => {
+const NavigatorTag = ({ name, link, currPage }) => {
     return (
-        <li className={`col-2 ${index ? 'border-0' : ''}`}>
+        <li className={`col-2 ${currPage === link ? '' : 'border-0'}`}>
             <a href={link}>
                 <span>
                     <FormattedMessage id={name} />

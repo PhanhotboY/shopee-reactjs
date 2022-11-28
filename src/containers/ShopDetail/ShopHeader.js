@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
 
-import userService from 'services/userService';
 import style from './ShopHeader.module.scss';
 import { FormattedMessage } from 'react-intl';
 import ShopAvatar from './Section/ShopAvatar';
@@ -12,25 +11,17 @@ class ShopHeader extends Component {
         super(props);
 
         this.state = {
-            userInfo: {},
+            userInfo: this.props.userInfo,
         };
     }
 
     async componentDidMount() {
-        const userId = window.location.pathname.substring(7);
+        this.setState({ userInfo: this.props.userInfo });
+    }
 
-        try {
-            const res = await userService.handleGetUser(userId);
-
-            if (res && !res.errType) {
-                this.setState({ userInfo: res.userInfo });
-            } else {
-                console.log('>>>>Shop does not exist!');
-                window.history.back();
-            }
-        } catch (err) {
-            console.log('>>>Error: ', err);
-            window.history.back();
+    componentDidUpdate(prevProps) {
+        if (this.props.userInfo !== prevProps.userInfo) {
+            this.setState({ userInfo: this.props.userInfo });
         }
     }
 

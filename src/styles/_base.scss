@@ -57,6 +57,11 @@ li {
     --bs-gutter-x: 10px;
 }
 
+.col-20pc {
+    flex: 0 0 auto;
+    width: 20%;
+}
+
 .content-container {
     margin-top: $header-max-height;
     padding-bottom: 50px;

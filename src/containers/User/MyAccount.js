@@ -27,7 +27,6 @@ class MyAccount extends Component {
     };
 
     render() {
-        console.log(this.submitOptions);
         return (
             <div className={style.wrapper}>
                 <UserHeader>

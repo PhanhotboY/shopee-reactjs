@@ -1,0 +1,62 @@
+@import 'styles/variables';
+
+.wrapper {
+    margin: 0 -5px;
+
+    .header {
+        display: flex;
+        flex-wrap: nowrap;
+        margin-bottom: 15px;
+        background-color: #fff;
+
+        a {
+            display: flex;
+            flex-grow: 1;
+            height: 52px;
+            width: 100%;
+            border-bottom: 2px solid #e8e8e8;
+            text-decoration: none;
+            color: #333;
+            font-size: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .link--active {
+            color: $colorsub3;
+            border-color: currentColor;
+        }
+    }
+
+    .search {
+        background-color: #eaeaea;
+        margin-bottom: 15px;
+        width: 100%;
+        padding: 12px;
+        display: flex;
+        color: #bbb;
+
+        input {
+            border: none;
+            background-color: transparent;
+            width: 100%;
+
+            &:focus-visible {
+                outline: none;
+            }
+        }
+
+        svg {
+            margin-right: 15px;
+            height: 19px;
+        }
+    }
+
+    .focusing {
+        color: #666;
+    }
+}
+
+.body {
+    width: 100%;
+}
