@@ -28,14 +28,6 @@ class ShopDetail extends Component {
             console.log('>>>Error: ', err);
             window.history.back();
         }
-
-        const header = document.querySelector('header');
-        header.style.position = 'relative';
-    }
-
-    componentWillUnmount() {
-        const header = document.querySelector('header');
-        header.style.position = '';
     }
 
     render() {
@@ -48,15 +40,6 @@ class ShopDetail extends Component {
         );
     }
 }
-
-const catList = [
-    { name: 'discount' },
-    { name: 'discount' },
-    { name: 'discount' },
-    { name: 'discount' },
-    { name: 'discount' },
-    { name: 'discount' },
-];
 
 const mapStateToProps = (state) => {
     return {};

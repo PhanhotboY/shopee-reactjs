@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import ShopDetail from 'containers/ShopDetail';
+import Search from 'containers/Search';
 
 class Shop extends Component {
     constructor(props) {
@@ -21,9 +21,9 @@ class Shop extends Component {
 
     render() {
         return (
-            <div className='shop-container'>
+            <div className='user-container grid'>
                 <Switch>
-                    <Route path='/shops/:shopId' component={ShopDetail} />
+                    <Route path='/search' component={Search} />
 
                     <Route
                         component={() => {

@@ -134,7 +134,21 @@
             "confirm-pass": "Xác Nhận Mật Khẩu"
         },
         "purchase": {
-            "my-purchase": "Đơn Mua"
+            "my-purchase": "Đơn Mua",
+            "to-pay": "Chờ xác nhận",
+            "to-ship": "Chờ lấy hàng",
+            "to-receive": "Đang giao",
+            "completed": "Đã giao",
+            "canceled": "Đã Hủy",
+            "return-refund": "Trả hàng/Hoàn tiền",
+            "search-placeholder": "Tìm kiếm theo Tên Shop, ID đơn hàng hoặc Tên Sản phẩm",
+            "order-empty": "Chưa có đơn hàng",
+            "return-empty": "Bạn hiện không có yêu cầu Trả hàng/Hoàn tiền nào.",
+            "view-shop": "Xem Shop",
+            "no-rating": "Không nhận được đánh giá",
+            "buy-again": "Mua lại",
+            "contact-seller": "Liên hệ Người bán",
+            "order-total": "Tổng số tiền"
         },
         "notification": {
             "notifications": "Thông báo",
@@ -148,7 +162,7 @@
     "shop": {
         "last-active": "Online {time} phút trước",
         "follow" : "THEO DÕI",
-        "chat": "chat",
+        "chat": "Chat",
         "products": "Sản Phẩm",
         "following": "Đang Theo Dõi",
         "chat-performance": "Tỉ Lệ Phản Hồi Chat",

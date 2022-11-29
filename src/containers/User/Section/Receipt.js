@@ -12,41 +12,9 @@ import { Form } from 'reactstrap';
 class Purchase extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            currPage: '0',
-            isFocus: false,
-        };
     }
 
-    async componentDidMount() {
-        const wrapper = document.querySelector('.user-container .row .col-10');
-
-        wrapper.classList.remove('bg-white');
-        wrapper.style.boxShadow = 'none';
-
-        const links = document.querySelectorAll(`.${style.header} a`);
-        links.forEach((link) => {
-            link.onclick = () => {
-                this.setState({ currPage: link.getAttribute('href').slice(-1) });
-            };
-        });
-    }
-
-    async componentWillUnmount() {
-        const wrapper = document.querySelector('.user-container .row .col-10');
-
-        wrapper.classList.add('bg-white');
-        wrapper.style.boxShadow = '';
-    }
-
-    handleFocus() {
-        this.setState({ isFocus: true });
-    }
-
-    handleBlur() {
-        this.setState({ isFocus: false });
-    }
+    async componentDidMount() {}
 
     render() {
         return (
@@ -63,14 +31,14 @@ class Purchase extends Component {
                             <button type='button'>
                                 <i className='fa-regular fa-message'></i>
                                 <span>
-                                    <FormattedMessage id='common.chat' />
+                                    <FormattedMessage id='shop.chat' />
                                 </span>
                             </button>
 
                             <Link to={`/shops/${1}`}>
                                 <i className='fa-solid fa-store'></i>
                                 <span>
-                                    <FormattedMessage id='user.puschase.view-shop' />
+                                    <FormattedMessage id='user.purchase.view-shop' />
                                 </span>
                             </Link>
                         </div>
@@ -101,8 +69,10 @@ const ReceiptFooter = ({ products }) => {
     return (
         <div className={style.receipt_footer}>
             <div className={style.order_total}>
+                <i className='fa-solid fa-shield'></i>
+
                 <span>
-                    <FormattedMessage id='user.purchase.order-total' />
+                    <FormattedMessage id='user.purchase.order-total' />:
                 </span>
 
                 <span>

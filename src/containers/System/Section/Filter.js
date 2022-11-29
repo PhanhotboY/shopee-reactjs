@@ -144,21 +144,6 @@ const getKeyOptions = (obj) => {
     return options;
 };
 
-export const splitQueryIntoObj = (query) => {
-    const keyValueStr = query.slice(1).split('&');
-
-    const keyValueObj = keyValueStr.reduce((prevObj, currStr) => {
-        const keyValueArr = currStr.split('=');
-        if (keyValueArr[0] && keyValueArr[1]) {
-            prevObj[keyValueArr[0].trim()] = keyValueArr[1].trim();
-        }
-
-        return prevObj;
-    }, {});
-
-    return keyValueObj;
-};
-
 const mapStateToProps = (state) => {
     return {
         userInfo: state.user.userInfo,

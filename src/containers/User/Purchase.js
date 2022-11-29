@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { push } from 'connected-react-router';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
+import { history } from '../../redux';
 import style from './Purchase.module.scss';
 import PurchaseHeader from './Section/PurchaseHeader';
-import ReceiptProductTag from './Section/ReceiptProductTag';
 import Receipt from './Section/Receipt';
+import GoToTopBtn from 'containers/System/Section/GoToTopBtn';
+import { FormattedMessage } from 'react-intl';
 
 class Purchase extends Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class Purchase extends Component {
         this.state = {
             currPage: '0',
             isFocus: false,
+            receipts: [],
         };
     }
 
@@ -26,10 +27,18 @@ class Purchase extends Component {
         wrapper.style.boxShadow = 'none';
 
         const links = document.querySelectorAll(`.${style.header} a`);
-        links.forEach((link) => {
+        await links.forEach((link) => {
             link.onclick = () => {
                 this.setState({ currPage: link.getAttribute('href').slice(-1) });
             };
+        });
+
+        const startedIndex = (window.location.search && window.location.search.slice(6)) || 0;
+        this.setState({ receipts: receiptOfEachType[startedIndex] });
+
+        this.unlisten = history.listen((location, action) => {
+            const index = (location.search && location.search.slice(6)) || 0;
+            this.setState({ receipts: receiptOfEachType[index] });
         });
     }
 
@@ -38,6 +47,8 @@ class Purchase extends Component {
 
         wrapper.classList.add('bg-white');
         wrapper.style.boxShadow = '';
+
+        if (this.unlisten) this.unlisten();
     }
 
     handleFocus() {
@@ -62,10 +73,16 @@ class Purchase extends Component {
                 )}
 
                 <div className={`${style.body}`}>
-                    {receipts.map((receipt, index) => (
-                        <Receipt key={index} receipt={receipt} />
-                    ))}
+                    {this.state.receipts.length === 0 ? (
+                        <PurchaseEmpty currPage={this.state.currPage} />
+                    ) : (
+                        this.state.receipts.map((receipt, index) => (
+                            <Receipt key={index} receipt={receipt} />
+                        ))
+                    )}
                 </div>
+
+                <GoToTopBtn />
             </div>
         );
     }
@@ -85,7 +102,25 @@ const PurchaseSearch = ({ isFocus, focusHandler, blurHandler }) => {
     );
 };
 
-const receipts = [1, 2, 4];
+const PurchaseEmpty = ({ currPage }) => {
+    return (
+        <div className={style.purchase_empty}>
+            <div
+                style={{
+                    background: `url('https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/return/5fafbb923393b712b96488590b8f781f.png') center / cover no-repeat`,
+                }}
+            ></div>
+
+            <span>
+                <FormattedMessage
+                    id={`user.purchase.${currPage != 6 ? 'order' : 'return'}-empty`}
+                />
+            </span>
+        </div>
+    );
+};
+
+const receiptOfEachType = [[1, 2, 4], [], [1], [], [], [], []];
 
 const mapStateToProps = (state) => {
     return {

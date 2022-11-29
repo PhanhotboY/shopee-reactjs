@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { history } from '../redux';
 import { ToastContainer } from 'react-toastify';
@@ -18,6 +18,7 @@ import Footer from './Footer/Footer';
 import System from '../routes/System';
 import User from 'routes/User';
 import Shop from 'routes/Shop';
+import Search from 'routes/Search';
 
 class App extends Component {
     constructor(props) {
@@ -65,6 +66,14 @@ class App extends Component {
                                 <Route path={PATH.USER} component={userIsAuthenticated(User)} />
 
                                 <Route path={PATH.SHOP} component={Shop} />
+
+                                <Route path={PATH.SEARCH} component={Search} />
+
+                                <Route
+                                    component={() => {
+                                        return <Redirect to='/' />;
+                                    }}
+                                />
                             </Switch>
                         </div>
 

@@ -134,7 +134,21 @@
             "confirm-pass": "Confirm Password"
         },
         "purchase": {
-            "my-purchase": "My Purchase"
+            "my-purchase": "My Purchase",
+            "to-pay": "To Pay",
+            "to-ship": "To Ship",
+            "to-receive": "To Receive",
+            "completed": "Completed",
+            "canceled": "Canceled",
+            "return-refund": "Return Refund",
+            "search-placeholder": "Search by Seller Name, Order ID or Product Name in all orders",
+            "order-empty": "No orders yet",
+            "return-empty": "You do not have any Return Refund case.",
+            "view-shop": "view shop",
+            "no-rating": "No rating received",
+            "buy-again": "Buy Again",
+            "contact-seller": "Contact Seller",
+            "order-total": "Order Total" 
         },
         "notification": {
             "notifications": "Notifications",
@@ -148,7 +162,7 @@
     "shop": {
         "last-active": "Active {time} minutes ago",
         "follow" : "follow",
-        "chat": "chat",
+        "chat": "Chat",
         "products": "Products",
         "following": "Following",
         "chat-performance": "Chat Performance",

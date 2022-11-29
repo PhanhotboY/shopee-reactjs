@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
+import { PATH } from 'utils';
 import style from './SearchBox.module.scss';
 
 class SearchBox extends Component {
@@ -17,7 +18,8 @@ class SearchBox extends Component {
     componentDidMount() {}
 
     handleSubmitForm(event) {
-        event.preventDefault();
+        // event.preventDefault();
+        console.log('submit form');
     }
 
     handleOnChangeInput(event) {
@@ -41,11 +43,11 @@ class SearchBox extends Component {
                             {(trans) => (
                                 <input
                                     type='text'
-                                    name='search'
+                                    name='keyword'
                                     placeholder={trans}
                                     autoComplete='off'
                                     value={this.state.searchInputText}
-                                    onChange={this.handleOnChangeInput}
+                                    onChange={this.handleOnChangeInput.bind(this)}
                                     onFocus={this.toggleRecentList.bind(this)}
                                     onClick={(event) => event.stopPropagation()}
                                 />
@@ -70,6 +72,7 @@ const SearchInput = ({ children, isFocus, handleSubmitForm }) => {
     return (
         <form
             id='search_form'
+            action={PATH.SEARCH}
             className={isFocus ? style.input_outline : ''}
             onSubmit={handleSubmitForm}
         >

@@ -13,6 +13,18 @@ class User extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        const header = document.querySelector('header');
+
+        header.style.position = 'relative';
+    }
+
+    componentWillUnmount() {
+        const header = document.querySelector('header');
+
+        header.style.position = '';
+    }
+
     render() {
         const { userMenuPath } = this.props;
 

@@ -6,6 +6,7 @@ export const PATH = {
     SYSTEM: '/system',
     USER: '/user',
     SHOP: '/shops',
+    SEARCH: '/search',
 };
 
 export const ROLES = {
