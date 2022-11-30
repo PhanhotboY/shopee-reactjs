@@ -71,7 +71,8 @@
             "view-my-shopping-cart":"View My Shopping Cart",
             "no-product-yet":"No Products Yet",
             "signup-get-voucher": "Signup and claim new friend voucher up to 70k!",
-            "need-help": "Need help?"
+            "need-help": "Need help?",
+            "no-notifications": "No Notifications Yet"
     },
     "menu": {
         "user": {
@@ -181,5 +182,21 @@
         "price": "Price",
         "price-low-to-high": "Price: Low to High",
         "price-high-to-low": "Price: High to Low"
+    },
+    "search": {
+        "search-result-for": "Search result for ",
+        "search-filter": "Search Filter",
+        "by-category": "By Category",
+        "shipped-from": "Shipped From",
+        "brands": "Brands",
+        "price-range": "Price Range",
+        "shop-type": "Shop Type",
+        "rating": "Rating",
+        "min-price": "₫ Min",
+        "max-price": "₫ Max",
+        "apply": "Apply",
+        "clear-all": "Clear All",
+        "and-up": "& Up",
+        "more": "More"
     }
 }

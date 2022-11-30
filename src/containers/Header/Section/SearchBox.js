@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
 
+import { history } from '../../../redux';
 import { PATH } from 'utils';
 import style from './SearchBox.module.scss';
+import { push } from 'connected-react-router';
 
 class SearchBox extends Component {
     constructor(props) {
@@ -13,13 +15,29 @@ class SearchBox extends Component {
             isFocusInput: false,
             searchInputText: '',
         };
+
+        this.prevURL = window.location.href;
     }
 
-    componentDidMount() {}
+    componentDidMount() {
+        this.unlisten = history.listen((location) => {
+            if (location.href !== this.prevURL) {
+                this.setState({ searchInputText: '' });
+            }
+        });
+    }
+
+    componentWillUnmount() {
+        this.unlisten();
+    }
 
     handleSubmitForm(event) {
-        // event.preventDefault();
-        console.log('submit form');
+        event.preventDefault();
+
+        const encodedSearchInput = encodeURIComponent(this.state.searchInputText);
+        const { navigate } = this.props;
+        const redirectPath = `/search?keyword=${encodedSearchInput}`;
+        navigate(`${redirectPath}`);
     }
 
     handleOnChangeInput(event) {
@@ -36,7 +54,7 @@ class SearchBox extends Component {
             <div className={style.search_container}>
                 <div className={style['searchBox']}>
                     <SearchInput
-                        handleSubmitForm={this.handleSubmitForm}
+                        handleSubmitForm={this.handleSubmitForm.bind(this)}
                         isFocus={this.state.isFocusInput}
                     >
                         <FormattedMessage id='header.signup-get-voucher'>
@@ -124,13 +142,13 @@ const TrendingSearchList = ({ trendingSearches = ['system', 'deo co gi de cai'] 
 };
 
 const mapStateToProps = (state) => {
-    return {
-        isLoggedIn: state.user.isLoggedIn,
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        navigate: (path) => dispatch(push(path)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

@@ -14,10 +14,10 @@ class ProductTag extends Component {
     }
 
     render() {
-        const product = this.props.product;
+        const product = this.props.data;
 
         return (
-            <li className={`${style.wrapper} ${this.props.col || 'col-2'}`}>
+            <li className={`${style.wrapper} col-${this.props.col || 2}`}>
                 <div
                     className={style.container}
                     style={{
@@ -28,7 +28,7 @@ class ProductTag extends Component {
                 >
                     <a className={style.main} href='#'>
                         <ProductImage
-                            image={product.image}
+                            images={product.images}
                             overlay={product.overlay}
                             flag={product.flag}
                         />
@@ -51,11 +51,11 @@ class ProductTag extends Component {
     }
 }
 
-const ProductImage = ({ image, overlay, flag }) => {
+const ProductImage = ({ images, overlay, flag }) => {
     return (
         <div
             className={style.product_image}
-            style={{ backgroundImage: `url('https://cf.shopee.vn/file/${image}')` }}
+            style={{ backgroundImage: `url('https://cf.shopee.vn/file/${images && images[0]}')` }}
         >
             <div
                 className={style.overlay}

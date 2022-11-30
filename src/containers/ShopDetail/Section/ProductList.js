@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { push } from 'connected-react-router';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
-import style from './ProductList.module.scss';
 import ProductTag from 'containers/HomeContent/Section/ProductTag';
+import TagList from 'components/TagList';
 
 class ProductList extends Component {
     constructor(props) {
@@ -29,16 +27,9 @@ class ProductList extends Component {
 
     render() {
         return (
-            <ul className={`row ${style.wrapper}`}>
-                {this.state.products.map((product, index) => (
-                    <ProductTag
-                        key={index}
-                        product={product}
-                        col='col-20pc'
-                        address={this.props.address}
-                    />
-                ))}
-            </ul>
+            <TagList items={this.state.products}>
+                <ProductTag col='20pc' address={this.props.address} />
+            </TagList>
         );
     }
 }

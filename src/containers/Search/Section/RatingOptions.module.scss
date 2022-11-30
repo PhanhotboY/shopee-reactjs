@@ -1,0 +1,21 @@
+.option_wrapper {
+    padding: 0 12px;
+    margin: 5px 0;
+    display: flex;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.star_container {
+    display: flex;
+    width: 90px;
+    height: 18px;
+    overflow: hidden;
+
+    > svg {
+        margin: 2px;
+        width: 14px;
+        height: 14px;
+        color: #ffca27;
+    }
+}

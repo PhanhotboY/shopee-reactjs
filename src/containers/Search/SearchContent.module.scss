@@ -1,0 +1,22 @@
+@import 'styles/variables';
+
+.wrapper {
+    padding: 0 15px;
+
+    .notify {
+        font-size: 1rem;
+
+        svg {
+            width: 1rem;
+            margin-right: 12px;
+        }
+
+        span {
+            line-height: 100%;
+
+            &:last-child {
+                color: $colorsub2;
+            }
+        }
+    }
+}

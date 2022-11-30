@@ -71,7 +71,8 @@
             "view-my-shopping-cart":"Xem Giỏ Hàng",
             "no-product-yet":"Chưa Có Sản Phẩm",
             "signup-get-voucher": "Đăng ký và nhận voucher bạn mới đến 70k!",
-            "need-help": "Bạn cần giúp đỡ?"
+            "need-help": "Bạn cần giúp đỡ?",
+            "no-notifications": "Chưa Có Thông Báo"
     },
     "menu": {
         "user": {
@@ -181,5 +182,21 @@
         "price": "Giá",
         "price-low-to-high": "Giá: Thấp đến Cao",
         "price-high-to-low": "Giá: Cao đến Thấp"
+    },
+    "search": {
+        "search-result-for": "Kết quả tìm kiếm cho từ khoá ",
+        "search-filter": "BỘ LỌC TÌM KIẾM",
+        "by-category": "Theo Danh Mục",
+        "shipped-from": "Nơi Bán",
+        "brands": "Thương Hiệu",
+        "price-range": "Khoảng Giá",
+        "shop-type": "Loại Shop",
+        "rating": "Đánh Giá",
+        "min-price": "₫ TỪ",
+        "max-price": "₫ ĐẾN",
+        "apply": "Áp dụng",
+        "clear-all": "Xóa tất cả",
+        "and-up": "trở lên",
+        "more": "Thêm"
     }
 }
