@@ -25,7 +25,7 @@
                 .navbar_supports_bell {
                     height: 18px;
                     width: 14px;
-                    fill: #fff;
+                    fill: $common-text-color;
                 }
 
                 .navbar_supports_globe {
@@ -36,7 +36,7 @@
                 .navbar_supports_chevron {
                     height: 12px;
                     width: 12px;
-                    fill: #fff;
+                    fill: $common-text-color;
                 }
             }
         }
@@ -44,7 +44,7 @@
         .navbar_supports_help {
             height: 18px;
             width: 18px;
-            fill: #fff;
+            fill: $common-text-color;
         }
 
         svg {
@@ -62,7 +62,7 @@
         color: rgba(0, 0, 0, 0.9);
 
         > div:first-child {
-            color: #fff;
+            color: $common-text-color;
             max-width: 150px;
 
             div {
@@ -107,7 +107,7 @@
             top: 9px;
             box-shadow: 0 0 32px $box-shadow-color;
             height: 120px;
-            background-color: #fff;
+            background-color: $common-text-color;
             display: flex;
             flex-direction: column;
             width: 150px;

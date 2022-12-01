@@ -1,0 +1,60 @@
+@import 'styles/variables';
+
+.header {
+    background-color: $common-border-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+
+    .filter {
+        display: flex;
+        line-height: 34px;
+
+        > * {
+            border-radius: 2px;
+        }
+
+        span {
+            margin-right: 15px;
+            font-size: 0.9rem;
+        }
+
+        div {
+            height: 34px;
+            padding: 0 15px;
+            cursor: pointer;
+            margin-right: 10px;
+            background-color: $common-text-color;
+        }
+
+        select {
+            border: none;
+            padding: 0 8px;
+
+            &:focus-visible {
+                outline: none;
+            }
+        }
+    }
+
+    .pagination {
+        display: flex;
+        align-items: center;
+
+        div {
+            margin-left: 20px;
+        }
+
+        button {
+            border: 0.5px solid $common-border-color;
+            background-color: $common-text-color;
+            width: 36px;
+            height: 36px;
+
+            &:active {
+                background-color: #f8f8f8;
+            }
+        }
+    }
+}

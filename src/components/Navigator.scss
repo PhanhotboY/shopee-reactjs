@@ -12,7 +12,7 @@
     .menu-group {
         &:hover {
             cursor: pointer;
-            color: #fff;
+            color: $common-text-color;
             background-color: darken($colormain, 5);
         }
         .menu-group-name {

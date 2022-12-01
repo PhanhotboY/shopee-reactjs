@@ -27,7 +27,7 @@
         padding: 0 25px;
         border-radius: 4px;
         flex-direction: column;
-        background-color: #fff;
+        background-color: $common-text-color;
     }
 
     .form_title {
@@ -72,7 +72,7 @@
         margin: auto;
         padding: 0 8px;
         position: relative;
-        background-color: #fff;
+        background-color: $common-text-color;
         text-transform: uppercase;
     }
 }

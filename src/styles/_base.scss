@@ -34,7 +34,7 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 2px;
-    background-color: #fff;
+    background-color: $common-text-color;
     color: rgba(0, 0, 0, 0.9);
     box-shadow: 0 0 32px rgba(3, 3, 3, 0.2);
 }

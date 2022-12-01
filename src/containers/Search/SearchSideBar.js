@@ -2,40 +2,65 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { history } from '../../redux';
 import style from './SearchSideBar.module.scss';
 import PriceRangeInput from './Section/PriceRangeInput';
 import CustomButton from 'components/CustomButton';
 import RatingOptions from './Section/RatingOptions';
+import { push } from 'connected-react-router';
+import { CommonUtils } from 'utils';
 
 class SearchSideBar extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            queryObj: this.props.queryObj,
+        };
     }
 
-    componentDidMount() {
-        const optionContainers = document.querySelectorAll(`.${style.category} .${style.options}`);
+    async componentDidMount() {
+        await handleDropDown();
+    }
 
-        optionContainers.forEach((optionContainer) => {
-            const options = optionContainer.querySelectorAll(`:scope > *`);
+    async componentDidUpdate(prevProps) {
+        if (this.props.queryObj !== prevProps.queryObj) {
+            await this.setState({ queryObj: this.props.queryObj });
+        }
+    }
 
-            if (options.length > 4) {
-                for (let i = 4; i < options.length; i++) {
-                    options[i].classList.add('d-none');
-                }
+    clearFilterHandler() {
+        const { keyword, order, sortBy } = this.state.queryObj;
 
-                const dropDownBtn = optionContainer.nextElementSibling;
-                dropDownBtn.classList.add('d-block');
-                dropDownBtn.onclick = () => {
-                    options.forEach((option) => {
-                        option.classList.remove('d-none');
-                        dropDownBtn.classList.remove('d-block');
-                    });
-                };
+        const nonFilterQueryString = CommonUtils.toQueryString({ keyword, order, sortBy });
+
+        this.props.navigate('/search' + nonFilterQueryString);
+    }
+
+    handleOnChange(e) {
+        let filterQuery = `${e.target.name}=${encodeURIComponent(e.target.value)}`;
+        let pathname = history.location.pathname + history.location.search;
+
+        if (pathname.match(`${e.target.name}=`)) {
+            const isSamePath = pathname.indexOf(filterQuery) !== -1;
+            const replace = `&${e.target.name}=[^&]*`;
+            const regex = new RegExp(replace, 'gi');
+
+            pathname = pathname.replaceAll(regex, '');
+            if (isSamePath) {
+                return this.props.navigate(pathname);
             }
-        });
+        }
+
+        const redirectPath = pathname + (pathname.indexOf('?') === -1 ? '?' : '&') + filterQuery;
+
+        this.props.navigate(redirectPath);
     }
 
     render() {
+        Category.queryObj = this.state.queryObj;
+        Category.onChangeHandler = this.handleOnChange.bind(this);
+
         return (
             <div className={`${style.wrapper}`}>
                 <div className={style.header}>
@@ -46,40 +71,65 @@ class SearchSideBar extends Component {
                 </div>
 
                 <div className={style.body}>
-                    <Category name='search.by-category' options={this.props.categoryOptions} />
+                    <Category
+                        title='search.by-category'
+                        name='category'
+                        options={this.props.categoryOptions}
+                    />
 
-                    <Category name='search.shipped-from' options={this.props.addressOptions} />
+                    <Category
+                        title='search.shipped-from'
+                        name='address'
+                        options={this.props.addressOptions}
+                    />
 
-                    <Category name='search.brands' options={this.props.brandOptions} />
+                    <Category
+                        title='search.brands'
+                        name='brand'
+                        options={this.props.brandOptions}
+                    />
 
-                    <Category name='search.price-range'>
+                    <Category title='search.price-range'>
                         <PriceRangeInput />
                     </Category>
 
-                    <Category name='search.shop-type' options={this.props.shopTypeOptions} />
+                    <Category
+                        title='search.shop-type'
+                        name='shopType'
+                        options={this.props.shopTypeOptions}
+                    />
 
-                    <Category name='search.rating'>
+                    <Category title='search.rating' name='rating'>
                         <RatingOptions />
                     </Category>
 
-                    <CustomButton action='search.clear-all' />
+                    <CustomButton
+                        action='search.clear-all'
+                        onClickHandler={this.clearFilterHandler.bind(this)}
+                    />
                 </div>
             </div>
         );
     }
 }
 
-const Category = ({ name, options = [], children }) => {
+const Category = ({ title, name, options = [], children }) => {
     return (
         <div className={style.category}>
             <span>
-                <FormattedMessage id={name} />
+                <FormattedMessage id={title} />
             </span>
 
             <div className={style.options}>
                 {options.map((option, index) => (
                     <label key={index}>
-                        <input type='checkbox' />
+                        <input
+                            name={name}
+                            value={option}
+                            type='checkbox'
+                            checked={Category.queryObj && Category.queryObj[name] === option}
+                            onChange={Category.onChangeHandler}
+                        />
                         <span>{option}</span>
                     </label>
                 ))}
@@ -103,12 +153,37 @@ const DropDownBtn = ({}) => {
     );
 };
 
+const handleDropDown = () => {
+    const optionContainers = document.querySelectorAll(`.${style.category} .${style.options}`);
+
+    optionContainers.forEach((optionContainer) => {
+        const options = optionContainer.querySelectorAll(`:scope > *`);
+
+        if (options.length > 4) {
+            for (let i = 4; i < options.length; i++) {
+                options[i].classList.add('d-none');
+            }
+
+            const dropDownBtn = optionContainer.nextElementSibling;
+            dropDownBtn.classList.add('d-block');
+            dropDownBtn.onclick = () => {
+                options.forEach((option) => {
+                    option.classList.remove('d-none');
+                    dropDownBtn.classList.remove('d-block');
+                });
+            };
+        }
+    });
+};
+
 const mapStateToProps = (state) => {
     return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        navigate: (path) => dispatch(push(path)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchSideBar);

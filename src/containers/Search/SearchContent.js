@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 
 import style from './SearchContent.module.scss';
+import Filter from 'components/Filter';
 import TagList from 'components/TagList';
 import ProductTag from 'containers/HomeContent/Section/ProductTag';
 import { FormattedMessage } from 'react-intl';
@@ -12,12 +13,16 @@ class Search extends Component {
 
         this.state = {
             products: this.props.products,
+            queryObj: {},
         };
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.products !== prevProps.products) {
             this.setState({ products: this.props.products });
+        }
+        if (this.props.queryObj !== prevProps.queryObj) {
+            this.setState({ queryObj: this.props.queryObj });
         }
     }
 
@@ -29,12 +34,14 @@ class Search extends Component {
                     <span>
                         <FormattedMessage id='search.search-result-for' />
                     </span>
-                    '<span>{this.props.keyword}</span>'
+                    '<span>{this.state.queryObj.keyword}</span>'
                 </div>
 
-                <TagList items={this.state.products}>
-                    <ProductTag col='20pc' isHoverHighLight={true} />
-                </TagList>
+                <Filter items={this.state.products} isDisplayHeader={true}>
+                    <TagList>
+                        <ProductTag col='20pc' isHoverHighLight={true} />
+                    </TagList>
+                </Filter>
             </div>
         );
     }

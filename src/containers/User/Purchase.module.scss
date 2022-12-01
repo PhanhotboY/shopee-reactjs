@@ -8,7 +8,7 @@
         display: flex;
         flex-wrap: nowrap;
         margin-bottom: 15px;
-        background-color: #fff;
+        background-color: $common-text-color;
 
         a {
             display: flex;
@@ -30,7 +30,7 @@
     }
 
     .search {
-        background-color: #eaeaea;
+        background-color: $common-border-color;
         margin-bottom: 15px;
         width: 100%;
         padding: 12px;
@@ -64,7 +64,7 @@
     .purchase_empty {
         width: 100%;
         height: 600px;
-        background-color: #fff;
+        background-color: $common-text-color;
         display: flex;
         flex-direction: column;
         align-items: center;

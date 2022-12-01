@@ -1,4 +1,6 @@
+@import 'styles/variables';
+
 .wrapper {
     padding: 15px 0;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid $common-border-color;
 }

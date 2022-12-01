@@ -10,6 +10,9 @@ import VoucherTag from './Section/VoucherTag';
 import UserHeader from 'containers/User/Section/UserHeader';
 import HeaderTitle from 'containers/HomeContent/Section/HeaderTitle';
 import ProductList from './Section/ProductList';
+import ProductTag from 'containers/HomeContent/Section/ProductTag';
+import Filter from 'components/Filter';
+import TagList from 'components/TagList';
 
 class ShopBody extends Component {
     constructor(props) {
@@ -51,11 +54,11 @@ class ShopBody extends Component {
                 <div id='product-list' className={`row ${style.product_list}`}>
                     <CategorySideBar />
 
-                    <div className='col-10'>
-                        <ProductListHeader />
-
-                        <ProductList products={products} address={this.props.userInfo.address} />
-                    </div>
+                    <Filter items={products} isDisplayHeader={true} col='10'>
+                        <TagList>
+                            <ProductTag col='20pc' isHoverHighLight={true} />
+                        </TagList>
+                    </Filter>
                 </div>
 
                 <Link to='#'>

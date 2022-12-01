@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .wrapper {
     padding: 0 20px;
 
@@ -8,16 +10,16 @@
     .form_button {
         border: none;
         padding: 8px;
-        color: #fff;
+        color: $common-text-color;
         opacity: 0.45;
         margin-left: 26%;
         border-radius: 2px;
         pointer-events: none;
         text-transform: uppercase;
-        background-color: #ee4d2d;
+        background-color: $colorsub3;
 
         &:hover {
-            background-color: #f05d40;
+            background-color: $common-hover-button;
         }
     }
 }
@@ -30,7 +32,7 @@
     justify-content: space-around;
 
     .upload_img {
-        border-left: 1px solid #efefef;
+        border-left: 1px solid $common-border-color;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -50,7 +52,7 @@
             padding: 0 20px;
             line-height: 40px;
             font-size: 0.875rem;
-            border: 1px solid #efefef;
+            border: 1px solid $common-border-color;
             background-color: transparent;
             box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.03);
 

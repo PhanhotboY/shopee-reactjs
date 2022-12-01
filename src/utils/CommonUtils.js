@@ -33,13 +33,28 @@ const CommonUtils = {
         const keyValueObj = queryArr.reduce((prevObj, currStr) => {
             const keyValueArr = currStr.split('=');
             if (keyValueArr[0] && keyValueArr[1]) {
-                prevObj[keyValueArr[0].trim()] = keyValueArr[1].trim();
+                prevObj[decodeURIComponent(keyValueArr[0].trim())] = decodeURIComponent(
+                    keyValueArr[1] ? keyValueArr[1].trim() : ''
+                );
             }
 
             return prevObj;
         }, {});
 
         return keyValueObj;
+    },
+
+    toQueryString(object) {
+        let queryString = '';
+
+        Object.entries(object).forEach(([key, value]) => {
+            if (key)
+                queryString +=
+                    (queryString.indexOf('?') === -1 ? '?' : '&') +
+                    `${key}=${encodeURIComponent(value || '')}`;
+        });
+
+        return queryString;
     },
 };
 

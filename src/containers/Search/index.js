@@ -12,14 +12,14 @@ class Search extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {};
-
-        this.searchObj = CommonUtils.splitQueryIntoObj(window.location.search);
+        this.state = {
+            queryObj: CommonUtils.splitQueryIntoObj(history.location.search),
+        };
     }
 
     async componentDidMount() {
         this.unlisten = history.listen((location) => {
-            this.searchObj = CommonUtils.splitQueryIntoObj(location.search);
+            this.setState({ queryObj: CommonUtils.splitQueryIntoObj(location.search) });
         });
     }
 
@@ -28,8 +28,6 @@ class Search extends Component {
     }
 
     render() {
-        const keyword = decodeURIComponent(this.searchObj.keyword || '');
-
         return (
             <div className='row'>
                 <div className='col-2'>
@@ -38,10 +36,11 @@ class Search extends Component {
                         addressOptions={addressOptions}
                         brandOptions={brandOptions}
                         shopTypeOptions={shopTypeOptions}
+                        queryObj={this.state.queryObj}
                     />
                 </div>
 
-                <SearchContent products={products} keyword={keyword} />
+                <SearchContent products={products} queryObj={this.state.queryObj} />
 
                 <GoToTopBtn />
             </div>
@@ -71,6 +70,7 @@ const shopTypeOptions = ['Preferred Shop', 'Preferred Shop +', 'Shop Mall'];
 
 const products = [
     {
+        id: 1,
         title: 'Sen đá sỏi hường SONDA GARDEN size mini 2.5-4cm, cây cảnh trang trí nhà cửa, lỗi 1 đổi 1',
         originPrice: 15000,
         discount: 33,
@@ -80,6 +80,7 @@ const products = [
         flag: 'db89dfecef669d7a42af1a6be6783789',
     },
     {
+        id: 2,
         title: 'Sen đá bắp cải aurora purple Đà Lạt size bé cây cảnh trang trí nhà cửa Lolita garden',
         originPrice: 25000,
         discount: 24,
@@ -89,6 +90,7 @@ const products = [
         flag: 'db89dfecef669d7a42af1a6be6783789',
     },
     {
+        id: 3,
         title: 'Sen đá kim cương tím Đà Lạt size mini cây cảnh trang trí nhà cửa Lolita garden',
         originPrice: 13000,
         discount: 33,
@@ -98,6 +100,7 @@ const products = [
         flag: 'db89dfecef669d7a42af1a6be6783789',
     },
     {
+        id: 4,
         title: 'Sen đá dù hồng Đà Lạt size mini cây cảnh trang trí nhà cửa Lolita garden',
         originPrice: 10000,
         discount: 10,
@@ -107,6 +110,7 @@ const products = [
         flag: 'db89dfecef669d7a42af1a6be6783789',
     },
     {
+        id: 5,
         title: 'Sen đá sedum huyết rồng Đà Lạt size mini cây cảnh trang trí nhà cửa Toro garden',
         originPrice: 10000,
         discount: 10,

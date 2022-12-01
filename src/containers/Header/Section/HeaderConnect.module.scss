@@ -59,7 +59,7 @@
             padding: 2px;
             border-radius: 2px;
             flex-direction: column;
-            background-color: #fff;
+            background-color: $common-text-color;
             z-index: $zindex + 10;
 
             > img {

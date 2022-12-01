@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .login_form_input {
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 8px;
@@ -34,9 +36,9 @@
 
 .login_form_button {
     border: none;
-    background-color: #ee4d2d;
+    background-color: $colorsub3;
     text-transform: uppercase;
-    color: #fff;
+    color: $common-text-color;
     padding: 8px;
     border-radius: 2px;
     margin-bottom: 15px;
@@ -44,6 +46,6 @@
     opacity: 0.65;
 
     &:hover {
-        background-color: #f05d40;
+        background-color: $common-hover-button;
     }
 }

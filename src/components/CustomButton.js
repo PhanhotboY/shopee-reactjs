@@ -10,7 +10,7 @@ class CustomButton extends Component {
 
     render() {
         return (
-            <button className='custom_button'>
+            <button className='custom_button' onClick={this.props.onClickHandler}>
                 <FormattedMessage id={this.props.action} />
             </button>
         );

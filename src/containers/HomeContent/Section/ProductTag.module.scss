@@ -12,7 +12,7 @@
         border: 1px solid transparent;
         border-left: 1px solid transparent;
         border-right: 1px solid transparent;
-        background-color: #fff;
+        background-color: $common-text-color;
         box-shadow: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.1);
         color: $colorsub3;
 
@@ -115,7 +115,7 @@
         text-decoration: none;
         text-align: center;
         width: 100%;
-        color: #fff;
+        color: $common-text-color;
         line-height: 30px;
         text-align: center;
         font-size: 0.875rem;

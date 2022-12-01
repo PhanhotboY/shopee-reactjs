@@ -25,7 +25,7 @@
         h1 {
             font-size: 1.25rem;
             line-height: 1.5rem;
-            color: #fff;
+            color: $common-text-color;
             margin-bottom: 0;
         }
     }
@@ -50,11 +50,11 @@
 
         button {
             flex-grow: 1;
-            color: #fff;
+            color: $common-text-color;
             padding: 2px 0;
             margin-right: 10px;
             border-radius: 2px;
-            border: 1px solid #fff;
+            border: 1px solid $common-text-color;
             text-transform: uppercase;
             background-color: transparent;
 

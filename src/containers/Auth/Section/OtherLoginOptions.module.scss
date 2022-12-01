@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .wrapper {
     display: flex;
     justify-content: space-around;
@@ -12,7 +14,7 @@
         align-items: center;
         text-decoration: none;
         justify-content: center;
-        background-color: #fff;
+        background-color: $common-text-color;
         border: 1px solid rgba(0, 0, 0, 0.1);
 
         &:hover {

@@ -3,7 +3,7 @@
 .custom_button {
     width: 100%;
     border: none;
-    color: #fff;
+    color: $common-text-color;
     padding: 4px 0;
     font-weight: 400;
     font-size: 0.875rem;
@@ -12,6 +12,6 @@
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.09);
 
     &:hover {
-        background-color: #f05d40;
+        background-color: $common-hover-button;
     }
 }

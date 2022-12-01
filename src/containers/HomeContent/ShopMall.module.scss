@@ -61,9 +61,9 @@
         background-color: #d0011b;
 
         svg {
-            fill: #fff;
+            fill: $common-text-color;
             width: 0.5rem;
-            stroke: #fff;
+            stroke: $common-text-color;
         }
     }
 }

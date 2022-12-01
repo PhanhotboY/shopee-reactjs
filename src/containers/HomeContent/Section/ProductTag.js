@@ -38,7 +38,10 @@ class ProductTag extends Component {
                         <ProductDetail
                             title={product.title}
                             promotion={product.promotion}
-                            price={(product.originPrice * product.discount) / 100}
+                            price={CommonUtils.getDiscountedPrice(
+                                product.originPrice,
+                                product.discount / 100
+                            )}
                             sold={product.sold}
                             address={this.props.address}
                         />

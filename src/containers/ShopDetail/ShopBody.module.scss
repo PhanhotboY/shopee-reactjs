@@ -4,7 +4,7 @@
     margin-top: 20px;
 
     .vouchers {
-        background-color: #fff;
+        background-color: $common-text-color;
 
         ul {
             margin-bottom: 20px;
@@ -20,7 +20,7 @@
     margin-top: 30px;
 
     .product_list_header {
-        background-color: #eaeaea;
+        background-color: $common-border-color;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -43,7 +43,7 @@
                 height: 34px;
                 padding: 0 15px;
                 margin-right: 10px;
-                background-color: #fff;
+                background-color: $common-text-color;
             }
 
             select {
@@ -61,8 +61,8 @@
             }
 
             button {
-                border: 0.5px solid #eaeaea;
-                background-color: #fff;
+                border: 0.5px solid $common-border-color;
+                background-color: $common-text-color;
                 width: 36px;
                 height: 36px;
 
