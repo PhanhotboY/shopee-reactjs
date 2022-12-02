@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { CommonUtils } from 'utils';
 import DiscountFlag from './DiscountFlag';
 import style from './ProductTag.module.scss';
+import { Link } from 'react-router-dom';
 
 class ProductTag extends Component {
     constructor(props) {
@@ -13,6 +14,11 @@ class ProductTag extends Component {
         this.state = { isHover: false };
     }
 
+    /**Props:
+     * data: obj
+     * col: number
+     * isHoverHighLight: boolean
+     */
     render() {
         const product = this.props.data;
 
@@ -26,14 +32,14 @@ class ProductTag extends Component {
                     onMouseOver={() => this.setState({ isHover: true })}
                     onMouseLeave={() => this.setState({ isHover: false })}
                 >
-                    <a className={style.main} href='#'>
+                    <Link className={style.main} to={`/products/${product.id}`}>
                         <ProductImage
                             images={product.images}
                             overlay={product.overlay}
                             flag={product.flag}
                         />
 
-                        <DiscountFlag discount={product.discount} />
+                        {product.discount ? <DiscountFlag discount={product.discount} /> : ''}
 
                         <ProductDetail
                             title={product.title}
@@ -43,9 +49,9 @@ class ProductTag extends Component {
                                 product.discount / 100
                             )}
                             sold={product.sold}
-                            address={this.props.address}
+                            address={product.address}
                         />
-                    </a>
+                    </Link>
 
                     {this.props.isHoverHighLight && this.state.isHover && <SimilarBtn />}
                 </div>
@@ -60,12 +66,16 @@ const ProductImage = ({ images, overlay, flag }) => {
             className={style.product_image}
             style={{ backgroundImage: `url('https://cf.shopee.vn/file/${images && images[0]}')` }}
         >
-            <div
-                className={style.overlay}
-                style={{ backgroundImage: `url('https://cf.shopee.vn/file/${overlay}')` }}
-            ></div>
+            {overlay ? (
+                <div
+                    className={style.overlay}
+                    style={{ backgroundImage: `url('https://cf.shopee.vn/file/${overlay}')` }}
+                ></div>
+            ) : (
+                ''
+            )}
 
-            <img className={style.flag} src={`https://cf.shopee.vn/file/${flag}`} />
+            {flag ? <img className={style.flag} src={`https://cf.shopee.vn/file/${flag}`} /> : ''}
         </div>
     );
 };

@@ -30,10 +30,21 @@
 
         select {
             border: none;
-            padding: 0 8px;
+            padding: 0 40px 0 15px;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, gray 50%),
+                linear-gradient(135deg, gray 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1em + 2px),
+                calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+            background-size: 5px 5px, 5px 5px, 1px 1.5em;
+            background-repeat: no-repeat;
 
             &:focus-visible {
                 outline: none;
+            }
+
+            option {
+                color: #333;
             }
         }
     }
@@ -57,4 +68,13 @@
             }
         }
     }
+}
+
+.div_sort--active {
+    background-color: $colorsub2 !important;
+    color: $common-text-color !important;
+}
+
+.select_sort--active {
+    color: $colorsub2 !important;
 }

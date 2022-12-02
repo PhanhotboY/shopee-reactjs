@@ -10,7 +10,16 @@ class CustomButton extends Component {
 
     render() {
         return (
-            <button className='custom_button' onClick={this.props.onClickHandler}>
+            <button
+                className='custom_button'
+                form={this.props.form}
+                disabled={this.props.isDisabled}
+                type={this.props.type || 'button'}
+                onClick={this.props.onClickHandler}
+                style={{
+                    cursor: this.props.isDisabled && 'not-allowed',
+                }}
+            >
                 <FormattedMessage id={this.props.action} />
             </button>
         );

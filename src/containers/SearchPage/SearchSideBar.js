@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
 import { history } from '../../redux';
@@ -32,7 +32,11 @@ class SearchSideBar extends Component {
     clearFilterHandler() {
         const { keyword, order, sortBy } = this.state.queryObj;
 
-        const nonFilterQueryString = CommonUtils.toQueryString({ keyword, order, sortBy });
+        const nonFilterQueryString = CommonUtils.toQueryString({
+            keyword,
+            [order ? 'order' : '']: order ?? '',
+            [sortBy ? 'sortBy' : '']: sortBy ?? '',
+        });
 
         this.props.navigate('/search' + nonFilterQueryString);
     }
@@ -51,7 +55,10 @@ class SearchSideBar extends Component {
                 return this.props.navigate(pathname);
             }
         }
+        this.redirectToFilterPage(pathname, filterQuery);
+    }
 
+    redirectToFilterPage(pathname, filterQuery) {
         const redirectPath = pathname + (pathname.indexOf('?') === -1 ? '?' : '&') + filterQuery;
 
         this.props.navigate(redirectPath);
@@ -90,7 +97,10 @@ class SearchSideBar extends Component {
                     />
 
                     <Category title='search.price-range'>
-                        <PriceRangeInput />
+                        <PriceRangeInput
+                            queryObj={this.state.queryObj}
+                            redirectToFilterPage={this.redirectToFilterPage.bind(this)}
+                        />
                     </Category>
 
                     <Category
@@ -100,7 +110,9 @@ class SearchSideBar extends Component {
                     />
 
                     <Category title='search.rating' name='rating'>
-                        <RatingOptions />
+                        <RatingOptions
+                            redirectToFilterPage={this.redirectToFilterPage.bind(this)}
+                        />
                     </Category>
 
                     <CustomButton

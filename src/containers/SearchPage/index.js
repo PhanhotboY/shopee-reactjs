@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
+import { push } from 'connected-react-router';
 
-import './index.scss';
 import { history } from '../../redux';
 import { CommonUtils } from 'utils';
 import SearchSideBar from './SearchSideBar';
@@ -18,6 +18,10 @@ class Search extends Component {
     }
 
     async componentDidMount() {
+        if (!history.location.search.match('keyword=')) {
+            return this.props.navigate('/');
+        }
+
         this.unlisten = history.listen((location) => {
             this.setState({ queryObj: CommonUtils.splitQueryIntoObj(location.search) });
         });
@@ -78,6 +82,7 @@ const products = [
         images: ['5af81d807bdf38c386c8507248ef68b3'],
         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
         flag: 'db89dfecef669d7a42af1a6be6783789',
+        address: 'Ho Chi Minh',
     },
     {
         id: 2,
@@ -88,6 +93,7 @@ const products = [
         images: ['c6c46b364a61740a5f03c99a1dbaa846'],
         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
         flag: 'db89dfecef669d7a42af1a6be6783789',
+        address: 'Ho Chi Minh',
     },
     {
         id: 3,
@@ -98,6 +104,7 @@ const products = [
         images: ['49d948af70514597ff4648e70e249de8'],
         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
         flag: 'db89dfecef669d7a42af1a6be6783789',
+        address: 'Ho Chi Minh',
     },
     {
         id: 4,
@@ -108,6 +115,7 @@ const products = [
         images: ['ee5dddd0bfa4044e7ed7ca7a3f37f18a'],
         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
         flag: 'db89dfecef669d7a42af1a6be6783789',
+        address: 'Ho Chi Minh',
     },
     {
         id: 5,
@@ -118,6 +126,18 @@ const products = [
         images: ['e056ac7d016a7478d43994aa95849b1f'],
         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
         flag: 'db89dfecef669d7a42af1a6be6783789',
+        address: 'Ho Chi Minh',
+    },
+    {
+        id: 6,
+        title: 'Sen đá kim cương tím bụi nhiều đầu 9-10cm, Hàng Đà Lạt, Lỗi 1 đổi 1',
+        originPrice: 150000,
+        discount: 0,
+        sold: 51,
+        images: ['bc77b8af10947265603fe3be21b3dd40'],
+        overlay: '3266b2eebb590e79bd377b8e75181914',
+        address: 'Ho Chi Minh',
+        flag: '',
     },
 ];
 
@@ -126,7 +146,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {};
+    return {
+        navigate: (path) => dispatch(push(path)),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

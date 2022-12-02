@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import * as actions from 'store/actions';
 import { LANGUAGES } from 'utils';
@@ -19,27 +20,33 @@ class HeaderSystem extends Component {
             <div className={style.system_header}>
                 <Navigator menus={menus.adminMenu} />
 
-                <div className={style.change_language}>
-                    <span
-                        style={{
-                            ...(this.props.language === LANGUAGES.VI
-                                ? { color: 'rgb(255 214 0)', fontWeight: 600 }
-                                : {}),
-                        }}
-                        onClick={() => this.props.changeLanguage(LANGUAGES.VI)}
-                    >
-                        {LANGUAGES.VI}
-                    </span>
-                    <span
-                        style={{
-                            ...(this.props.language === LANGUAGES.EN
-                                ? { color: '#B937FF', fontWeight: 600 }
-                                : {}),
-                        }}
-                        onClick={() => this.props.changeLanguage(LANGUAGES.EN)}
-                    >
-                        {LANGUAGES.EN}
-                    </span>
+                <div className={style.actions}>
+                    <div className={style.change_language}>
+                        <span
+                            style={{
+                                ...(this.props.language === LANGUAGES.VI
+                                    ? { color: '#f00', fontWeight: 600 }
+                                    : {}),
+                            }}
+                            onClick={() => this.props.changeLanguage(LANGUAGES.VI)}
+                        >
+                            {LANGUAGES.VI}
+                        </span>
+                        <span
+                            style={{
+                                ...(this.props.language === LANGUAGES.EN
+                                    ? { color: '#B937FF', fontWeight: 600 }
+                                    : {}),
+                            }}
+                            onClick={() => this.props.changeLanguage(LANGUAGES.EN)}
+                        >
+                            {LANGUAGES.EN}
+                        </span>
+                    </div>
+
+                    <Link className={style.home} to='/'>
+                        <i className='fa-solid fa-house'></i>
+                    </Link>
                 </div>
             </div>
         );

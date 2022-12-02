@@ -1,11 +1,11 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import style from './SearchContent.module.scss';
 import Filter from 'components/Filter';
 import TagList from 'components/TagList';
 import ProductTag from 'containers/HomeContent/Section/ProductTag';
-import { FormattedMessage } from 'react-intl';
 
 class Search extends Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Search extends Component {
 
         this.state = {
             products: this.props.products,
-            queryObj: {},
+            queryObj: this.props.queryObj,
         };
     }
 

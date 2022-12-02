@@ -37,7 +37,10 @@ class Filter extends Component {
     }
 
     componentWillUnmount() {
-        if (this.unlisten) this.unlisten();
+        this.setState = (state, callback) => {
+            return;
+        };
+        this.unlisten();
     }
 
     async componentDidUpdate(prevProps) {
@@ -80,7 +83,7 @@ class Filter extends Component {
             const regex = new RegExp(replace, 'gi');
 
             if (pathname.match(regex0)) pathname = pathname.replace(regex0, '?');
-            console.log(pathname);
+
             pathname = pathname.replaceAll(regex, '');
         }
 
@@ -93,7 +96,11 @@ class Filter extends Component {
         return (
             <div className={`${style.wrapper} col-${this.props.col || 12}`}>
                 {this.props.isDisplayHeader && (
-                    <FilterHeader redirectWithQuery={this.redirectWithQuery.bind(this)} />
+                    <FilterHeader
+                        sortBy={this.state.sortBy}
+                        order={this.state.order}
+                        redirectWithQuery={this.redirectWithQuery.bind(this)}
+                    />
                 )}
 
                 {React.cloneElement(this.props.children, { items: this.state.items })}
@@ -102,7 +109,7 @@ class Filter extends Component {
     }
 }
 
-const FilterHeader = ({ redirectWithQuery }) => {
+const FilterHeader = ({ sortBy, order, redirectWithQuery }) => {
     return (
         <div className={style.header}>
             <div className={style.filter}>
@@ -110,16 +117,25 @@ const FilterHeader = ({ redirectWithQuery }) => {
                     <FormattedMessage id='shop.sort-by' />
                 </span>
 
-                <div onClick={() => redirectWithQuery('sortBy=sold')}>
+                <div
+                    className={sortBy === 'sold' ? style['div_sort--active'] : undefined}
+                    onClick={() => redirectWithQuery('sortBy=sold')}
+                >
                     <FormattedMessage id='shop.popular' />
                 </div>
 
-                <div onClick={() => redirectWithQuery('sortBy=createdAt')}>
+                <div
+                    className={sortBy === 'createdAt' ? style['div_sort--active'] : undefined}
+                    onClick={() => redirectWithQuery('sortBy=createdAt')}
+                >
                     <FormattedMessage id='shop.latest' />
                 </div>
 
-                <div onClick={() => redirectWithQuery('sortBy=discount')}>
-                    <FormattedMessage id='shop.discount' />
+                <div
+                    className={sortBy === 'discount' ? style['div_sort--active'] : undefined}
+                    onClick={() => redirectWithQuery('sortBy=discount')}
+                >
+                    <FormattedMessage id='search.discount' />
                 </div>
 
                 <select
@@ -127,22 +143,45 @@ const FilterHeader = ({ redirectWithQuery }) => {
                         redirectWithQuery(`sortBy=originPrice`);
                         redirectWithQuery(`order=${e.target.value}`);
                     }}
-                    defaultValue='default'
+                    className={sortBy === 'originPrice' ? style['select_sort--active'] : undefined}
+                    value={sortBy === 'originPrice' ? order : 'default'}
                 >
                     <FormattedMessage id='shop.price'>
                         {(trans) => (
-                            <option value='default' disabled selected hidden>
+                            <option value='default' disabled hidden>
                                 {trans}
                             </option>
                         )}
                     </FormattedMessage>
 
                     <FormattedMessage id='shop.price-low-to-high'>
-                        {(trans) => <option value='asc'>{trans}</option>}
+                        {(trans) => (
+                            <option
+                                className={
+                                    sortBy === 'originPrice' && order === 'asc'
+                                        ? style['select_sort--active']
+                                        : undefined
+                                }
+                                value='asc'
+                            >
+                                {trans}
+                            </option>
+                        )}
                     </FormattedMessage>
 
                     <FormattedMessage id='shop.price-high-to-low'>
-                        {(trans) => <option value='desc'>{trans}</option>}
+                        {(trans) => (
+                            <option
+                                className={
+                                    sortBy === 'originPrice' && order === 'desc'
+                                        ? style['select_sort--active']
+                                        : undefined
+                                }
+                                value='desc'
+                            >
+                                {trans}
+                            </option>
+                        )}
                     </FormattedMessage>
                 </select>
             </div>

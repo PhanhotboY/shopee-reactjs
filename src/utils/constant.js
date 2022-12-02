@@ -7,6 +7,7 @@ export const PATH = {
     USER: '/user',
     SHOP: '/shops',
     SEARCH: '/search',
+    PRODUCT: '/products',
 };
 
 export const ROLES = {

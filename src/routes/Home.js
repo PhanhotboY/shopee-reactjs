@@ -5,6 +5,10 @@ import HomeBanner from '../containers/HomeBanner';
 import HomeContent from '../containers/HomeContent';
 
 class Home extends Component {
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <div className='wrapper'>

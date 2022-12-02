@@ -15,13 +15,11 @@ class SearchBox extends Component {
             isFocusInput: false,
             searchInputText: '',
         };
-
-        this.prevURL = window.location.href;
     }
 
     componentDidMount() {
         this.unlisten = history.listen((location) => {
-            if (location.href !== this.prevURL) {
+            if (location.pathname === '/') {
                 this.setState({ searchInputText: '' });
             }
         });
@@ -33,7 +31,6 @@ class SearchBox extends Component {
 
     handleSubmitForm(event) {
         event.preventDefault();
-
         const encodedSearchInput = encodeURIComponent(this.state.searchInputText);
         const { navigate } = this.props;
         const redirectPath = `/search?keyword=${encodedSearchInput}`;

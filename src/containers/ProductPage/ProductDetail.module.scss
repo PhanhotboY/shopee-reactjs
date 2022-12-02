@@ -1,0 +1,18 @@
+@import 'styles/variables';
+
+.wrapper {
+    background-color: $common-text-color;
+    display: flex;
+    width: 100%;
+}
+
+.images {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    .preview_img {
+        width: 450px;
+        height: 450px;
+    }
+}

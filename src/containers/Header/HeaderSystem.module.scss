@@ -1,3 +1,5 @@
+@import 'styles/variables';
+
 .system_header {
     display: flex;
     justify-content: space-between;
@@ -5,7 +7,6 @@
     background-color: #37e1ff;
 
     .change_language {
-        margin-right: 35px;
         display: flex;
         align-items: center;
     }
@@ -13,6 +14,29 @@
     span {
         text-transform: uppercase;
         cursor: pointer;
-        padding: 4px 6px;
+        position: relative;
+        padding: 4px 10px;
+
+        &:first-child::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 12px;
+            border-right: 1px solid $common-border-color;
+        }
+    }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        margin-right: 35px;
+    }
+
+    .home {
+        color: $common-text-color;
+        padding: 6px 10px;
+        margin-left: 6px;
     }
 }

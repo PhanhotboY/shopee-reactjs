@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import SearchPage from 'containers/SearchPage';
+import ProductPage from 'containers/ProductPage';
 
-class Search extends Component {
+class Product extends Component {
     constructor(props) {
         super(props);
     }
@@ -23,7 +23,7 @@ class Search extends Component {
         return (
             <div className='user-container grid'>
                 <Switch>
-                    <Route path='/search' component={SearchPage} />
+                    <Route path='/products/:id' component={ProductPage} />
 
                     <Route
                         component={() => {
@@ -44,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
