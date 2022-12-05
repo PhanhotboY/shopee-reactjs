@@ -26,6 +26,7 @@ class Search extends Component {
                     'b71e161a325e8fb686e8ec675acf40a5',
                     '9ba8944f34697652e04b79c550734342',
                     'bc77b8af10947265603fe3be21b3dd40',
+                    'bc77b8af10947265603fe3be21b3dd40',
                 ],
                 overlay: '3266b2eebb590e79bd377b8e75181914',
                 flag: '',

@@ -303,8 +303,8 @@ class SignupForm extends Component {
                     </button>
                 )}
 
-                <div className={style.preview_img}>
-                    <img src={avatar} alt='preview' />
+                <div className={style.review_img}>
+                    <img src={avatar} alt='review' />
                 </div>
             </form>
         );
