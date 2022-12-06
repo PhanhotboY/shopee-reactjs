@@ -27,6 +27,7 @@ class ThumbnailImages extends Component {
                                         reviewingImage !== index ? 'transparent' : undefined,
                                 }}
                                 onMouseOver={() => hoverHandler(index)}
+                                onClick={this.props.toggleModalHandler}
                             >
                                 {index === 0 && (
                                     <div

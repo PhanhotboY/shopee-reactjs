@@ -17,7 +17,7 @@ class Search extends Component {
                 id: 1,
                 title: 'Sen đá kim cương tím bụi nhiều đầu 9-10cm, Hàng Đà Lạt, Lỗi 1 đổi 1',
                 originPrice: 150000,
-                discount: 0,
+                discount: 32,
                 sold: 51,
                 images: [
                     '08de791de968e016c6d9a72d1d08318b',

@@ -1,4 +1,262 @@
-.details {
+@import 'styles/variables';
+
+.wrapper {
     flex-grow: 1;
-    padding: 20px;
+    display: flex;
+    font-size: 0.875rem;
+    flex-direction: column;
+    align-items: flex-start;
+    color: rgba(#000, 0.8);
+    padding: 20px 35px 20px 20px;
+}
+
+.title {
+    overflow: hidden;
+    max-height: 3rem;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    -webkit-box-orient: vertical;
+}
+
+.rating {
+    width: 100%;
+    display: flex;
+    margin: 10px 0;
+    align-items: center;
+    justify-content: space-between;
+
+    > div {
+        display: flex;
+        width: fit-content;
+        align-items: center;
+    }
+
+    .rating_star {
+        display: flex;
+        color: $colorsub2;
+        align-items: center;
+        padding-right: 20px;
+
+        > span {
+            font-size: 1rem;
+            margin-right: 6px;
+            line-height: 1.2rem;
+            border-bottom: 1px solid currentColor;
+        }
+
+        > *:last-child {
+            margin-bottom: 4px;
+        }
+    }
+
+    .rating_count {
+        padding: 2px 15px;
+        color: currentColor;
+        border-left: 1px solid $border;
+        border-right: 1px solid $border;
+
+        > *:first-child {
+            font-size: 1rem;
+            margin-right: 6px;
+            line-height: 1.2rem;
+            border-bottom: 1px solid currentColor;
+        }
+
+        > *:last-child {
+            color: #767676;
+        }
+    }
+
+    .sold {
+        color: currentColor;
+        padding: 0 15px;
+
+        > *:first-child {
+            font-size: 1rem;
+            margin-right: 6px;
+        }
+
+        > *:last-child {
+            color: #767676;
+        }
+    }
+
+    > span {
+        color: #767676;
+    }
+}
+
+.price {
+    width: 100%;
+    display: flex;
+    font-size: 1rem;
+    line-height: 2rem;
+    padding: 15px 20px;
+    align-items: center;
+    text-transform: uppercase;
+    justify-content: flex-start;
+    background-color: $footer-container;
+
+    > * {
+        margin-right: 15px;
+    }
+
+    .original_price {
+        color: #767676;
+        text-decoration: line-through;
+    }
+
+    .discounted_price {
+        color: $colorsub2;
+        font-size: 1.875rem;
+    }
+
+    .discount {
+        padding: 2px 4px;
+        font-weight: 600;
+        line-height: 100%;
+        font-size: 0.75rem;
+        border-radius: 2px;
+        color: $common-text-color;
+        background-color: $colorsub2;
+    }
+}
+
+.deals {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > * {
+        margin-top: 30px;
+    }
+}
+
+.topic {
+    width: 110px;
+    line-height: 1rem;
+    color: #767676;
+    display: inline-block;
+    height: fit-content;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    align-self: center;
+}
+
+.body {
+    display: flex;
+
+    > svg {
+        height: 20px;
+        width: 20px;
+        margin: 0 5px;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+
+    > div {
+        display: flex;
+        margin-bottom: 10px;
+
+        > span {
+            margin-right: 10px;
+        }
+    }
+
+    svg {
+        width: 12px;
+        height: 12px;
+        margin: 3px 5px;
+    }
+}
+
+.counter {
+    display: flex;
+
+    > * {
+        min-width: 32px;
+        padding: 4px 8px;
+        color: #767676;
+        text-align: center;
+        font-size: 1.25rem;
+        line-height: 1.375rem;
+        border: 1px solid $border;
+        background-color: transparent;
+    }
+
+    input {
+        width: 55px;
+        color: #222;
+        font-size: 1rem;
+        border-left: none;
+        border-right: none;
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+
+.piece_available {
+    line-height: 1rem;
+    color: #767676;
+    display: inline-block;
+    align-self: center;
+    margin-left: 15px;
+}
+
+.actions {
+    width: 100%;
+    padding: 32px 0;
+    border-bottom: 1px solid $common-border-color;
+
+    button {
+        border: 1px solid $colorsub2;
+        font-size: 1rem;
+        padding: 15px 21px;
+        line-height: 100%;
+        border-radius: 2px;
+        margin-right: 15px;
+
+        &:first-child {
+            background-color: rgba(255, 87, 34, 0.1);
+            color: $colorsub2;
+
+            &:hover {
+                background-color: rgba(255, 197, 178, 0.181);
+            }
+
+            &:active {
+                background: rgba(128, 44, 17, 0.145);
+                box-shadow: inset 0 2px 1px 0 rgba(#000, 0.05);
+            }
+
+            > svg {
+                margin-right: 8px;
+            }
+        }
+
+        &:last-child {
+            background-color: $colorsub2;
+            color: $common-text-color;
+
+            &:hover {
+                background-color: $common-hover-button;
+            }
+
+            &:active {
+                background: #e2492b;
+                box-shadow: inset 0 2px 1px 0 rgba(#000, 0.05);
+            }
+        }
+    }
 }

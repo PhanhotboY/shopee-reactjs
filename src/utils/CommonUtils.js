@@ -18,12 +18,8 @@ const CommonUtils = {
         );
     },
 
-    getPercentNumber(percentString) {
-        return (Number(percentString.slice(0, -1)) || 0) / 100;
-    },
-
     getDiscountedPrice(origin, discount) {
-        const discountedPrice = origin - origin * discount;
+        const discountedPrice = origin - (origin * discount) / 100;
         return discountedPrice >= 0 ? discountedPrice : 0;
     },
 

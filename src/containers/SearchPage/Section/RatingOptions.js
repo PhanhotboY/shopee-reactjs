@@ -67,7 +67,7 @@ class Rating extends Component {
     }
 }
 
-const CountingStar = ({ numberOfStars = 0 }) => {
+export const CountingStar = ({ numberOfStars = 0 }) => {
     const stars = [];
 
     for (let i = 0; i < numberOfStars; i++) {

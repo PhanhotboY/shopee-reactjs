@@ -35,10 +35,7 @@ class ReceiptProductTag extends Component {
 
                     <span className={style.discounted_price}>
                         {CommonUtils.toCurrencyString(
-                            CommonUtils.getDiscountedPrice(
-                                product.originPrice,
-                                CommonUtils.getPercentNumber(product.discount)
-                            )
+                            CommonUtils.getDiscountedPrice(product.originPrice, product.discount)
                         )}
                     </span>
                 </div>

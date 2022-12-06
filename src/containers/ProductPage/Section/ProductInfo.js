@@ -4,27 +4,63 @@ import { FormattedMessage } from 'react-intl';
 
 import style from './ProductInfo.module.scss';
 import { CommonUtils } from 'utils';
+import RatingStar from './RatingStar';
 
 class ProductInfo extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            quantity: 1,
+        };
+    }
+
+    handleUpDownQuantity(action) {
+        let quantity = this.state.quantity;
+        quantity = action === 'add' ? ++quantity : --quantity;
+
+        if (quantity < 1) quantity = 1;
+        if (quantity > this.props.product.totalRemainder)
+            quantity = this.props.product.totalRemainder;
+
+        this.setState({ quantity });
+    }
+
+    handleAdjustQuantity(e) {
+        let quantity = e.target.value;
+
+        if (quantity > this.props.product.totalRemainder)
+            quantity = this.props.product.totalRemainder;
+
+        this.setState({ quantity });
     }
 
     render() {
-        const { title, rating, sold, originPrice, discount, address } = this.props.product;
+        const {
+            title,
+            rating = 4.3,
+            sold,
+            originPrice,
+            discount,
+            address,
+            totalRemainder,
+        } = this.props.product;
 
         return (
             <div className={`${style.wrapper}`}>
-                <div className={style.title}>
-                    <span>{title}</span>
-                </div>
+                <div className={style.title}>{title}</div>
 
                 <div className={style.rating}>
                     <div>
-                        <div className={style.rating_star}></div>
-
-                        <div className={style.rating}>
+                        <div className={style.rating_star}>
                             <span>{rating}</span>
+
+                            <RatingStar rating={rating} />
+                        </div>
+
+                        <div className={style.rating_count}>
+                            <span>{123}</span>
+
                             <span>
                                 <FormattedMessage id='product.ratings' />
                             </span>
@@ -44,52 +80,120 @@ class ProductInfo extends Component {
                 </div>
 
                 <div className={style.price}>
-                    <div className={style.original_price}>{originPrice}</div>
+                    {discount !== 0 && (
+                        <div className={style.original_price}>
+                            {CommonUtils.toCurrencyString(originPrice)}
+                        </div>
+                    )}
 
                     <div className={style.discounted_price}>
-                        {CommonUtils.getDiscountedPrice(originPrice, discount)}
+                        {CommonUtils.toCurrencyString(
+                            CommonUtils.getDiscountedPrice(originPrice, discount)
+                        )}
                     </div>
 
-                    <div className={style.discount}>
-                        {discount}% <FormattedMessage id='product.discount' />
-                    </div>
+                    {discount !== 0 && (
+                        <div className={style.discount}>
+                            {discount}% <FormattedMessage id='product.discount' />
+                        </div>
+                    )}
                 </div>
 
-                <div className={style.shipping}>
-                    <span className={style.topic}>
-                        <FormattedMessage id='product.shipping' />
-                    </span>
+                <DealOptions
+                    adderss={address}
+                    totalRemainder={totalRemainder}
+                    quantity={this.state.quantity}
+                    upDownHandler={this.handleUpDownQuantity.bind(this)}
+                    onChangeQuantityHandler={this.handleAdjustQuantity.bind(this)}
+                />
 
-                    <div className={style.body}>
-                        <img />
+                <div className={style.actions}>
+                    <button type='button'>
+                        <i className='fa-solid fa-cart-plus'></i>
+                        <FormattedMessage id='product.add-to-cart' />
+                    </button>
+                    <button type='button'>
+                        <FormattedMessage id='product.buy-now' />
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
 
-                        <div className={style.content}>
-                            <div>
-                                <span className={style.topic}>
-                                    <FormattedMessage id='product.shipping-to' />
-                                </span>
+const DealOptions = ({
+    address,
+    totalRemainder,
+    quantity,
+    upDownHandler,
+    onChangeQuantityHandler,
+}) => {
+    return (
+        <div className={style.deals}>
+            <div className={style.body}>
+                <span className={`${style.topic} align-self-start`}>
+                    <FormattedMessage id='product.shipping' />
+                </span>
 
-                                <div className={style.body}>
-                                    <span>{address}</span>
-                                    <i className='fa-solid fa-chevron-down'></i>
-                                </div>
+                <div className={style.body}>
+                    <i className='fa-solid fa-truck'></i>
+
+                    <div className={style.content}>
+                        <div>
+                            <span className={style.topic}>
+                                <FormattedMessage id='product.shipping-to' />
+                            </span>
+
+                            <div className={style.body}>
+                                <span>{address}</span>
+
+                                <i className='fa-solid fa-chevron-down'></i>
                             </div>
+                        </div>
 
-                            <div>
-                                <span className={style.topic}>
-                                    <FormattedMessage id='product.shipping-fee' />
-                                </span>
+                        <div>
+                            <span className={style.topic}>
+                                <FormattedMessage id='product.shipping-fee' />
+                            </span>
 
-                                <div className={style.body}>₫13.500 - ₫22.000</div>
+                            <div className={style.body}>
+                                <span>₫13.500 - ₫22.000</span>
                                 <i className='fa-solid fa-chevron-down'></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        );
-    }
-}
+
+            <div className={style.body}>
+                <span className={style.topic}>
+                    <FormattedMessage id='product.quantity' />
+                </span>
+
+                <div className={style.body}>
+                    <div className={style.counter}>
+                        <button type='button' onClick={() => upDownHandler('sub')}>
+                            -
+                        </button>
+                        <input
+                            type='number'
+                            name='quantity'
+                            value={quantity}
+                            onChange={onChangeQuantityHandler}
+                        />
+                        <button type='button' onClick={() => upDownHandler('add')}>
+                            +
+                        </button>
+                    </div>
+
+                    <span className={style.piece_available}>
+                        {totalRemainder} <FormattedMessage id='product.pieces-available' />
+                    </span>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 const mapStateToProps = (state) => {
     return {};

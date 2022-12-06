@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 import { CommonUtils } from 'utils';
 import style from './Receipt.module.scss';
 import ReceiptProductTag from './ReceiptProductTag';
-import { Form } from 'reactstrap';
 
 class Purchase extends Component {
     constructor(props) {
@@ -82,7 +81,7 @@ const ReceiptFooter = ({ products }) => {
                                 prevPrice +
                                 CommonUtils.getDiscountedPrice(
                                     currProduct.originPrice,
-                                    CommonUtils.getPercentNumber(currProduct.discount)
+                                    currProduct.discount
                                 ),
                             0
                         )
@@ -113,28 +112,28 @@ const products = [
     {
         title: '[Giao sống tận nơi] Cua hoàng đế Alaska đỏ, size to 2 - hơn 3kg/con, hàng cao cấp (giá đã tính tiền nguyên con)',
         originPrice: 4845000,
-        discount: '10%',
+        discount: 10,
         quantity: 353,
         image: ['c2a0cbf4cfc2c3a01f749af6c3a48dfc'],
     },
     {
         title: '[Giao sống tận nơi] Cua hoàng đế Alaska đỏ, size to 2 - hơn 3kg/con, hàng cao cấp (giá đã tính tiền nguyên con)',
         originPrice: 4845000,
-        discount: '10%',
+        discount: 23,
         quantity: 353,
         image: ['c2a0cbf4cfc2c3a01f749af6c3a48dfc'],
     },
     {
         title: '[Giao sống tận nơi] Cua hoàng đế Alaska đỏ, size to 2 - hơn 3kg/con, hàng cao cấp (giá đã tính tiền nguyên con)',
         originPrice: 4845000,
-        discount: '10%',
+        discount: 34,
         quantity: 353,
         image: ['c2a0cbf4cfc2c3a01f749af6c3a48dfc'],
     },
     {
         title: '[Giao sống tận nơi] Cua hoàng đế Alaska đỏ, size to 2 - hơn 3kg/con, hàng cao cấp (giá đã tính tiền nguyên con)',
         originPrice: 4845000,
-        discount: '10%',
+        discount: 45,
         quantity: 353,
         image: ['c2a0cbf4cfc2c3a01f749af6c3a48dfc'],
     },

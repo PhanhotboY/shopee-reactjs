@@ -46,7 +46,7 @@ class ProductTag extends Component {
                             promotion={product.promotion}
                             price={CommonUtils.getDiscountedPrice(
                                 product.originPrice,
-                                product.discount / 100
+                                product.discount
                             )}
                             sold={product.sold}
                             address={product.address}

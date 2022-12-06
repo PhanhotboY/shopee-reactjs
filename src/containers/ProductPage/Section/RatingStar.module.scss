@@ -1,0 +1,28 @@
+@import 'styles/variables';
+
+.wrapper {
+    color: currentColor;
+    position: relative;
+    width: fit-content;
+}
+
+.star_container {
+    display: flex;
+    flex-wrap: nowrap;
+    color: currentColor;
+    width: fit-content;
+    overflow: hidden;
+    max-width: 100%;
+
+    &:last-child {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    svg {
+        width: 14px;
+        height: 14px;
+        margin-right: 1px;
+    }
+}
