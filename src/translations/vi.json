@@ -161,7 +161,7 @@
         }
     },
     "shop": {
-        "last-active": "Online {time} phút trước",
+        "last-active": "Online {time} Phút Trước",
         "follow" : "THEO DÕI",
         "chat": "Chat",
         "products": "Sản Phẩm",
@@ -181,7 +181,13 @@
         "top-sales": "Bán chạy",
         "price": "Giá",
         "price-low-to-high": "Giá: Thấp đến Cao",
-        "price-high-to-low": "Giá: Cao đến Thấp"
+        "price-high-to-low": "Giá: Cao đến Thấp",
+        "chat-now": "Chat ngay",
+        "view-shop": "xem shop",
+        "response-rate": "tỉ lệ phản hồi",
+        "response-time": "thời gian phản hồi",
+        "within-hours": "trong vài giờ",
+        "years-ago": "năm trước"
     },
     "search": {
         "search-result-for": "Kết quả tìm kiếm cho từ khoá ",
@@ -201,6 +207,18 @@
         "discount": "Giảm Giá"
     },
     "product": {
-        "share": "Chia sẻ:"
+        "share": "Chia sẻ:",
+        "liked": "Đã thích ({like})",
+        "ratings": "Đánh Giá",
+        "sold": "Đã Bán",
+        "report": "Tố cáo",
+        "discount": "GIẢM",
+        "shipping": "Vận Chuyển",
+        "shipping-to": "Vận Chuyển Tới",
+        "shipping-fee": "Phí Vận Chuyển",
+        "quantity": "Số Lượng",
+        "pieces-available": "sản phẩm có sẵn",
+        "add-to-cart": "Thêm Vào Giỏ Hàng",
+        "buy-now": "Mua Ngay"
     }
 }

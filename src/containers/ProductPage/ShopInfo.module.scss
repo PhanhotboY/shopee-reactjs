@@ -1,0 +1,113 @@
+@import 'styles/variables';
+
+.wrapper {
+    padding: 25px;
+    display: flex;
+    font-size: 0.875rem;
+    color: rgba(#000, 0.4);
+}
+
+.shop {
+    display: flex;
+    border-right: 1px solid $common-border-color;
+
+    > a {
+        width: 78px;
+        height: 0;
+        margin-right: 20px;
+
+        .avatar {
+            width: 100%;
+            height: 78px;
+            border-radius: 50%;
+        }
+    }
+
+    > div:last-child {
+        width: 340px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .shop_name {
+        font-size: 1rem;
+        color: #333;
+        line-height: 1.2rem;
+    }
+
+    .last_active {
+        color: rgba(#000, 0.54);
+        line-height: 1rem;
+    }
+}
+
+.actions {
+    flex-grow: 1;
+    display: flex;
+    align-items: flex-end;
+
+    button {
+        font-size: 0.875rem;
+        line-height: 100%;
+        border-radius: 2px;
+        margin-right: 15px;
+        padding: 0.5rem 1rem;
+
+        &:first-child {
+            color: $colorsub2;
+            border: 1px solid $colorsub2;
+            background-color: rgba(255, 87, 34, 0.1);
+
+            &:hover {
+                background-color: rgba(255, 197, 178, 0.181);
+            }
+
+            &:active {
+                background: rgba(128, 44, 17, 0.145);
+                box-shadow: inset 0 2px 1px 0 rgba(#000, 0.05);
+            }
+        }
+
+        &:last-child {
+            color: #666;
+            background-color: transparent;
+            border: 1px solid rgba(0, 0, 0, 0.09);
+            box-shadow: 0 1px 1px 0 rgba(#000, 0.03);
+
+            &:hover {
+                background-color: rgba(#000, 0.02);
+            }
+
+            &:active {
+                box-shadow: inset 0 2px 1px 0 rgba(#000, 0.05);
+            }
+        }
+
+        > svg {
+            margin-right: 8px;
+        }
+    }
+}
+
+.info {
+    flex-grow: 1;
+    padding-left: 55px;
+
+    > div > div {
+        padding: 12px 0;
+        line-height: 100%;
+
+        > span {
+            margin-right: 12px;
+
+            &:first-child {
+                text-transform: capitalize;
+            }
+
+            &:last-child {
+                color: $colorsub2;
+            }
+        }
+    }
+}

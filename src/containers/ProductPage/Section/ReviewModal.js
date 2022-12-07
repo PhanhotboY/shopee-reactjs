@@ -13,18 +13,26 @@ class ReviewModal extends Component {
     }
 
     componentDidMount() {
-        const wrapper = document.querySelector(`.${style.wrapper}`);
-
-        wrapper.addEventListener('click', (e) => e.stopPropagation());
+        // const wrapper = document.querySelector(`.${style.wrapper}`);
+        // wrapper.onclick = (e) => e.stopPropagation();
     }
 
-    handleSlideImage() {}
+    handleSlideImage(direction) {
+        let reviewingImage = this.state.reviewingImage;
+        const length = this.props.images.length;
+
+        if (direction === 'next') reviewingImage = ++reviewingImage * (reviewingImage !== length);
+
+        if (direction === 'back') reviewingImage = !reviewingImage * length + --reviewingImage;
+
+        this.setState({ reviewingImage });
+    }
 
     render() {
         const { title, images } = this.props;
 
         return (
-            <div className={style.wrapper}>
+            <div className={style.wrapper} onClick={(e) => e.stopPropagation()}>
                 <div className={style.img_container}>
                     <div className={style.dummy}></div>
 
@@ -36,13 +44,39 @@ class ReviewModal extends Component {
                             }') center / cover no-repeat`,
                         }}
                     ></div>
+
+                    <button type='button' onClick={() => this.handleSlideImage('back')}>
+                        <i className='fa-solid fa-chevron-left'></i>
+                    </button>
+                    <button type='button' onClick={() => this.handleSlideImage('next')}>
+                        <i className='fa-solid fa-chevron-right'></i>
+                    </button>
                 </div>
 
-                <ul>
-                    {images.map((image, index) => (
-                        <li key={index}></li>
-                    ))}
-                </ul>
+                <div className={style.thumbnail_container}>
+                    <span className={style.title}>{title}</span>
+
+                    <ul className='row'>
+                        {images.map((image, index) => (
+                            <li key={index}>
+                                <div onClick={() => this.setState({ reviewingImage: index })}>
+                                    <div className={style.dummy}></div>
+
+                                    {this.state.reviewingImage === index && (
+                                        <div className={style.border}></div>
+                                    )}
+
+                                    <div
+                                        className={style.thumbnail}
+                                        style={{
+                                            background: `url('https://cf.shopee.vn/file/${image}') center / cover no-repeat`,
+                                        }}
+                                    ></div>
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         );
     }

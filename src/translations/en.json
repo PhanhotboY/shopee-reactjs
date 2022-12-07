@@ -161,7 +161,7 @@
         }
     },
     "shop": {
-        "last-active": "Active {time} minutes ago",
+        "last-active": "Active {time} Minutes Ago",
         "follow" : "follow",
         "chat": "Chat",
         "products": "Products",
@@ -181,7 +181,13 @@
         "top-sales": "Top Sales",
         "price": "Price",
         "price-low-to-high": "Price: Low to High",
-        "price-high-to-low": "Price: High to Low"
+        "price-high-to-low": "Price: High to Low",
+        "chat-now": "Chat Now",
+        "view-shop": "View Shop",
+        "response-rate": "Response Rate",
+        "response-time": "Response Time",
+        "within-hours": "within hours",
+        "years-ago": "years ago"
     },
     "search": {
         "search-result-for": "Search result for ",
@@ -201,6 +207,18 @@
         "discount": "Discount"
     },
     "product": {
-        "share": "Share:"
+        "share": "Share:",
+        "liked": "Favourite ({like})",
+        "ratings": "Ratings",
+        "sold": "Sold",
+        "report": "Report",
+        "discount": "off",
+        "shipping": "Shipping",
+        "shipping-to": "Shipping To",
+        "shipping-fee": "Shipping Fee",
+        "quantity": "Quantity",
+        "pieces-available": "pieces available",
+        "add-to-cart": "Add To Cart",
+        "buy-now": "Buy Now"
     }
 }

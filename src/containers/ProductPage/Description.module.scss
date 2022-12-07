@@ -1,0 +1,39 @@
+@import 'styles/variables';
+
+.wrapper {
+    padding: 25px;
+    font-size: 0.875rem;
+    color: #333;
+}
+
+.header {
+    background-color: rgba(#000, 0.03);
+    padding: 14px;
+    font-size: 1.125rem;
+    line-height: 1.2rem;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.body {
+    padding: 0 15px;
+
+    > div {
+        display: flex;
+        margin-bottom: 15px;
+        line-height: 1.1rem;
+
+        &:last-child {
+            margin-bottom: 35px;
+        }
+    }
+}
+
+.name {
+    width: 8.75rem;
+    padding-right: 12px;
+    color: $border;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

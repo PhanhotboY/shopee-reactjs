@@ -17,20 +17,19 @@ class ProductInfo extends Component {
 
     handleUpDownQuantity(action) {
         let quantity = this.state.quantity;
-        quantity = action === 'add' ? ++quantity : --quantity;
+        const total = this.props.product.totalRemainder;
 
-        if (quantity < 1) quantity = 1;
-        if (quantity > this.props.product.totalRemainder)
-            quantity = this.props.product.totalRemainder;
+        if (action === 'add') quantity = ++quantity - (quantity === total + 1);
+        if (action === 'sub') quantity = --quantity + !quantity;
 
         this.setState({ quantity });
     }
 
     handleAdjustQuantity(e) {
         let quantity = e.target.value;
+        const total = this.props.product.totalRemainder;
 
-        if (quantity > this.props.product.totalRemainder)
-            quantity = this.props.product.totalRemainder;
+        if (quantity > total) quantity = total;
 
         this.setState({ quantity });
     }
@@ -100,7 +99,7 @@ class ProductInfo extends Component {
                 </div>
 
                 <DealOptions
-                    adderss={address}
+                    address={address}
                     totalRemainder={totalRemainder}
                     quantity={this.state.quantity}
                     upDownHandler={this.handleUpDownQuantity.bind(this)}

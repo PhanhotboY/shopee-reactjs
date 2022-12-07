@@ -1,21 +1,37 @@
+@import 'styles/variables';
+
 .wrapper {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 61vw;
-    height: 81vh;
+    display: flex;
+    border-radius: 4px;
+    height: fit-content;
     transform: translate(-50%, -50%);
-    background-color: #fff;
+    background-color: $common-text-color;
+
+    li {
+        width: 90px;
+        padding: 5px;
+        display: flex;
+
+        > div {
+            width: 100%;
+            height: 100%;
+            position: relative;
+
+            &:hover {
+                opacity: 0.75;
+            }
+        }
+    }
 }
 
 .img_container {
+    flex-grow: 1;
     position: relative;
     display: inline-block;
-    height: 50%;
-
-    .dummy {
-        margin-left: 100%;
-    }
 
     .reviewing_img {
         position: absolute;
@@ -23,5 +39,63 @@
         left: 0;
         right: 0;
         bottom: 0;
+        margin: 12px;
     }
+
+    button {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 80px;
+        font-size: 2rem;
+        transform: translateY(-50%);
+        border: none;
+        background-color: rgba(#000, 0.5);
+        color: $common-text-color;
+
+        &:first-of-type {
+            left: 12px;
+        }
+
+        &:last-of-type {
+            right: 12px;
+        }
+    }
+}
+
+.thumbnail_container {
+    width: 35%;
+    height: 100%;
+    padding: 30px 0;
+
+    .title {
+        padding-right: 12px;
+        font-size: 1.0625rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        word-break: break-all;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+    }
+}
+
+.border,
+.thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: $zindex;
+}
+
+.border {
+    z-index: $zindex + 1;
+    border: 2px solid $colorsub2;
+    background-color: transparent;
+}
+
+.dummy {
+    margin-top: 100%;
 }

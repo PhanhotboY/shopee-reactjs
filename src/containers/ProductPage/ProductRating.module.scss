@@ -1,0 +1,31 @@
+@import 'styles/variables';
+
+.wrapper {
+    padding: 25px;
+}
+
+.header {
+    font-size: 1.125rem;
+    line-height: 1.2rem;
+    margin-bottom: 18px;
+}
+
+.rating_option {
+    padding: 31px;
+    color: $colorsub2;
+    background-color: #fffbf8;
+    min-height: 5rem;
+    border: 1px solid #f9ede5;
+    margin-bottom: 1rem;
+
+    .rating_star {
+        font-size: 1rem;
+
+        > div {
+            > span:first-child {
+                font-size: 2rem;
+                margin-right: 6px;
+            }
+        }
+    }
+}

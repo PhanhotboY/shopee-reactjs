@@ -90,7 +90,9 @@ const ShopSubInfoRight = ({}) => {
                 <i className='fa-solid fa-user-check'></i>
                 <FormattedMessage id='shop.joined' />
                 {': '}
-                <span>{78}</span>
+                <span>
+                    {78} <FormattedMessage id='shop.years-ago' />
+                </span>
             </span>
         </div>
     );

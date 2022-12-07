@@ -2,13 +2,15 @@ import { connect } from 'react-redux';
 import { Component } from 'react';
 import { push } from 'connected-react-router';
 
-import { history } from '../../redux';
 import style from './index.module.scss';
-import GoToTopBtn from 'containers/System/Section/GoToTopBtn';
-import { Link } from 'react-router-dom';
+import ShopInfo from './ShopInfo';
 import ProductDetail from './ProductDetail';
+import BreadCrumbs from 'components/BreadCrumbs';
+import GoToTopBtn from 'containers/System/Section/GoToTopBtn';
+import Description from './Description';
+import ProductRating from './ProductRating';
 
-class Search extends Component {
+class ProductPage extends Component {
     constructor(props) {
         super(props);
 
@@ -19,6 +21,7 @@ class Search extends Component {
                 originPrice: 150000,
                 discount: 32,
                 sold: 51,
+                liked: 3234,
                 images: [
                     '08de791de968e016c6d9a72d1d08318b',
                     'ab3d611ac64aeb0f2e969b506830a9f7',
@@ -33,35 +36,32 @@ class Search extends Component {
                 address: 'Ho Chi Minh',
                 totalRemainder: 20,
                 category: 'Sen da',
+                userId: 5,
+                description: 'hello everyone, i am PhanhotboY',
             },
         };
     }
 
-    componentDidMount() {}
-
-    componentWillUnmount() {}
-
     render() {
+        const product = this.state.product;
+
         return (
             <div className={style.wrapper}>
-                <div className={style.breadcrumbs}>
-                    <Link to='/'>Home</Link>
-                    <i className='fa-solid fa-chevron-right'></i>
+                <BreadCrumbs
+                    breadcrumbs={[
+                        { name: 'Home', link: '/' },
+                        { name: 'Sen da', link: `/search?keyword=${product.category}` },
+                        { name: product.title },
+                    ]}
+                />
 
-                    <Link to={`/search?keyword=${this.state.product.category}`}>
-                        {this.state.product.category}
-                    </Link>
+                <ProductDetail product={product} />
 
-                    <i className='fa-solid fa-chevron-right'></i>
+                <ShopInfo shopId={product.userId} />
 
-                    <span>
-                        {this.state.product.title}
-                        {this.state.product.title}
-                        {this.state.product.title}
-                    </span>
-                </div>
+                <Description product={product} />
 
-                <ProductDetail product={this.state.product} />
+                <ProductRating product={product} />
 
                 <GoToTopBtn />
             </div>
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductPage);

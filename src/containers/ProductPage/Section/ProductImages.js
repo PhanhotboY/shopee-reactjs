@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import style from './ProductImages.module.scss';
 import ThumbnailImages from './ThumbnailImages';
 import ReviewModal from './ReviewModal';
+import { CommonUtils } from 'utils';
 
 class ProductImages extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ class ProductImages extends Component {
                     toggleModalHandler={() => this.setState({ displayModal: true })}
                 />
 
-                <Interaction liked={product.like} />
+                <Interaction liked={CommonUtils.toThousandUnitString(product.liked)} />
 
                 {this.state.displayModal && (
                     <div
@@ -112,7 +113,7 @@ const Interaction = ({ liked = 0 }) => {
                     <i className='fa-regular fa-heart'></i>
 
                     <span>
-                        <FormattedMessage id='product.liked' value={{ like: liked }} />
+                        {liked && <FormattedMessage id='product.liked' values={{ like: liked }} />}
                     </span>
                 </label>
             </div>

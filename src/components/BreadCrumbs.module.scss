@@ -1,0 +1,24 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+
+    > * {
+        line-height: 1.125rem;
+        margin-right: 6px;
+        text-decoration: none;
+        width: fit-content;
+        white-space: nowrap;
+    }
+
+    span {
+        overflow: hidden;
+        font-size: 0.875rem;
+        word-break: break-all;
+        text-overflow: ellipsis;
+    }
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
+}
