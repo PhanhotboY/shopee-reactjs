@@ -40,7 +40,7 @@ class Filter extends Component {
         this.setState = (state, callback) => {
             return;
         };
-        this.unlisten();
+        if (this.unlisten) this.unlisten();
     }
 
     async componentDidUpdate(prevProps) {

@@ -1,0 +1,118 @@
+@import 'styles/variables';
+
+.wrapper {
+    margin-top: 16px;
+    font-size: 0.875rem;
+}
+
+.rating_empty {
+    height: 400px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    img {
+        width: 92px;
+        height: 83px;
+        margin-bottom: 12px;
+    }
+
+    span {
+        font-size: 1rem;
+    }
+}
+
+.rating_tag {
+    padding: 16px;
+    padding-right: 0;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid $common-border-color;
+
+    &:first-child {
+        padding-top: 0;
+    }
+
+    .avatar {
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        border-radius: 50%;
+        margin-right: 10px;
+    }
+
+    .body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+
+        > span {
+            font-size: 0.75rem;
+
+            &:first-of-type {
+                cursor: pointer;
+            }
+
+            &:last-of-type {
+                color: rgba(#000, 0.54);
+                margin-top: 0.75rem;
+                display: inline-block;
+            }
+        }
+    }
+
+    .rating_star {
+        color: $colorsub2;
+        margin: 4px 0;
+    }
+
+    p {
+        margin-top: 15px;
+    }
+
+    .review_image {
+        height: 72px;
+        width: 100%;
+        margin-bottom: 12px;
+
+        > div {
+            padding: 0;
+            width: 72px;
+            margin: 0 5px;
+        }
+    }
+
+    .reply {
+        width: 100%;
+
+        > div {
+            padding: 14px;
+            margin-top: 12px;
+            width: 100%;
+            line-height: 1rem;
+            height: fit-content;
+            background-color: rgba($common-border-color, 0.5);
+
+            span {
+                color: #8b572a;
+            }
+
+            p {
+                margin: 12px 0 0;
+            }
+        }
+    }
+
+    .helpful {
+        color: $border;
+        cursor: pointer;
+        margin-top: 1rem;
+
+        svg {
+            margin-right: 5px;
+        }
+    }
+}

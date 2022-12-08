@@ -8,6 +8,7 @@ export const PATH = {
     SHOP: '/shops',
     SEARCH: '/search',
     PRODUCT: '/products',
+    CART: '/cart',
 };
 
 export const ROLES = {

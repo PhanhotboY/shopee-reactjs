@@ -1,0 +1,62 @@
+@import 'styles/variables';
+
+.wrapper {
+    background-color: $common-white;
+
+    > div {
+        display: flex;
+        justify-content: space-between;
+        color: $colorsub2;
+        padding: 30px 0 30px 18px;
+    }
+
+    svg {
+        width: 130px;
+        fill: $colorsub2;
+    }
+}
+
+.logo {
+    display: flex;
+    margin-top: 4px;
+    align-items: center;
+
+    > a {
+        height: fit-content;
+
+        &:first-child {
+            height: 46px;
+            padding: 0;
+            padding-right: 15px;
+        }
+
+        &:last-child {
+            color: $colorsub2;
+            font-size: 1.25rem;
+            line-height: 1.875rem;
+            border-left: 1px solid currentColor;
+            padding: 0 12px;
+        }
+    }
+}
+
+.search_box {
+    width: 50%;
+
+    > div {
+        width: 100%;
+
+        > div:first-child {
+            outline: 2px solid $colorsub2;
+
+            svg {
+                width: 100%;
+                fill: $common-white;
+            }
+
+            > div {
+                width: 100%;
+            }
+        }
+    }
+}

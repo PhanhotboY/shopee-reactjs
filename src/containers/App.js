@@ -20,6 +20,7 @@ import User from 'routes/User';
 import Shop from 'routes/Shop';
 import Search from 'routes/Search';
 import Product from 'routes/Product';
+import Cart from 'routes/Cart';
 
 class App extends Component {
     constructor(props) {
@@ -71,6 +72,8 @@ class App extends Component {
                                 <Route path={PATH.SEARCH} component={Search} />
 
                                 <Route path={PATH.PRODUCT} component={Product} />
+
+                                <Route path={PATH.CART} component={Cart} />
 
                                 <Route
                                     component={() => {

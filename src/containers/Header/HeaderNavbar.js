@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import * as actions from '../../store/actions';
 import style from './HeaderNavbar.module.scss';
@@ -10,18 +9,13 @@ import HeaderSupport from './Section/HeaderSupport';
 class HeaderNavbar extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            isInHomePage:
-                window.location.pathname !== '/signup' && window.location.pathname !== '/login',
-        };
     }
 
     componentDidMount() {}
 
     render() {
         return (
-            <div className={`${style.navbar} grid`}>
+            <div className={`${style.navbar} grid`} style={this.props.style || {}}>
                 <HeaderConnect />
                 <HeaderSupport />
             </div>

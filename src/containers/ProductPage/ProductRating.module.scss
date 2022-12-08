@@ -2,6 +2,7 @@
 
 .wrapper {
     padding: 25px;
+    text-transform: capitalize;
 }
 
 .header {
@@ -11,21 +12,55 @@
 }
 
 .rating_option {
-    padding: 31px;
-    color: $colorsub2;
-    background-color: #fffbf8;
+    padding: 30px;
+    display: flex;
     min-height: 5rem;
-    border: 1px solid #f9ede5;
+    flex-wrap: nowrap;
+    color: $colorsub2;
     margin-bottom: 1rem;
+    align-items: center;
+    white-space: nowrap;
+    border: 1px solid #f9ede5;
+    background-color: #fffbf8;
 
     .rating_star {
-        font-size: 1rem;
+        margin-right: 30px;
+        width: fit-content;
+        font-size: 1.125rem;
+        text-transform: lowercase;
 
         > div {
             > span:first-child {
-                font-size: 2rem;
+                font-size: 1.875rem;
                 margin-right: 6px;
             }
+        }
+    }
+
+    .options {
+        display: flex;
+        flex-shrink: 1;
+        flex-wrap: wrap;
+        margin-left: 15px;
+
+        .option {
+            color: #333;
+            cursor: pointer;
+            padding: 8px 10px;
+            line-height: 1rem;
+            text-align: center;
+            min-width: 6.25rem;
+            height: fit-content;
+            white-space: nowrap;
+            font-size: 0.875rem;
+            margin: 5px 8px 5px 0;
+            background-color: $common-white;
+            border: 1px solid $common-border-color;
+        }
+
+        .option--active {
+            color: $colorsub2;
+            border-color: currentColor;
         }
     }
 }

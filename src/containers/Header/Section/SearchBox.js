@@ -26,7 +26,7 @@ class SearchBox extends Component {
     }
 
     componentWillUnmount() {
-        this.unlisten();
+        if (this.unlisten) this.unlisten();
     }
 
     handleSubmitForm(event) {
@@ -77,13 +77,13 @@ class SearchBox extends Component {
                     {this.state.isFocusInput && <RecentSearchList />}
                 </div>
 
-                <TrendingSearchList />
+                {this.props.hiddenSubInfo || <TrendingSearchList />}
             </div>
         );
     }
 }
 
-const SearchInput = ({ children, isFocus, handleSubmitForm }) => {
+export const SearchInput = ({ children, isFocus, handleSubmitForm }) => {
     return (
         <form
             id='search_form'

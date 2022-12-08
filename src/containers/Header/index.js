@@ -5,7 +5,9 @@ import HeaderNavbar from './HeaderNavbar';
 import HeaderSearch from './HeaderSearch';
 import HeaderSign from './HeaderSign';
 import HeaderSystem from './HeaderSystem';
+import HeaderCart from './HeaderCart';
 import './Header.scss';
+
 class Header extends Component {
     constructor(props) {
         super(props);
@@ -14,6 +16,7 @@ class Header extends Component {
             isInSignPage:
                 window.location.pathname === '/signup' || window.location.pathname === '/login',
             isInSystemPage: Boolean(window.location.pathname.match(/\/system.*/g)),
+            isInCartPage: Boolean(window.location.pathname.match(/\/cart.*/g)),
         };
     }
 
@@ -28,7 +31,8 @@ class Header extends Component {
                         isInSignPage:
                             window.location.pathname === '/signup' ||
                             window.location.pathname === '/login',
-                        isInSystemPage: Boolean(window.location.pathname.match(/\/system\/.*/g)),
+                        isInSystemPage: Boolean(window.location.pathname.match(/\/system.*/g)),
+                        isInCartPage: Boolean(window.location.pathname.match(/\/cart.*/g)),
                     });
                 }
             }
@@ -45,16 +49,20 @@ class Header extends Component {
     render() {
         return (
             <header>
-                {this.state.isInSignPage || this.state.isInSystemPage || (
-                    <>
-                        <HeaderNavbar />
-                        <HeaderSearch />
-                    </>
-                )}
+                {this.state.isInSignPage ||
+                    this.state.isInSystemPage ||
+                    this.state.isInCartPage || (
+                        <>
+                            <HeaderNavbar />
+                            <HeaderSearch />
+                        </>
+                    )}
 
                 {this.state.isInSignPage && <HeaderSign />}
 
                 {this.state.isInSystemPage && <HeaderSystem />}
+
+                {this.state.isInCartPage && <HeaderCart />}
             </header>
         );
     }

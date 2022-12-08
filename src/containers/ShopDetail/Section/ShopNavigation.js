@@ -21,7 +21,7 @@ class ShopDetail extends Component {
     }
 
     componentWillUnmount() {
-        this.unlisten();
+        if (this.unlisten) this.unlisten();
     }
 
     render() {

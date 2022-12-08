@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import { PATH } from 'utils';
 
-import SearchPage from 'containers/SearchPage';
+import CartPage from 'containers/CartPage';
 
-class Search extends Component {
+class Cart extends Component {
     constructor(props) {
         super(props);
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         const header = document.querySelector('header');
         header.style.position = 'relative';
     }
@@ -21,13 +22,13 @@ class Search extends Component {
 
     render() {
         return (
-            <div className='user-container grid'>
+            <div className='user-container'>
                 <Switch>
-                    <Route path='/search' exact component={SearchPage} />
+                    <Route path='/cart' exact component={CartPage} />
 
                     <Route
                         component={() => {
-                            return <Redirect to='/' />;
+                            return <Redirect to={PATH.CART} />;
                         }}
                     />
                 </Switch>
@@ -44,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

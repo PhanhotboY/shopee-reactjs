@@ -7,12 +7,13 @@
 }
 
 .header {
-    background-color: rgba(#000, 0.03);
+    width: 100%;
     padding: 14px;
     font-size: 1.125rem;
     line-height: 1.2rem;
-    width: 100%;
     margin-bottom: 30px;
+    text-transform: capitalize;
+    background-color: rgba(#000, 0.03);
 }
 
 .body {
@@ -31,9 +32,10 @@
 
 .name {
     width: 8.75rem;
-    padding-right: 12px;
     color: $border;
     overflow: hidden;
+    padding-right: 12px;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-transform: capitalize;
 }

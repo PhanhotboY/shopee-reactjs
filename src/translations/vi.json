@@ -219,6 +219,17 @@
         "quantity": "Số Lượng",
         "pieces-available": "sản phẩm có sẵn",
         "add-to-cart": "Thêm Vào Giỏ Hàng",
-        "buy-now": "Mua Ngay"
+        "buy-now": "Mua Ngay",
+        "specifications": "CHI TIẾT SẢN PHẨM",
+        "category": "Danh Mục",
+        "stock": "Kho hàng",
+        "ships-from": "Gửi từ",
+        "description": "MÔ TẢ SẢN PHẨM",
+        "product-ratings": "ĐÁNH GIÁ SẢN PHẨM",
+        "out-of-5": "trên 5",
+        "all": "tất cả",
+        "star": "{star} Sao ({count})",
+        "with-comments": "Có Bình luận ({count})",
+        "with-media": "Có hình ảnh / video ({count})"
     }
 }

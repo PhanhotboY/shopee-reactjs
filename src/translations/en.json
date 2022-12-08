@@ -219,6 +219,17 @@
         "quantity": "Quantity",
         "pieces-available": "pieces available",
         "add-to-cart": "Add To Cart",
-        "buy-now": "Buy Now"
+        "buy-now": "Buy Now",
+        "specifications": "product specifications",
+        "category": "category",
+        "stock": "stock",
+        "ships-from": "ships from",
+        "description": "Product Description",
+        "product-ratings": "product ratings",
+        "out-of-5": "out of 5",
+        "all": "all",
+        "star": "{star} star ({count})",
+        "with-comments": "with comment ({count})",
+        "with-media": "with media ({count})"
     }
 }

@@ -1,0 +1,35 @@
+@import 'styles/variables';
+
+.wrapper {
+    font-size: 0.875rem;
+    color: #888;
+
+    > * {
+        display: flex;
+        padding: 0 20px;
+        border-radius: 3px;
+        margin-bottom: 12px;
+        background-color: $common-white;
+        box-shadow: 0 1px 1px 0 rgba(#000, 0.05);
+    }
+}
+
+.notification {
+    display: flex;
+    border-radius: 2px;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background-color: #fffefb;
+    justify-content: flex-start;
+    border: 1px solid rgba(224, 168, 0, 0.4);
+
+    span {
+        color: #222;
+        line-height: 1rem;
+        margin-left: 6px;
+    }
+
+    img {
+        height: 14px;
+    }
+}
