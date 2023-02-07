@@ -180,33 +180,6 @@
     }
 }
 
-.counter {
-    display: flex;
-
-    > * {
-        min-width: 32px;
-        padding: 4px 8px;
-        color: #767676;
-        text-align: center;
-        font-size: 1.25rem;
-        line-height: 1.375rem;
-        border: 1px solid $border;
-        background-color: transparent;
-    }
-
-    input {
-        width: 55px;
-        color: #222;
-        font-size: 1rem;
-        border-left: none;
-        border-right: none;
-
-        &:focus-visible {
-            outline: none;
-        }
-    }
-}
-
 .piece_available {
     line-height: 1rem;
     color: #767676;

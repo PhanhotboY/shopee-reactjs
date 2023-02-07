@@ -1,0 +1,48 @@
+@import 'styles/variables';
+
+.wrapper {
+    padding: 0;
+    display: flex;
+    margin-bottom: 1rem;
+    flex-direction: column;
+    background-color: transparent;
+
+    > * {
+        width: 100%;
+        display: flex;
+        padding: 1.125rem;
+        align-items: center;
+        background-color: $common-white;
+
+        &:not(:last-child) {
+            border-bottom: 1px solid $common-border-color;
+        }
+    }
+}
+
+.body {
+    display: flex;
+    padding-right: 0;
+    line-height: 1rem;
+    flex-direction: column;
+
+    > *:not(:last-child) {
+        border-bottom: 1px solid $common-border-color;
+    }
+}
+
+.shipping {
+    color: #333;
+    padding-left: 40px;
+
+    > svg {
+        color: #00bfa5;
+        margin-right: 15px;
+    }
+
+    span:last-child {
+        margin-left: 8px;
+        cursor: pointer;
+        color: cornflowerblue;
+    }
+}

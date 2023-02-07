@@ -7,7 +7,7 @@
     height: 100%;
     align-items: center;
 
-    a {
+    > a {
         height: 46px;
         width: 41px;
         display: flex;
@@ -120,9 +120,13 @@
     align-items: center;
     width: 100%;
 
+    > a {
+        height: 85%;
+    }
+
     button {
         padding: 0 15px;
-        height: 85%;
+        height: 100%;
         border-radius: 2px;
         background-color: $colorsub3;
         border: none;

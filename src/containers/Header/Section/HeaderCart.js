@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl';
+import { Link } from 'react-router-dom';
 
 import CommonUtils from 'utils/CommonUtils';
 import style from './HeaderCart.module.scss';
@@ -51,11 +52,11 @@ class HeaderCart extends Component {
     }
 }
 
-const CartButon = ({ handleTogglePopover }) => {
+const CartButon = ({}) => {
     return (
-        <a href='#'>
+        <Link to='/cart'>
             <CartIcon />
-        </a>
+        </Link>
     );
 };
 
@@ -92,9 +93,11 @@ const CartPopoverFooter = () => {
                 1 <FormattedMessage id='header.more-products-in-cart' />
             </span>
 
-            <button type='button'>
-                <FormattedMessage id='header.view-my-shopping-cart' />
-            </button>
+            <Link to='/cart'>
+                <button type='button'>
+                    <FormattedMessage id='header.view-my-shopping-cart' />
+                </button>
+            </Link>
         </div>
     );
 };

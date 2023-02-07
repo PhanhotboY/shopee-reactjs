@@ -1,12 +1,13 @@
 @import 'styles/variables';
 
 .wrapper {
-    font-size: 0.875rem;
     color: #888;
+    font-size: 0.875rem;
 
     > * {
         display: flex;
         padding: 0 20px;
+        overflow: hidden;
         border-radius: 3px;
         margin-bottom: 12px;
         background-color: $common-white;
@@ -25,11 +26,31 @@
 
     span {
         color: #222;
-        line-height: 1rem;
         margin-left: 6px;
+        line-height: 1rem;
     }
 
     img {
         height: 14px;
     }
+}
+
+.body_header {
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .select_all {
+        color: #333;
+        display: flex;
+
+        > *:first-child {
+            margin: 0 20px;
+        }
+    }
+}
+
+.attributes > * {
+    padding: 0 2rem;
 }

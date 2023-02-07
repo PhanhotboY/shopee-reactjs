@@ -1,0 +1,91 @@
+@import 'styles/variables';
+
+.wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px 20px 15px 0;
+    justify-content: space-between;
+
+    > * {
+        display: flex;
+
+        &:last-child {
+            align-items: center;
+
+            > * {
+                padding: 0 25px;
+                height: fit-content;
+            }
+        }
+
+        > label {
+            margin: 0 20px;
+        }
+    }
+
+    img {
+        width: 80px;
+        height: 80px;
+    }
+
+    a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .title {
+        width: 240px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        text-overflow: ellipsis;
+        padding: 5px 20px 0 10px;
+        -webkit-box-orient: vertical;
+    }
+
+    .total_price {
+        padding: 0;
+        width: 100px;
+        color: $colorsub3;
+        text-align: center;
+    }
+}
+
+.price {
+    color: #333;
+    display: flex;
+
+    .original_price {
+        margin-right: 10px;
+        color: rgba(#000, 0.54);
+        text-decoration: line-through;
+    }
+}
+
+.actions {
+    color: #333;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    span {
+        cursor: pointer;
+        padding: 4px 5px;
+
+        &:first-child {
+            &:hover {
+                color: $colorsub3;
+            }
+        }
+
+        &:last-child {
+            font-weight: 500;
+            color: $colorsub3;
+
+            svg {
+                margin-left: 5px;
+            }
+        }
+    }
+}

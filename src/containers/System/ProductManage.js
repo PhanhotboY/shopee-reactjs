@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+
+import style from './ProductManage.module.scss';
+
 class ProductManage extends Component {
     constructor(props) {
         super(props);

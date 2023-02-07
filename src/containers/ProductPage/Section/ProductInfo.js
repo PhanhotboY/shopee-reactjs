@@ -5,6 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import style from './ProductInfo.module.scss';
 import { CommonUtils } from 'utils';
 import RatingStar from './RatingStar';
+import Counter from 'components/Counter';
 
 class ProductInfo extends Component {
     constructor(props) {
@@ -102,8 +103,7 @@ class ProductInfo extends Component {
                     address={address}
                     totalRemainder={totalRemainder}
                     quantity={this.state.quantity}
-                    upDownHandler={this.handleUpDownQuantity.bind(this)}
-                    onChangeQuantityHandler={this.handleAdjustQuantity.bind(this)}
+                    onChangeHandler={(value) => this.setState({ quantity: value })}
                 />
 
                 <div className={style.actions}>
@@ -120,13 +120,7 @@ class ProductInfo extends Component {
     }
 }
 
-const DealOptions = ({
-    address,
-    totalRemainder,
-    quantity,
-    upDownHandler,
-    onChangeQuantityHandler,
-}) => {
+const DealOptions = ({ address, quantity, totalRemainder, onChangeHandler }) => {
     return (
         <div className={style.deals}>
             <div className={style.body}>
@@ -170,20 +164,11 @@ const DealOptions = ({
                 </span>
 
                 <div className={style.body}>
-                    <div className={style.counter}>
-                        <button type='button' onClick={() => upDownHandler('sub')}>
-                            -
-                        </button>
-                        <input
-                            type='number'
-                            name='quantity'
-                            value={quantity}
-                            onChange={onChangeQuantityHandler}
-                        />
-                        <button type='button' onClick={() => upDownHandler('add')}>
-                            +
-                        </button>
-                    </div>
+                    <Counter
+                        value={quantity}
+                        max={totalRemainder}
+                        onChangeHandler={onChangeHandler}
+                    />
 
                     <span className={style.piece_available}>
                         {totalRemainder} <FormattedMessage id='product.pieces-available' />
