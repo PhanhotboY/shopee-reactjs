@@ -15,7 +15,7 @@ instance.interceptors.response.use(
     (error) => {
         const { response } = error;
 
-        return Promise.reject(new Error('request error'));
+        return Promise.reject(new Error(response));
     }
 );
 
