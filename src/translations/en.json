@@ -231,5 +231,17 @@
         "star": "{star} star ({count})",
         "with-comments": "with comment ({count})",
         "with-media": "with media ({count})"
+    },
+    "cart": {
+        "header": "Shopping Cart",
+        "product": "Product",
+        "unit-price": "Unit Price",
+        "quantity": "Quantity",
+        "total-price": "Total Price",
+        "actions": "Actions",
+        "off-shipping": "₫15.000 off shipping on orders from ₫50.000; ₫25.000 off shipping on orders from ₫99.000",
+        "learn-more": "Learn more",
+        "find-similar": "Find Similar",
+        "notification": "Select free shipping voucher below to enjoy shipping discount"
     }
 }

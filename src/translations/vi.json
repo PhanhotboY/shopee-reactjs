@@ -231,5 +231,17 @@
         "star": "{star} Sao ({count})",
         "with-comments": "Có Bình luận ({count})",
         "with-media": "Có hình ảnh / video ({count})"
+    },
+    "cart": {
+        "header": "Giỏ Hàng",
+        "product": "Sản Phẩm",
+        "unit-price": "Đơn Giá",
+        "quantity": "Số Lượng",
+        "total-price": "Số Tiền",
+        "actions": "Thao Tác",
+        "off-shipping": "Giảm ₫15.000 phí vận chuyển đơn tối thiểu ₫50.000; Giảm ₫25.000 phí vận chuyển đơn tối thiểu ₫99.000",
+        "learn-more": "Tìm hiểu thêm",
+        "find-similar": "Tìm sản phẩm tương tự",
+        "notification": "Nhấn vào mục Mã giảm giá ở cuối trang để hưởng miễn phí vận chuyển bạn nhé!"
     }
 }

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import * as actions from 'store/actions';
 import style from './HeaderSupport.module.scss';
+import keys from 'config/keys.config';
 
 class HeaderSupport extends Component {
     constructor(props) {
@@ -173,13 +174,7 @@ const NotificationPopup = ({
                     </div>
                 )}
 
-                {notifications.length !== 0 ? (
-                    <div className={style.popover_content_wrapper}>
-                        {notifications.map((notification, index) => (
-                            <NotificationTag key={index} notification={notification} />
-                        ))}
-                    </div>
-                ) : (
+                {!notifications?.length ? (
                     <div
                         className={`${style.popover_content_wrapper} ${style.popover_content_empty}`}
                     >
@@ -192,6 +187,12 @@ const NotificationPopup = ({
                         ) : (
                             <SpanTag id='header.login-to-view-notifications' />
                         )}
+                    </div>
+                ) : (
+                    <div className={style.popover_content_wrapper}>
+                        {notifications.map((notification, index) => (
+                            <NotificationTag key={index} notification={notification} />
+                        ))}
                     </div>
                 )}
 
@@ -346,7 +347,7 @@ const UserOptions = ({ isUserPopup, firstName, lastName, avatar, children }) => 
                 <Link to='/user/purchase'>
                     <div
                         style={{
-                            background: `url(${avatar}) center/cover no-repeat`,
+                            background: `url(${keys.imageURL}/${avatar}) center/cover no-repeat`,
                         }}
                     ></div>
                     <span>{`${firstName} ${lastName}`}</span>

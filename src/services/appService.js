@@ -13,7 +13,17 @@ const appService = {
     },
 
     async handleGetNotifications(userId) {
-        return axios.get(`/api/users/${userId}/notifications`);
+        return await axios.get(`/api/users/${userId}/notifications`);
+    },
+
+    async handleGetSignedUrl(userId, file) {
+        return await axios.post('/api/upload', {
+            userId,
+            file: {
+                name: file.name,
+                type: file.type,
+            },
+        });
     },
 };
 

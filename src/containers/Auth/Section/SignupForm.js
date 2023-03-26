@@ -8,6 +8,7 @@ import { GENDERS, LANGUAGES, ROLES } from 'utils';
 import * as actions from 'store/actions';
 import style from './SignupForm.module.scss';
 import { userService } from 'services';
+import keys from 'config/keys.config';
 
 class SignupForm extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ class SignupForm extends Component {
 
     async componentDidMount() {
         if (this.props.defaultValue && !isEmptyObj(this.props.defaultValue))
-            this.setState({ submitData: this.props.defaultValue });
+            this.setState({ submitData: { ...this.props.defaultValue } });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -47,7 +48,18 @@ class SignupForm extends Component {
         }
 
         if (prevProps.defaultValue !== this.props.defaultValue) {
-            this.setState({ submitData: this.props.defaultValue });
+            this.setState({ submitData: { ...this.props.defaultValue } });
+        }
+
+        if (prevProps.defaultValue.uploadConfig !== this.props.defaultValue.uploadConfig) {
+            this.setState({ submitData: { ...this.props.defaultValue } });
+
+            handleDisableBtn(
+                this.state.submitData,
+                this.props.isDisableEmail,
+                this.state.errMessage,
+                this.handleSubmitForm.bind(this)
+            );
         }
     }
 
@@ -60,14 +72,13 @@ class SignupForm extends Component {
             errMessage: {},
         });
 
-        const { email, password, phoneNumber, avatar } = this.state.submitData;
+        const { email, password, phoneNumber } = this.state.submitData;
 
         await this.setState({
             errMessage: checkInputValue({
                 email,
                 password,
                 phoneNumber,
-                avatar,
             }),
         });
 
@@ -110,6 +121,7 @@ class SignupForm extends Component {
                 }, 200);
             } else {
                 await this.setState({ errMessage: { [res.errType]: res.message } });
+
                 toast.warn(this.props.submitOptions.failMessage);
             }
         } catch (err) {
@@ -276,19 +288,6 @@ class SignupForm extends Component {
                     />
                 </div>
 
-                <div className={`form-row ${style['form-row']}`}>
-                    <KeyboardInput
-                        col='8'
-                        id='inputAvatar'
-                        translate='signup.avatar'
-                        type='text'
-                        value={avatar}
-                        name='avatar'
-                        onChangeHandler={this.handleInputOnChange}
-                        errMessage={errMessage.avatar}
-                    />
-                </div>
-
                 <button className={`col-12 ${style.form_button}`} form='create_form' type='submit'>
                     <FormattedMessage id={submitBtn || title} />
                 </button>
@@ -304,7 +303,7 @@ class SignupForm extends Component {
                 )}
 
                 <div className={style.review_img}>
-                    <img src={avatar} alt='review' />
+                    <img src={`${keys.imageURL}/${avatar}`} alt='review' />
                 </div>
             </form>
         );
@@ -324,7 +323,7 @@ export const SelectInput = ({ col, id, name, onChangeHandler, value, options, la
                 onChange={onChangeHandler}
                 value={value || (options[0] && options[0].key)}
             >
-                {options.map((option, index) => (
+                {options?.map((option, index) => (
                     <option key={index} value={option.key}>
                         {language === LANGUAGES.VI ? option.valueVi : option.valueEn}
                     </option>
@@ -413,11 +412,9 @@ const handleDisableBtn = (data, isDisableEmail, err, submitHandler) => {
 
 const regexCheckPhoneNumber = /(84|0[3|5|7|8|9])+([0-9]{8})\b/g;
 const regexCheckEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g;
-const regexCheckURL =
-    /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i;
 const regexCheckPassword = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-export const checkInputValue = ({ email, password, phoneNumber, avatar }) => {
+export const checkInputValue = ({ email, password, phoneNumber }) => {
     const checkingInput = {};
 
     if (email && !email.match(regexCheckEmail)) {
@@ -432,15 +429,11 @@ export const checkInputValue = ({ email, password, phoneNumber, avatar }) => {
         checkingInput.phoneNumber = <FormattedMessage id='signup.usermobile-wrong' />;
     }
 
-    if (avatar && !avatar.match(regexCheckURL)) {
-        checkingInput.avatar = <FormattedMessage id='signup.userurl-wrong' />;
-    }
-
     return checkingInput;
 };
 
 export const isEmptyObj = (obj) => {
-    return Object.keys(obj).length ? false : true;
+    return !!obj && Object.keys(obj).length ? false : true;
 };
 
 const mapStateToProps = (state) => {

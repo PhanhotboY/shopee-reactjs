@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import style from './ShopInfo.module.scss';
 import { userService } from 'services';
+import keys from 'config/keys.config';
 
 class ShopInfo extends Component {
     constructor(props) {
@@ -120,7 +121,9 @@ const Shop = ({ shopInfo, redirectToShopPage }) => {
             <Link to={`/shops/${shopInfo.id}`}>
                 <div
                     className={style.avatar}
-                    style={{ background: `url('${shopInfo.avatar}') center / cover no-repeat` }}
+                    style={{
+                        background: `url('${keys.imageURL}/${shopInfo.avatar}') center / cover no-repeat`,
+                    }}
                 ></div>
             </Link>
 

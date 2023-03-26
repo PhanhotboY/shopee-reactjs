@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 
 import style from './ShopAvatar.module.scss';
-import { FormattedMessage } from 'react-intl';
+import keys from 'config/keys.config';
 
 class ShopAvatar extends Component {
     constructor(props) {
@@ -26,7 +27,7 @@ class ShopAvatar extends Component {
             <div
                 className={`${style.avatar} col-4`}
                 style={{
-                    background: `url('${userInfo.avatar}') center top /cover no-repeat`,
+                    background: `url('${keys.imageURL}/${userInfo.avatar}') center top /cover no-repeat`,
                 }}
             >
                 <div className={style.background_layer}>

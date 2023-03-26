@@ -51,6 +51,12 @@
     }
 }
 
-.attributes > * {
-    padding: 0 2rem;
+.attributes {
+    width: 50%;
+
+    & > * {
+        padding: 0 2rem;
+        text-align: center;
+        display: inline-block;
+    }
 }

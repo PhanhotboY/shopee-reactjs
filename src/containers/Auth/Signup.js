@@ -21,7 +21,7 @@ class Signup extends Component {
                 lastName: '',
                 role: 'R1',
                 address: '',
-                avatarURL: '',
+                avatar: '',
             },
             isHiddenPassword: true,
             errMessage: {},

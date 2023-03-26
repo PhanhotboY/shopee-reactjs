@@ -20,7 +20,7 @@ class UserCreate extends Component {
                 lastName: '',
                 role: 'R1',
                 address: '',
-                avatarURL: '',
+                avatar: '',
             },
             isHiddenPassword: true,
             errMessage: {},

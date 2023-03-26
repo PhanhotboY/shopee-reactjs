@@ -83,11 +83,13 @@ class CartTag extends Component {
                             <FormattedMessage id='common.delete' />
                         </span>
 
-                        <span>
-                            <FormattedMessage id='cart.find-similar' />
+                        <div>
+                            <span>
+                                <FormattedMessage id='cart.find-similar' />
+                            </span>
 
                             <i className='fa-solid fa-caret-down'></i>
-                        </span>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -66,26 +66,32 @@
 .actions {
     color: #333;
     display: flex;
+    margin-right: -25px;
     align-items: center;
     flex-direction: column;
 
-    span {
+    > span {
         cursor: pointer;
         padding: 4px 5px;
 
-        &:first-child {
-            &:hover {
-                color: $colorsub3;
-            }
+        &:hover {
+            color: $colorsub3;
+        }
+    }
+
+    > div {
+        font-weight: 500;
+        color: $colorsub3;
+        max-width: 86%;
+        display: flex;
+        align-items: center;
+
+        > span {
+            text-align: center;
         }
 
-        &:last-child {
-            font-weight: 500;
-            color: $colorsub3;
-
-            svg {
-                margin-left: 5px;
-            }
+        svg {
+            margin-left: 5px;
         }
     }
 }

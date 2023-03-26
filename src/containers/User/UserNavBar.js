@@ -6,23 +6,22 @@ import { Link, useRouteMatch } from 'react-router-dom';
 
 import style from './UserNavBar.module.scss';
 import UserHeader from './Section/UserHeader';
+import keys from 'config/keys.config';
 
 class UserNavBar extends Component {
     constructor(props) {
         super(props);
     }
 
-    componentDidMount() {}
-
     render() {
-        const { firstName, lastName } = this.props.userInfo;
+        const { firstName, lastName, avatar } = this.props.userInfo;
 
         return (
             <div className={`${style.wrapper} col-2`}>
                 <UserHeader>
                     <div className='d-flex'>
                         <Link to='/user/account/profile'>
-                            <img className={style.user_avatar} src={this.props.userInfo.avatar} />
+                            <img className={style.user_avatar} src={`${keys.imageURL}/${avatar}`} />
                         </Link>
 
                         <div className={style.user_name}>

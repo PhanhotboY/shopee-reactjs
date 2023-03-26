@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 
 import style from './RatingContainer.module.scss';
 import RatingStar from './RatingStar';
+import keys from 'config/keys.config';
 
 class RatingContainer extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class RatingContainer extends Component {
         this.state = {
             ratings: [
                 {
-                    avatar: '234fe1c1600b2ef0b00e1a7f0619de72',
+                    avatar: '24/69a01de0-9043-4e31-889d-eab1e8d2dd1d.jpg',
                     firstName: 'Phan',
                     lastName: 'Hot Boy',
                     rating: 1,
@@ -55,7 +56,7 @@ const RatingTag = ({ rating }) => {
             <div
                 className={style.avatar}
                 style={{
-                    background: `url('https://cf.shopee.vn/file/${rating.avatar}') center / cover no-repeat`,
+                    background: `url('${keys.imageURL}/${rating.avatar}') center / cover no-repeat`,
                 }}
             ></div>
 

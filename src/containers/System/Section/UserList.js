@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import { LANGUAGES, GENDERS, ROLES } from 'utils';
 import style from './UserList.module.scss';
+import keys from 'config/keys.config';
 
 class UserList extends Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class UserList extends Component {
                                 <div
                                     className={style.item_image}
                                     style={{
-                                        backgroundImage: `url('${user.avatar}')`,
+                                        backgroundImage: `url('${keys.imageURL}/${user.avatar}')`,
                                     }}
                                     onClick={() => this.props.tagOnClickHandler(user.id)}
                                 ></div>

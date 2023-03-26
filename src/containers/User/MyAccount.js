@@ -4,8 +4,10 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 
 import style from './MyAccount.module.scss';
+import { appService } from 'services';
 import UserHeader from './Section/UserHeader';
 import SignupForm from 'containers/Auth/Section/SignupForm';
+import keys from 'config/keys.config';
 
 class MyAccount extends Component {
     constructor(props) {
@@ -16,9 +18,30 @@ class MyAccount extends Component {
             successMessage: 'Update user successfully!',
             failMessage: 'Updata user fail!',
         };
+
+        this.state = {
+            userInfo: { ...this.props.userInfo },
+        };
     }
 
     async componentDidMount() {}
+
+    async handleChangeImage(e) {
+        const file = e.target.files[0];
+
+        try {
+            const uploadConfig = await appService.handleGetSignedUrl(this.props.userInfo.id, file);
+
+            this.setState({
+                userInfo: {
+                    ...this.state.userInfo,
+                    uploadConfig: { ...uploadConfig, file },
+                },
+            });
+        } catch (error) {
+            console.log('Cannot get signed URL: ', error.message);
+        }
+    }
 
     redirectToCreateUserPage = () => {
         const { navigate } = this.props;
@@ -41,7 +64,7 @@ class MyAccount extends Component {
                 <div className={`row ${style.body}`}>
                     <div className='col-8'>
                         <SignupForm
-                            defaultValue={this.props.userInfo}
+                            defaultValue={this.state.userInfo}
                             submitBtn='common.update'
                             isDisableEmail={true}
                             submitOptions={this.submitOptions}
@@ -50,7 +73,7 @@ class MyAccount extends Component {
 
                     <div className={`col-3 ${style.upload_img}`}>
                         <label className='rounded-circle' htmlFor='uploadAvatar'>
-                            <img src={this.props.userInfo.avatar} />
+                            <img src={`${keys.imageURL}/${this.props.userInfo.avatar}`} />
                         </label>
 
                         <label className={style.upload_file_btn} htmlFor='uploadAvatar'>
@@ -61,7 +84,8 @@ class MyAccount extends Component {
                             id='uploadAvatar'
                             className='d-none'
                             type='file'
-                            accept='.jpg,.jpeg,.png'
+                            accept='.jpg, .png, .jpeg'
+                            onChange={this.handleChangeImage.bind(this)}
                         />
 
                         <span>

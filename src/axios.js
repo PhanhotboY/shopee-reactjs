@@ -1,8 +1,9 @@
 import axios from 'axios';
-import _ from 'lodash';
+
+import keys from 'config/keys.config';
 
 const instance = axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL,
+    baseURL: keys.backendURL,
     // withCredentials: true
 });
 
@@ -10,12 +11,12 @@ instance.interceptors.response.use(
     (response) => {
         const { data } = response;
 
-        return response.data;
+        return data;
     },
     (error) => {
-        const { response } = error;
+        const { message } = error;
 
-        return Promise.reject(new Error(response));
+        return Promise.reject(new Error(message));
     }
 );
 

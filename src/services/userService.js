@@ -1,4 +1,5 @@
 import axios from '../axios';
+import Axios from 'axios';
 
 const userService = {
     async handleLogin(email, password) {
@@ -22,6 +23,28 @@ const userService = {
     },
 
     async handleUpdateUser(updateData) {
+        if (updateData.uploadConfig) {
+            try {
+                const uploadConfig = updateData.uploadConfig;
+
+                await axios({
+                    method: 'PUT',
+                    url: uploadConfig.url,
+                    data: uploadConfig.file,
+                    headers: {
+                        'Content-Type': uploadConfig.file.type,
+                    },
+                });
+
+                updateData.avatar = uploadConfig.Key;
+            } catch (err) {
+                return {
+                    errType: 'upload',
+                    message: err.message,
+                };
+            }
+        }
+
         return await axios.put(`/api/users/${updateData.id}`, updateData);
     },
 

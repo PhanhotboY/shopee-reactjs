@@ -187,19 +187,19 @@ const BodyHeader = ({ isCheckedAll, onChangeHandler }) => {
 const ProductAttributes = () => {
     return (
         <div className={style.attributes}>
-            <span>
+            <span style={{ width: '25.8802%' }}>
                 <FormattedMessage id='cart.unit-price' />
             </span>
 
-            <span>
+            <span style={{ width: '25.4265%' }}>
                 <FormattedMessage id='cart.quantity' />
             </span>
 
-            <span>
+            <span style={{ width: '19.4356%' }}>
                 <FormattedMessage id='cart.total-price' />
             </span>
 
-            <span>
+            <span style={{ width: '28.7042%' }}>
                 <FormattedMessage id='cart.actions' />
             </span>
         </div>

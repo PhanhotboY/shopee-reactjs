@@ -29,7 +29,9 @@ class Notifications extends Component {
 
         return (
             <div className={style.wrapper}>
-                {notificationArr.length !== 0 ? (
+                {!notificationArr?.length ? (
+                    <NotificationEmpty page={page} />
+                ) : (
                     <div>
                         <Header />
 
@@ -38,8 +40,6 @@ class Notifications extends Component {
                             isViewDetail={isViewDetail}
                         />
                     </div>
-                ) : (
-                    <NotificationEmpty page={page} />
                 )}
             </div>
         );
