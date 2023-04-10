@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
-import { Link } from 'react-router-dom';
 
+import { CommonUtils } from 'utils';
+import { userService } from 'services';
+import { toast } from 'react-toastify';
 import * as actions from 'store/actions';
 import style from './HeaderSupport.module.scss';
-import keys from 'config/keys.config';
 
 class HeaderSupport extends Component {
     constructor(props) {
@@ -41,6 +43,19 @@ class HeaderSupport extends Component {
         });
     }
 
+    async handleLogout() {
+        try {
+            await userService.logout();
+
+            await this.props.processLogout();
+
+            toast.success('Log out successfully!');
+        } catch (err) {
+            console.log(err);
+            toast.warn(err.message);
+        }
+    }
+
     redirectToSignupPage = () => {
         const { navigate } = this.props;
         const redirectPath = '/signup';
@@ -72,7 +87,7 @@ class HeaderSupport extends Component {
     };
 
     render() {
-        const { processLogout, isLoggedIn, userInfo, changeLanguage } = this.props;
+        const { isLoggedIn, userInfo, changeLanguage } = this.props;
 
         return (
             <div className={style.header_navbar_supports}>
@@ -142,7 +157,7 @@ class HeaderSupport extends Component {
                                 lastName={userInfo.lastName}
                                 avatar={userInfo.avatar}
                             >
-                                <UserOptionsPopup processLogout={processLogout} />
+                                <UserOptionsPopup logoutHandler={this.handleLogout.bind(this)} />
                             </UserOptions>
                         ) : (
                             <LoginOptions
@@ -297,7 +312,7 @@ const ChevronDownIcon = () => {
     );
 };
 
-const UserOptionsPopup = ({ processLogout }) => {
+const UserOptionsPopup = ({ logoutHandler }) => {
     return (
         <div className={style.user_popover}>
             <div className='popover_anchor'></div>
@@ -313,7 +328,7 @@ const UserOptionsPopup = ({ processLogout }) => {
                         <FormattedMessage id='header.my-purchase' />
                     </Link>
                 </li>
-                <li className={style['hover_eff--blur']} onClick={processLogout}>
+                <li className={style['hover_eff--blur']} onClick={logoutHandler}>
                     <a>
                         <FormattedMessage id='header.logout' />
                     </a>
@@ -347,7 +362,9 @@ const UserOptions = ({ isUserPopup, firstName, lastName, avatar, children }) => 
                 <Link to='/user/purchase'>
                     <div
                         style={{
-                            background: `url(${keys.imageURL}/${avatar}) center/cover no-repeat`,
+                            background: `url(${CommonUtils.getImageURL(
+                                avatar
+                            )}) center/cover no-repeat`,
                         }}
                     ></div>
                     <span>{`${firstName} ${lastName}`}</span>

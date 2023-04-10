@@ -4,7 +4,7 @@ import keys from 'config/keys.config';
 
 const instance = axios.create({
     baseURL: keys.backendURL,
-    // withCredentials: true
+    withCredentials: true,
 });
 
 instance.interceptors.response.use(
@@ -14,9 +14,11 @@ instance.interceptors.response.use(
         return data;
     },
     (error) => {
-        const { message } = error;
+        const { response } = error;
 
-        return Promise.reject(new Error(message));
+        return Promise.reject(
+            new Error(response.data.message || `${response.status}: ${response.statusText}`)
+        );
     }
 );
 

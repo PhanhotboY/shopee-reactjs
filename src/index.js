@@ -1,7 +1,7 @@
 import React from 'react';
+import './styles/styles.scss';
 import ReactDOM from 'react-dom';
 import 'react-toastify/dist/ReactToastify.css';
-import './styles/styles.scss';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
 import App from './containers/App';

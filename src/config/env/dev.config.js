@@ -1,7 +1,7 @@
 const env = process.env;
 
-console.log(env);
 module.exports = {
-    backendURL: 'http://localhost:8080',
+    backendURL: 'https://localhost:6868',
     imageURL: env.REACT_APP_IMAGE_URL,
+    stripePublishableKey: env.REACT_APP_STRIPE_PUBLISHABLE_KEY,
 };

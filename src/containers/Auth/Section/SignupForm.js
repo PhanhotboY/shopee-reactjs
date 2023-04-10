@@ -4,11 +4,10 @@ import { push } from 'connected-react-router';
 import { FormattedMessage } from 'react-intl';
 import { toast } from 'react-toastify';
 
-import { GENDERS, LANGUAGES, ROLES } from 'utils';
+import { GENDERS, LANGUAGES, ROLES, CommonUtils } from 'utils';
 import * as actions from 'store/actions';
 import style from './SignupForm.module.scss';
 import { userService } from 'services';
-import keys from 'config/keys.config';
 
 class SignupForm extends Component {
     constructor(props) {
@@ -51,7 +50,7 @@ class SignupForm extends Component {
             this.setState({ submitData: { ...this.props.defaultValue } });
         }
 
-        if (prevProps.defaultValue.uploadConfig !== this.props.defaultValue.uploadConfig) {
+        if (prevProps.defaultValue?.uploadConfig !== this.props.defaultValue?.uploadConfig) {
             this.setState({ submitData: { ...this.props.defaultValue } });
 
             handleDisableBtn(
@@ -302,9 +301,9 @@ class SignupForm extends Component {
                     </button>
                 )}
 
-                <div className={style.review_img}>
-                    <img src={`${keys.imageURL}/${avatar}`} alt='review' />
-                </div>
+                {/* <div className={style.review_img}>
+                    <img src={CommonUtils.getImageURL(avatar)} alt='review' />
+                </div> */}
             </form>
         );
     }

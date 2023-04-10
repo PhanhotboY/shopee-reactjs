@@ -29,7 +29,7 @@ class ShopInfo extends Component {
 
     async changeShopInfo(shopId) {
         try {
-            const res = await userService.handleGetUser(shopId);
+            const res = await userService.getUser(shopId);
 
             if (res && !res.errType && res.userInfo) this.setState({ shopInfo: res.userInfo });
             else console.log('some thing wrong from ShopInfo: ', res.message);

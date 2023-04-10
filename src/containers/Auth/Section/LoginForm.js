@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import React, { Component } from 'react';
 import { push } from 'connected-react-router';
 
+import { userService } from 'services';
 import * as actions from 'store/actions';
 import style from './LoginForm.module.scss';
-import { userService } from 'services';
 import { FormattedMessage } from 'react-intl';
-import { toast } from 'react-toastify';
 
 class LoginForm extends Component {
     constructor(props) {
@@ -55,7 +55,7 @@ class LoginForm extends Component {
         });
 
         try {
-            const data = await userService.handleLogin(this.state.email, this.state.password);
+            const data = await userService.login(this.state.email, this.state.password);
 
             if (data && !data.errType) {
                 await this.props.userLoginSuccess(data.userInfo);
@@ -73,6 +73,12 @@ class LoginForm extends Component {
             toast.warn('Login Fail!');
             console.log(err.response);
         }
+    };
+
+    redirectToHomePage = () => {
+        const { navigate } = this.props;
+        const redirectPath = '/';
+        navigate(`${redirectPath}`);
     };
 
     render() {
@@ -157,9 +163,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchNotificationsStart: (userId) => dispatch(actions.fetchNotificationsStart(userId)),
-        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
+        navigate: (path) => dispatch(push(path)),
         userLoginFail: () => dispatch(actions.userLoginFail()),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
+        fetchNotificationsStart: (userId) => dispatch(actions.fetchNotificationsStart(userId)),
     };
 };
 

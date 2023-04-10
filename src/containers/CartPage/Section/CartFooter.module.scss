@@ -1,0 +1,53 @@
+@import 'styles/variables';
+
+.wrapper {
+    position: sticky;
+    color: $footer-text;
+    bottom: 0;
+    padding-block: 1rem;
+    display: flex;
+    box-shadow: 0 -12px 20px #ddd;
+    justify-content: space-between;
+    font-size: 1rem;
+    text-transform: capitalize;
+    text-align: center;
+
+    > div {
+        display: flex;
+        align-items: center;
+
+        &:first-child {
+            flex-grow: 1;
+            padding-right: 1rem;
+
+            > span,
+            label {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.actions {
+    > * {
+        margin-right: 1rem;
+
+        &:last-child {
+            color: $colorsub3;
+        }
+    }
+}
+
+.closing {
+    .total_price {
+        margin: 0 20px 0 4px;
+        font-size: 1.5rem;
+        color: $colorsub3;
+    }
+
+    > button {
+        text-transform: capitalize;
+        width: 180px;
+        padding: 0.5rem;
+    }
+}

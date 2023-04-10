@@ -74,8 +74,8 @@ class PriceRangeInput extends Component {
 
                 <CustomButton
                     action='search.apply'
-                    isDisabled={!this.state.minPrice && !this.state.maxPrice}
-                    onClickHandler={this.handleOnClick.bind(this)}
+                    disabled={!this.state.minPrice && !this.state.maxPrice}
+                    onClick={this.handleOnClick.bind(this)}
                 />
             </>
         );

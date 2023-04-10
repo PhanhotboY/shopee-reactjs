@@ -21,7 +21,7 @@ class UserDeleted extends Component {
 
     async componentDidMount() {
         try {
-            const allDeletedUser = await userService.handleGetDeletedUser();
+            const allDeletedUser = await userService.getDeletedUser();
 
             if (allDeletedUser && !allDeletedUser.errType) {
                 this.setState({
@@ -35,10 +35,10 @@ class UserDeleted extends Component {
 
     async handleRestoreItem(id) {
         try {
-            const data = await userService.handleRestoreUser(id);
+            const data = await userService.restoreUser(id);
 
             if (data && !data.errType) {
-                const allDeletedUser = await userService.handleGetDeletedUser();
+                const allDeletedUser = await userService.getDeletedUser();
 
                 if (allDeletedUser && !allDeletedUser.errType) {
                     this.setState({
@@ -57,9 +57,9 @@ class UserDeleted extends Component {
         this.setState({ isDeleteModal: id });
     }
 
-    async handlePermanentlyDeleteUser(id) {
+    async permanentlyDeleteUser(id) {
         try {
-            const data = await userService.handlePermanentlyDeleteUser(id);
+            const data = await userService.permanentlyDeleteUser(id);
 
             if (data && !data.errType) {
                 const allDeletedUser = await this.getDeletedUser();
@@ -76,7 +76,7 @@ class UserDeleted extends Component {
 
     async getDeletedUser() {
         try {
-            const allDeletedUser = await userService.handleGetDeletedUser();
+            const allDeletedUser = await userService.getDeletedUser();
 
             if (allDeletedUser && !allDeletedUser.errType) {
                 return allDeletedUser.userInfo;
@@ -114,7 +114,7 @@ class UserDeleted extends Component {
                         <button
                             className='btn btn-danger'
                             onClick={async () => {
-                                await this.handlePermanentlyDeleteUser(this.state.isDeleteModal);
+                                await this.permanentlyDeleteUser(this.state.isDeleteModal);
 
                                 this.setState({ isDeleteModal: 0 });
                             }}
@@ -151,7 +151,7 @@ class UserDeleted extends Component {
 
                 <Filter userArray={this.state.userArray}>
                     <UserList
-                        tagOnClickHandler={this.handleRestoreItem.bind(this)}
+                        tagonClick={this.handleRestoreItem.bind(this)}
                         deleteHandler={this.handleToggleModal.bind(this)}
                     />
                 </Filter>

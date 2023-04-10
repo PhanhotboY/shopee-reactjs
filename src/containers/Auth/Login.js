@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
+import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { push } from 'connected-react-router';
 
+import { userService } from 'services';
 import style from './Login.module.scss';
+import * as actions from 'store/actions';
 import LoginForm from './Section/LoginForm';
-import OtherLoginOptions from './Section/OtherLoginOptions';
 import { RedirectOption, Spliter } from './Signup';
+import OtherLoginOptions from './Section/OtherLoginOptions';
 
 class Login extends Component {
     constructor(props) {
@@ -15,9 +18,22 @@ class Login extends Component {
         this.state = {};
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const header = document.querySelector('header');
         header.style.position = 'relative';
+
+        try {
+            const response = await userService.getCurrentUser();
+
+            if (!response.errType && response.userInfo) {
+                await this.props.userLoginSuccess(response.userInfo);
+                await this.props.fetchNotificationsStart(response.userInfo.id);
+
+                toast.success('Login Successfully!');
+            }
+        } catch (err) {
+            console.log('somethings error from Login.js: ', err.message);
+        }
     }
 
     componentWillUnmount() {
@@ -75,6 +91,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
+        userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
     };
 };
 

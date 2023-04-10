@@ -16,7 +16,7 @@ class ChangePassword extends Component {
 
     async componentDidMount() {
         this.submitOptions = {
-            fetchService: 'handleUpdateUser',
+            fetchService: 'updateUser',
             successMessage: 'Update user successfully!',
             failMessage: 'Updata user fail!',
         };

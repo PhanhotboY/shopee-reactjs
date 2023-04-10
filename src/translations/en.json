@@ -51,10 +51,9 @@
         "success": "Sign up successfully!"
     },
     "header": {
-            "seller-centre": "Seller Centre",
+            "system": "System",
             "download": "Download",
-            "connect": "Follow us on",
-            "join-as-seler": "Join as Seller",
+            "connect": "Contact me on",
             "notification": "Notifications",
             "help": "Help",
             "logout":"Logout",
@@ -242,6 +241,16 @@
         "off-shipping": "₫15.000 off shipping on orders from ₫50.000; ₫25.000 off shipping on orders from ₫99.000",
         "learn-more": "Learn more",
         "find-similar": "Find Similar",
-        "notification": "Select free shipping voucher below to enjoy shipping discount"
+        "notification": "Select free shipping voucher below to enjoy shipping discount",
+        "select-all": "Select All ({quantity})",
+        "delete": "delete",
+        "remove-inactive": "remove inactive products",
+        "move-to-my-likes": "move to my likes",
+        "total": "total ({quantity} item): ",
+        "check-out": "check out"
+    },
+    "checkout": {
+        "place-order": "place order",
+        "add-method": "add method"
     }
 }

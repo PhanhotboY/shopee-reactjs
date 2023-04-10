@@ -1,10 +1,11 @@
 import { Component } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { FormattedMessage } from 'react-intl';
 
 import style from './index.module.scss';
-import CustomCheckbox from 'components/CustomCheckbox';
 import CartTag from './Section/CartTag';
+import CartFooter from './Section/CartFooter';
+import CustomCheckbox from 'components/CustomCheckbox';
 
 class Cart extends Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class Cart extends Component {
                         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
                         flag: 'db89dfecef669d7a42af1a6be6783789',
                         address: 'Ho Chi Minh',
-                        userId: 3,
+                        userId: '62fa8fc2-f549-4652-a32c-a0003a9179fc',
                         quantity: 1,
                     },
                     {
@@ -36,7 +37,7 @@ class Cart extends Component {
                         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
                         flag: 'db89dfecef669d7a42af1a6be6783789',
                         address: 'Ho Chi Minh',
-                        userId: 3,
+                        userId: '62fa8fc2-f549-4652-a32c-a0003a9179fc',
                         quantity: 2,
                     },
                 ],
@@ -51,7 +52,7 @@ class Cart extends Component {
                         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
                         flag: 'db89dfecef669d7a42af1a6be6783789',
                         address: 'Ho Chi Minh',
-                        userId: 1,
+                        userId: '112850188143906422621',
                         quantity: 4,
                     },
                 ],
@@ -66,7 +67,7 @@ class Cart extends Component {
                         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
                         flag: 'db89dfecef669d7a42af1a6be6783789',
                         address: 'Ho Chi Minh',
-                        userId: 6,
+                        userId: '101245109231295460091',
                         quantity: 2,
                     },
                     {
@@ -79,7 +80,7 @@ class Cart extends Component {
                         overlay: '54d8a14b882672ba2bd2d2fd33066f02',
                         flag: 'db89dfecef669d7a42af1a6be6783789',
                         address: 'Ho Chi Minh',
-                        userId: 9,
+                        userId: ' 101245109231295460091',
                         quantity: 1,
                     },
                 ],
@@ -94,7 +95,7 @@ class Cart extends Component {
                         overlay: '3266b2eebb590e79bd377b8e75181914',
                         address: 'Ho Chi Minh',
                         flag: '',
-                        userId: 12,
+                        userId: '117897641700824633082',
                         quantity: 1,
                     },
                 ],
@@ -163,6 +164,12 @@ class Cart extends Component {
                         onChangeHandler={this.handleOnChangeCart.bind(this)}
                     />
                 ))}
+
+                <CartFooter
+                    isRedirectedFromAddPayMethod={
+                        this.props.location.state?.isRedirectedFromAddPayMethod
+                    }
+                />
             </div>
         );
     }

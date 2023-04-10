@@ -4,13 +4,14 @@
     display: flex;
     justify-content: space-around;
 
-    a {
+    button {
         margin: 5px;
         width: 163px;
         height: 40px;
         display: flex;
         padding: 0 8px;
         color: inherit;
+        cursor: pointer;
         align-items: center;
         text-decoration: none;
         justify-content: center;

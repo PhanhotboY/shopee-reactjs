@@ -45,7 +45,7 @@ class ProductRating extends Component {
 
                     <RatingOptions
                         currOption={this.state.currOption}
-                        onClickHandler={this.handleOnClickOption.bind(this)}
+                        onClick={this.handleOnClickOption.bind(this)}
                     />
                 </div>
 
@@ -55,7 +55,7 @@ class ProductRating extends Component {
     }
 }
 
-const RatingOptions = ({ currOption, onClickHandler }) => {
+const RatingOptions = ({ currOption, onClick }) => {
     const options = [
         { name: 'product.all', values: {} },
         { name: 'product.star', values: { star: 5, count: 0 } },
@@ -75,7 +75,7 @@ const RatingOptions = ({ currOption, onClickHandler }) => {
                     className={`${style.option} ${
                         currOption === index ? style['option--active'] : ''
                     }`}
-                    onClick={() => onClickHandler(index)}
+                    onClick={() => onClick(index)}
                 >
                     <span>
                         <FormattedMessage id={option.name} values={option.values} />

@@ -16,7 +16,7 @@ class ShopDetail extends Component {
         const userId = window.location.pathname.substring(7);
 
         try {
-            const res = await userService.handleGetUser(userId);
+            const res = await userService.getUser(userId);
 
             if (res && !res.errType) {
                 this.setState({ userInfo: res.userInfo });

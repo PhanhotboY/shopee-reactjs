@@ -8,17 +8,31 @@ class CustomButton extends Component {
         super(props);
     }
 
+    /**props:
+     * form
+     * disabled
+     * type
+     * onClick
+     * action
+     */
     render() {
+        const { form, disabled, onClick, type } = this.props;
+
         return (
             <button
                 className='custom_button'
-                form={this.props.form}
-                disabled={this.props.isDisabled}
-                type={this.props.type || 'button'}
-                onClick={this.props.onClickHandler}
-                style={{
-                    cursor: this.props.isDisabled && 'not-allowed',
-                }}
+                form={form}
+                disabled={disabled}
+                type={type || 'button'}
+                onClick={disabled ? () => {} : onClick}
+                style={
+                    disabled
+                        ? {
+                              opacity: 0.5,
+                              pointerEvents: 'none',
+                          }
+                        : {}
+                }
             >
                 <FormattedMessage id={this.props.action} />
             </button>

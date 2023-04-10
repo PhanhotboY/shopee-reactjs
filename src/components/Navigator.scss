@@ -29,7 +29,7 @@
             background-color: $bg-menu-color;
             box-shadow: 2px 2px 4px 0 $box-shadow-color;
             -webkit-box-shadow: 2px 2px 4px 0 $box-shadow-color;
-            color: $text-in-light;
+            color: $footer-text;
             position: absolute;
             padding: 0;
 
@@ -54,7 +54,7 @@
                     padding: 0 15px;
                     line-height: 35px;
                     text-decoration: none;
-                    color: $text-in-light;
+                    color: $footer-text;
                 }
 
                 .sub-menu-list {
@@ -79,7 +79,7 @@
 
                         .sub-menu-link {
                             text-decoration: none;
-                            color: $text-in-light;
+                            color: $footer-text;
                         }
 
                         a {

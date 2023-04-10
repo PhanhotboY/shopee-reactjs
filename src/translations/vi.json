@@ -51,10 +51,9 @@
         "success": "Đăng ký thành công!"
     },
     "header": {
-            "seller-centre": "Kênh Người Bán",
+            "system": "Hệ thống",
             "download": "Tải ứng dụng",
             "connect": "Kết nối",
-            "join-as-seler": "Trở thành Người bán Shopee",
             "notification": "Thông Báo",
             "help": "Hỗ Trợ",
             "logout":"Đăng Xuất",
@@ -242,6 +241,16 @@
         "off-shipping": "Giảm ₫15.000 phí vận chuyển đơn tối thiểu ₫50.000; Giảm ₫25.000 phí vận chuyển đơn tối thiểu ₫99.000",
         "learn-more": "Tìm hiểu thêm",
         "find-similar": "Tìm sản phẩm tương tự",
-        "notification": "Nhấn vào mục Mã giảm giá ở cuối trang để hưởng miễn phí vận chuyển bạn nhé!"
+        "notification": "Nhấn vào mục Mã giảm giá ở cuối trang để hưởng miễn phí vận chuyển bạn nhé!",
+        "select-all": "Chọn Tất Cả ({quantity})",
+        "delete": "Xóa",
+        "remove-inactive": "Bỏ sản phẩm không hoạt động",
+        "move-to-my-likes": "Lưu vào mục Đã thích",
+        "total": "Tổng thanh toán ({quantity} Sản phẩm): ",
+        "check-out": "Mua hàng"
+    },
+    "checkout": {
+        "place-order": "đặt hàng",
+        "add-method": "thêm phương thức"
     }
 }

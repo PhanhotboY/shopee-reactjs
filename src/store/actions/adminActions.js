@@ -5,7 +5,7 @@ import actionTypes from './actionTypes';
 export const createNewUser = (data) => {
     return async (dispatch, getState) => {
         try {
-            const res = await userService.handleSignup(data);
+            const res = await userService.signup(data);
 
             if (res && !res.errType) {
                 dispatch(createUserSuccess());

@@ -44,7 +44,7 @@ class UserList extends Component {
                                     style={{
                                         backgroundImage: `url('${keys.imageURL}/${user.avatar}')`,
                                     }}
-                                    onClick={() => this.props.tagOnClickHandler(user.id)}
+                                    onClick={() => this.props.tagonClick(user.id)}
                                 ></div>
 
                                 <div className={style.item_detail}>

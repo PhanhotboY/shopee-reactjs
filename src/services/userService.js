@@ -1,33 +1,51 @@
 import axios from '../axios';
-import Axios from 'axios';
+
+// axios.defaults.withCredentials = true;
 
 const userService = {
-    async handleLogin(email, password) {
-        return await axios.post(`/api/users/login`, { email, password });
+    login(email, password) {
+        return axios.post(`/api/users/login`, { email, password });
     },
 
-    async handleSignup(signupData) {
-        return await axios.post(`/api/users/signup`, signupData);
+    logout() {
+        return axios.get('/api/auth/logout');
     },
 
-    async handleGetAllUser() {
-        return await axios.get(`/api/users`);
+    googleOAuth() {
+        return axios.get(`/api/auth/google`);
     },
 
-    async handleGetUser(id) {
-        return await axios.get(`/api/users/${id}`);
+    signup(signupData) {
+        return axios.post(`/api/users/signup`, signupData);
     },
 
-    async handleGetDeletedUser() {
-        return await axios.get(`/api/users?deleted=true`);
+    getAllUser() {
+        return axios.get(`/api/users`);
     },
 
-    async handleUpdateUser(updateData) {
+    async getCurrentUser() {
+        return await axios.get('/api/users/current', {
+            headers: {
+                'Access-Control-Request-Headers': 'Content-Type',
+                'Access-Control-Request-Method': 'GET',
+            },
+        });
+    },
+
+    getUser(id) {
+        return axios.get(`/api/users/${id}`);
+    },
+
+    getDeletedUser() {
+        return axios.get(`/api/users?deleted=true`);
+    },
+
+    updateUser(updateData) {
         if (updateData.uploadConfig) {
             try {
                 const uploadConfig = updateData.uploadConfig;
 
-                await axios({
+                axios({
                     method: 'PUT',
                     url: uploadConfig.url,
                     data: uploadConfig.file,
@@ -45,19 +63,19 @@ const userService = {
             }
         }
 
-        return await axios.put(`/api/users/${updateData.id}`, updateData);
+        return axios.put(`/api/users/${updateData.id}`, updateData);
     },
 
-    async handleDeleteUser(id) {
-        return await axios.delete(`/api/users/${id}`);
+    deleteUser(id) {
+        return axios.delete(`/api/users/${id}`);
     },
 
-    async handlePermanentlyDeleteUser(id) {
-        return await axios.delete(`/api/users/${id}?permanently=true`);
+    permanentlyDeleteUser(id) {
+        return axios.delete(`/api/users/${id}?permanently=true`);
     },
 
-    async handleRestoreUser(id) {
-        return await axios.patch(`/api/users/${id}`, { action: 'restore' });
+    restoreUser(id) {
+        return axios.patch(`/api/users/${id}`, { action: 'restore' });
     },
 };
 

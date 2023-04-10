@@ -1,3 +1,5 @@
+import keys from 'config/keys.config';
+
 const formatterCurrencyString = Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'VND',
@@ -51,6 +53,10 @@ const CommonUtils = {
         });
 
         return queryString;
+    },
+
+    getImageURL(avatar) {
+        return avatar.indexOf('https://') !== -1 ? avatar : `${keys.imageURL}/${avatar}`;
     },
 };
 

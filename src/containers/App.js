@@ -10,17 +10,18 @@ import { userIsNotAuthenticated, userIsAuthenticated, userIsAnAdmin } from '../h
 import { PATH } from '../utils';
 import * as actions from 'store/actions';
 
-import Home from '../routes/Home';
-import Signup from './Auth/Signup';
-import Login from './Auth/Login';
 import Header from './Header';
-import Footer from './Footer/Footer';
-import System from '../routes/System';
 import User from 'routes/User';
 import Shop from 'routes/Shop';
-import Search from 'routes/Search';
-import Product from 'routes/Product';
 import Cart from 'routes/Cart';
+import Login from './Auth/Login';
+import Home from '../routes/Home';
+import Signup from './Auth/Signup';
+import Search from 'routes/Search';
+import Footer from './Footer/Footer';
+import Product from 'routes/Product';
+import System from '../routes/System';
+import Checkout from 'routes/Checkout';
 
 class App extends Component {
     constructor(props) {
@@ -51,7 +52,10 @@ class App extends Component {
 
                         <div className='content-container'>
                             <Switch>
-                                <Route path={PATH.HOME} exact component={Home} />
+                                <Route
+                                    path={PATH.LOGIN}
+                                    component={userIsNotAuthenticated(Login)}
+                                />
 
                                 <Route
                                     path={PATH.SIGNUP}
@@ -59,13 +63,9 @@ class App extends Component {
                                 />
 
                                 <Route
-                                    path={PATH.LOGIN}
-                                    component={userIsNotAuthenticated(Login)}
+                                    path={PATH.CHECKOUT}
+                                    component={userIsAuthenticated(Checkout)}
                                 />
-
-                                <Route path={PATH.SYSTEM} component={userIsAnAdmin(System)} />
-
-                                <Route path={PATH.USER} component={userIsAuthenticated(User)} />
 
                                 <Route path={PATH.SHOP} component={Shop} />
 
@@ -73,7 +73,13 @@ class App extends Component {
 
                                 <Route path={PATH.PRODUCT} component={Product} />
 
-                                <Route path={PATH.CART} component={Cart} />
+                                <Route path={PATH.HOME} exact component={Home} />
+
+                                <Route path={PATH.SYSTEM} component={userIsAnAdmin(System)} />
+
+                                <Route path={PATH.USER} component={userIsAuthenticated(User)} />
+
+                                <Route path={PATH.CART} component={userIsAuthenticated(Cart)} />
 
                                 <Route
                                     component={() => {

@@ -12,20 +12,12 @@ class TagHeader extends Component {
         super(props);
 
         this.state = {
-            userInfo: {},
+            userInfo: this.props.userInfo,
         };
     }
-
-    async componentDidMount() {
-        try {
-            const res = await userService.handleGetUser(this.props.userId);
-
-            if (res && !res.errType) {
-                await this.setState({ userInfo: res.userInfo });
-            }
-        } catch (error) {
-            console.log(error);
-        }
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.userInfo !== this.props.userInfo)
+            this.setState({ userInfo: this.props.userInfo });
     }
 
     render() {
@@ -51,7 +43,9 @@ class TagHeader extends Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        userInfo: state.user.userInfo,
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {

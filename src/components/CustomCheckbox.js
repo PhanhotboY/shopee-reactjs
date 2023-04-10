@@ -8,11 +8,11 @@ class CustomCheckbox extends Component {
     }
 
     render() {
-        const { name, checked, onChange } = this.props;
+        const { id, name, checked, onChange } = this.props;
 
         return (
             <label className={style.custom_checkbox}>
-                <input type='checkbox' name={name} checked={checked} onChange={onChange} />
+                <input id={id} type='checkbox' name={name} checked={checked} onChange={onChange} />
 
                 <div className={style.check_box}></div>
             </label>

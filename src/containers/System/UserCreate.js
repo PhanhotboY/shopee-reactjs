@@ -29,7 +29,7 @@ class UserCreate extends Component {
 
     render() {
         const submitOptions = {
-            fetchService: 'handleSignup',
+            fetchService: 'signup',
             successMessage: 'Create new user successfully!',
             failMessage: 'Create user fail!',
             redirectHandler: () => window.history.back(),

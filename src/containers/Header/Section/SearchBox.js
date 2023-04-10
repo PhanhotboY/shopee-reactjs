@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-
-import { history } from '../../../redux';
-import { PATH } from 'utils';
-import style from './SearchBox.module.scss';
 import { push } from 'connected-react-router';
+
+import { PATH } from 'utils';
+import { history } from '../../../redux';
+import style from './SearchBox.module.scss';
 
 class SearchBox extends Component {
     constructor(props) {
@@ -96,18 +97,18 @@ export const SearchInput = ({ children, isFocus, handleSubmitForm }) => {
     );
 };
 
-const RecentSearchList = ({ keywords = ['PhanhotboY'] }) => {
+const RecentSearchList = ({ keywords = ['recently', 'searched', 'keywords'] }) => {
     return (
         <div className={style.recent_search_list}>
             <FormattedMessage id='header.signup-get-voucher'>
                 {(trans) => (
-                    <a href={`/?search=${trans}`}>
+                    <Link to={`/search?keyword=${trans}`}>
                         <span>{trans}</span>
                         <img
                             src='https://cf.shopee.vn/file/e92ab33ccea0695b22219c8a152d9f61'
                             height='24'
                         />
-                    </a>
+                    </Link>
                 )}
             </FormattedMessage>
 
@@ -120,19 +121,19 @@ const RecentSearchList = ({ keywords = ['PhanhotboY'] }) => {
 
 const RecentSearchKeyword = ({ keyword }) => {
     return (
-        <a href={`/?search=${keyword}`}>
+        <Link to={`/search?keyword=${keyword}`}>
             <span>{keyword}</span>
-        </a>
+        </Link>
     );
 };
 
-const TrendingSearchList = ({ trendingSearches = ['system', 'deo co gi de cai'] }) => {
+const TrendingSearchList = ({ trendingSearches = ['trending', 'keywords'] }) => {
     return (
         <div className={style['trending_search_list']}>
             {trendingSearches.map((keyword, index) => (
-                <a href='/system' key={index}>
+                <Link to={`/search?keyword=${keyword}`} key={index}>
                     {keyword}
-                </a>
+                </Link>
             ))}
         </div>
     );

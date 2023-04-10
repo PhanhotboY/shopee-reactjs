@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
-import { push } from 'connected-react-router';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { push } from 'connected-react-router';
 
-import style from './MyAccount.module.scss';
+import { CommonUtils } from 'utils';
 import { appService } from 'services';
+import style from './MyAccount.module.scss';
 import UserHeader from './Section/UserHeader';
 import SignupForm from 'containers/Auth/Section/SignupForm';
-import keys from 'config/keys.config';
 
 class MyAccount extends Component {
     constructor(props) {
         super(props);
 
         this.submitOptions = {
-            fetchService: 'handleUpdateUser',
+            fetchService: 'updateUser',
             successMessage: 'Update user successfully!',
             failMessage: 'Updata user fail!',
         };
@@ -73,7 +73,7 @@ class MyAccount extends Component {
 
                     <div className={`col-3 ${style.upload_img}`}>
                         <label className='rounded-circle' htmlFor='uploadAvatar'>
-                            <img src={`${keys.imageURL}/${this.props.userInfo.avatar}`} />
+                            <img src={CommonUtils.getImageURL(this.props.userInfo.avatar)} />
                         </label>
 
                         <label className={style.upload_file_btn} htmlFor='uploadAvatar'>

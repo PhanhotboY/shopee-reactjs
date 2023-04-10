@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import { push } from 'connected-react-router';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
+import { push } from 'connected-react-router';
 import { Link, useRouteMatch } from 'react-router-dom';
 
+import { CommonUtils } from 'utils';
 import style from './UserNavBar.module.scss';
 import UserHeader from './Section/UserHeader';
-import keys from 'config/keys.config';
-
 class UserNavBar extends Component {
     constructor(props) {
         super(props);
@@ -21,7 +20,10 @@ class UserNavBar extends Component {
                 <UserHeader>
                     <div className='d-flex'>
                         <Link to='/user/account/profile'>
-                            <img className={style.user_avatar} src={`${keys.imageURL}/${avatar}`} />
+                            <img
+                                className={style.user_avatar}
+                                src={CommonUtils.getImageURL(avatar)}
+                            />
                         </Link>
 
                         <div className={style.user_name}>

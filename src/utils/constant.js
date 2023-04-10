@@ -1,14 +1,16 @@
 export const PATH = {
     HOME: '/',
-    SIGNUP: '/signup',
-    LOGIN: '/login',
-    LOG_OUT: '/logout',
-    SYSTEM: '/system',
     USER: '/user',
-    SHOP: '/shops',
-    SEARCH: '/search',
-    PRODUCT: '/products',
     CART: '/cart',
+    SHOP: '/shops',
+    LOGIN: '/login',
+    SIGNUP: '/signup',
+    SEARCH: '/search',
+    SYSTEM: '/system',
+    LOG_OUT: '/logout',
+    PAYMENT: '/payment',
+    PRODUCT: '/products',
+    CHECKOUT: '/checkout',
 };
 
 export const ROLES = {

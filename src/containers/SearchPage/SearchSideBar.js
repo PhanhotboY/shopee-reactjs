@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
+import { CommonUtils } from 'utils';
 import { history } from '../../redux';
+import { push } from 'connected-react-router';
 import style from './SearchSideBar.module.scss';
-import PriceRangeInput from './Section/PriceRangeInput';
 import CustomButton from 'components/CustomButton';
 import RatingOptions from './Section/RatingOptions';
-import { push } from 'connected-react-router';
-import { CommonUtils } from 'utils';
+import PriceRangeInput from './Section/PriceRangeInput';
 
 class SearchSideBar extends Component {
     constructor(props) {
@@ -117,7 +117,7 @@ class SearchSideBar extends Component {
 
                     <CustomButton
                         action='search.clear-all'
-                        onClickHandler={this.clearFilterHandler.bind(this)}
+                        onClick={this.clearFilterHandler.bind(this)}
                     />
                 </div>
             </div>

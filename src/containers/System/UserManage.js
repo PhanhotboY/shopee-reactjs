@@ -25,8 +25,8 @@ class UserManage extends Component {
 
     async componentDidMount() {
         try {
-            const allUser = await userService.handleGetAllUser();
-            const allDeletedUser = await userService.handleGetDeletedUser();
+            const allUser = await userService.getAllUser();
+            const allDeletedUser = await userService.getDeletedUser();
 
             if (allUser && !allUser.errType) {
                 await this.setState({
@@ -39,13 +39,13 @@ class UserManage extends Component {
         }
     }
 
-    async handleDeleteUser(id) {
+    async deleteUser(id) {
         try {
-            const data = await userService.handleDeleteUser(id);
+            const data = await userService.deleteUser(id);
 
             if (data && !data.errType) {
-                const allDeletedUser = await userService.handleGetDeletedUser();
-                const allUser = await userService.handleGetAllUser();
+                const allDeletedUser = await userService.getDeletedUser();
+                const allUser = await userService.getAllUser();
 
                 if (allUser && allDeletedUser && !allUser.errType && !allDeletedUser.errType) {
                     await this.setState({
@@ -91,8 +91,8 @@ class UserManage extends Component {
             <div className={`grid ${style.wrapper}`}>
                 <Filter userArray={this.state.userArray}>
                     <UserList
-                        tagOnClickHandler={this.redirectToEditPage.bind(this)}
-                        deleteHandler={this.handleDeleteUser.bind(this)}
+                        tagonClick={this.redirectToEditPage.bind(this)}
+                        deleteHandler={this.deleteUser.bind(this)}
                     />
                 </Filter>
 

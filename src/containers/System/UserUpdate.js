@@ -19,7 +19,7 @@ class UserUpdate extends Component {
     async componentDidMount() {
         const userId = new URLSearchParams(this.props.location.search).get('id');
         try {
-            const res = await userService.handleGetUser(userId);
+            const res = await userService.getUser(userId);
 
             if (res && !res.errType) {
                 this.setState({ userInfo: res.userInfo });
@@ -31,7 +31,7 @@ class UserUpdate extends Component {
 
     render() {
         const submitOptions = {
-            fetchService: 'handleUpdateUser',
+            fetchService: 'updateUser',
             successMessage: 'Update user successfully!',
             failMessage: 'Updata user fail!',
             redirectHandler: () => window.history.back(),

@@ -36,7 +36,7 @@ export const fetchGendersFail = () => ({
 export const fetchRolesStart = () => {
     return async (dispatch, getState) => {
         try {
-            const res = await appService.handleGetAllcodes('role');
+            const res = await appService.llcodes('role');
 
             if (res && !res.errCode) dispatch(fetchRolesSuccess(res.payload));
             else dispatch(fetchRolesFail());

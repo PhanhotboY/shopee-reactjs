@@ -1,13 +1,6 @@
 import axios from '../axios';
 
 const appService = {
-    /**
-     * Đăng nhập hệ thống
-     * {
-     *  "username": "string",
-     *  "password": "string"
-     * }
-     */
     async handleGetAllcodes(type) {
         return await axios.get(`/api/allcodes/${type}`);
     },
@@ -24,6 +17,22 @@ const appService = {
                 type: file.type,
             },
         });
+    },
+
+    async attachPaymentMethod(paymentMethod) {
+        return await axios.post('/api/checkout/payment/attach-method', paymentMethod);
+    },
+
+    async getPaymentMethods() {
+        return await axios.get('/api/checkout/payment/methods');
+    },
+
+    async createPaymentIntent(order) {
+        return await axios.post('/api/checkout/payment/create-intent', order);
+    },
+
+    async confirmPaymentIntent(intentId, methodId) {
+        return await axios.post('/api/checkout/payment/confirm', { intentId, methodId });
     },
 };
 

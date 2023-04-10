@@ -1,5 +1,5 @@
-const express = require('express');
 const path = require('path');
+const express = require('express');
 
 const app = express();
 
@@ -14,9 +14,7 @@ if (subDir === '/') {
         'The server config assuming it is serving at the server root. You can control this with the `subDir` variable in index.js.'
     );
 } else {
-    console.log(
-        "The server config assuming it is serving at '" + subDir + "'."
-    );
+    console.log("The server config assuming it is serving at '" + subDir + "'.");
 }
 
 if (logRequests) {
@@ -36,6 +34,7 @@ app.get('*', (req, res) => {
 });
 
 const port = process.env.PORT || 3000;
+
 app.listen(port);
 
 console.log('React.JS App is running on the port ' + port);
